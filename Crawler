@@ -1,0 +1,1191 @@
+<!doctype html>
+<html>
+    <head>
+        <title>innawoods Indev</title>
+        <script src="inv.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            * {
+                box-sizing: border-box;
+                background: black;
+                color: white;
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            header {
+                float: left;
+                width: 50%;
+                height: 80%;
+            }
+
+            span {
+                display: inline-block;
+                font-size: 32px;
+                transform: scale(1, .75);
+                line-height: 0.5;
+            }
+
+            nav {
+                float: left;
+                width: 50%;
+                height: 40%;
+            }
+            article {
+                float: left;
+                width: 50%;
+                height: 40%;
+            }
+
+            section {
+                width: 100%;
+                height: 20%;
+                clear: both;
+                color: gray;
+            }
+            
+            /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+            @media (max-width: 600px) {
+              nav, article {
+                width: 100%;
+                height: auto;
+              }
+            }
+        </style>
+    </head>
+    <header>
+        <h1 id="area" value="000">Innawoods Indev</h1>
+        <!-- Map : 0,0 is center -->
+        <span id="map-19x9">.</span><span id="map-18x9">.</span><span id="map-17x9">.</span><span id="map-16x9">.</span><span id="map-15x9">.</span><span id="map-14x9">.</span><span id="map-13x9">.</span><span id="map-12x9">.</span><span id="map-11x9">.</span><span id="map-10x9">.</span><span id="map-9x9">.</span><span id="map-8x9">.</span><span id="map-7x9">.</span><span id="map-6x9">.</span><span id="map-5x9">.</span><span id="map-4x9">.</span><span id="map-3x9">.</span><span id="map-2x9">.</span><span id="map-1x9">.</span><span id="map0x9">.</span><span id="map1x9">.</span><span id="map2x9">.</span><span id="map3x9">.</span><span id="map4x9">.</span><span id="map5x9">.</span><span id="map6x9">.</span><span id="map7x9">.</span><span id="map8x9">.</span><span id="map9x9">.</span><span id="map10x9">.</span><span id="map11x9">.</span><span id="map12x9">.</span><span id="map13x9">.</span><span id="map14x9">.</span><span id="map15x9">.</span><span id="map16x9">.</span><span id="map17x9">.</span><span id="map18x9">.</span><span id="map19x9">.</span><br>
+        <span id="map-19x8">.</span><span id="map-18x8">.</span><span id="map-17x8">.</span><span id="map-16x8">.</span><span id="map-15x8">.</span><span id="map-14x8">.</span><span id="map-13x8">.</span><span id="map-12x8">.</span><span id="map-11x8">.</span><span id="map-10x8">.</span><span id="map-9x8">.</span><span id="map-8x8">.</span><span id="map-7x8">.</span><span id="map-6x8">.</span><span id="map-5x8">.</span><span id="map-4x8">.</span><span id="map-3x8">.</span><span id="map-2x8">.</span><span id="map-1x8">.</span><span id="map0x8">.</span><span id="map1x8">.</span><span id="map2x8">.</span><span id="map3x8">.</span><span id="map4x8">.</span><span id="map5x8">.</span><span id="map6x8">.</span><span id="map7x8">.</span><span id="map8x8">.</span><span id="map9x8">.</span><span id="map10x8">.</span><span id="map11x8">.</span><span id="map12x8">.</span><span id="map13x8">.</span><span id="map14x8">.</span><span id="map15x8">.</span><span id="map16x8">.</span><span id="map17x8">.</span><span id="map18x8">.</span><span id="map19x8">.</span><br>
+        <span id="map-19x7">.</span><span id="map-18x7">.</span><span id="map-17x7">.</span><span id="map-16x7">.</span><span id="map-15x7">.</span><span id="map-14x7">.</span><span id="map-13x7">.</span><span id="map-12x7">.</span><span id="map-11x7">.</span><span id="map-10x7">.</span><span id="map-9x7">.</span><span id="map-8x7">.</span><span id="map-7x7">.</span><span id="map-6x7">.</span><span id="map-5x7">.</span><span id="map-4x7">.</span><span id="map-3x7">.</span><span id="map-2x7">.</span><span id="map-1x7">.</span><span id="map0x7">.</span><span id="map1x7">.</span><span id="map2x7">.</span><span id="map3x7">.</span><span id="map4x7">.</span><span id="map5x7">.</span><span id="map6x7">.</span><span id="map7x7">.</span><span id="map8x7">.</span><span id="map9x7">.</span><span id="map10x7">.</span><span id="map11x7">.</span><span id="map12x7">.</span><span id="map13x7">.</span><span id="map14x7">.</span><span id="map15x7">.</span><span id="map16x7">.</span><span id="map17x7">.</span><span id="map18x7">.</span><span id="map19x7">.</span><br>
+        <span id="map-19x6">.</span><span id="map-18x6">.</span><span id="map-17x6">.</span><span id="map-16x6">.</span><span id="map-15x6">.</span><span id="map-14x6">.</span><span id="map-13x6">.</span><span id="map-12x6">.</span><span id="map-11x6">.</span><span id="map-10x6">.</span><span id="map-9x6">.</span><span id="map-8x6">.</span><span id="map-7x6">.</span><span id="map-6x6">.</span><span id="map-5x6">.</span><span id="map-4x6">.</span><span id="map-3x6">.</span><span id="map-2x6">.</span><span id="map-1x6">.</span><span id="map0x6">.</span><span id="map1x6">.</span><span id="map2x6">.</span><span id="map3x6">.</span><span id="map4x6">.</span><span id="map5x6">.</span><span id="map6x6">.</span><span id="map7x6">.</span><span id="map8x6">.</span><span id="map9x6">.</span><span id="map10x6">.</span><span id="map11x6">.</span><span id="map12x6">.</span><span id="map13x6">.</span><span id="map14x6">.</span><span id="map15x6">.</span><span id="map16x6">.</span><span id="map17x6">.</span><span id="map18x6">.</span><span id="map19x6">.</span><br>
+        <span id="map-19x5">.</span><span id="map-18x5">.</span><span id="map-17x5">.</span><span id="map-16x5">.</span><span id="map-15x5">.</span><span id="map-14x5">.</span><span id="map-13x5">.</span><span id="map-12x5">.</span><span id="map-11x5">.</span><span id="map-10x5">.</span><span id="map-9x5">.</span><span id="map-8x5">.</span><span id="map-7x5">.</span><span id="map-6x5">.</span><span id="map-5x5">.</span><span id="map-4x5">.</span><span id="map-3x5">.</span><span id="map-2x5">.</span><span id="map-1x5">.</span><span id="map0x5">.</span><span id="map1x5">.</span><span id="map2x5">.</span><span id="map3x5">.</span><span id="map4x5">.</span><span id="map5x5">.</span><span id="map6x5">.</span><span id="map7x5">.</span><span id="map8x5">.</span><span id="map9x5">.</span><span id="map10x5">.</span><span id="map11x5">.</span><span id="map12x5">.</span><span id="map13x5">.</span><span id="map14x5">.</span><span id="map15x5">.</span><span id="map16x5">.</span><span id="map17x5">.</span><span id="map18x5">.</span><span id="map19x5">.</span><br>
+        <span id="map-19x4">.</span><span id="map-18x4">.</span><span id="map-17x4">.</span><span id="map-16x4">.</span><span id="map-15x4">.</span><span id="map-14x4">.</span><span id="map-13x4">.</span><span id="map-12x4">.</span><span id="map-11x4">.</span><span id="map-10x4">.</span><span id="map-9x4">.</span><span id="map-8x4">.</span><span id="map-7x4">.</span><span id="map-6x4">.</span><span id="map-5x4">.</span><span id="map-4x4">.</span><span id="map-3x4">.</span><span id="map-2x4">.</span><span id="map-1x4">.</span><span id="map0x4">.</span><span id="map1x4">.</span><span id="map2x4">.</span><span id="map3x4">.</span><span id="map4x4">.</span><span id="map5x4">.</span><span id="map6x4">.</span><span id="map7x4">.</span><span id="map8x4">.</span><span id="map9x4">.</span><span id="map10x4">.</span><span id="map11x4">.</span><span id="map12x4">.</span><span id="map13x4">.</span><span id="map14x4">.</span><span id="map15x4">.</span><span id="map16x4">.</span><span id="map17x4">.</span><span id="map18x4">.</span><span id="map19x4">.</span><br>
+        <span id="map-19x3">.</span><span id="map-18x3">.</span><span id="map-17x3">.</span><span id="map-16x3">.</span><span id="map-15x3">.</span><span id="map-14x3">.</span><span id="map-13x3">.</span><span id="map-12x3">.</span><span id="map-11x3">.</span><span id="map-10x3">.</span><span id="map-9x3">.</span><span id="map-8x3">.</span><span id="map-7x3">.</span><span id="map-6x3">.</span><span id="map-5x3">.</span><span id="map-4x3">.</span><span id="map-3x3">.</span><span id="map-2x3">.</span><span id="map-1x3">.</span><span id="map0x3">.</span><span id="map1x3">.</span><span id="map2x3">.</span><span id="map3x3">.</span><span id="map4x3">.</span><span id="map5x3">.</span><span id="map6x3">.</span><span id="map7x3">.</span><span id="map8x3">.</span><span id="map9x3">.</span><span id="map10x3">.</span><span id="map11x3">.</span><span id="map12x3">.</span><span id="map13x3">.</span><span id="map14x3">.</span><span id="map15x3">.</span><span id="map16x3">.</span><span id="map17x3">.</span><span id="map18x3">.</span><span id="map19x3">.</span><br>
+        <span id="map-19x2">.</span><span id="map-18x2">.</span><span id="map-17x2">.</span><span id="map-16x2">.</span><span id="map-15x2">.</span><span id="map-14x2">.</span><span id="map-13x2">.</span><span id="map-12x2">.</span><span id="map-11x2">.</span><span id="map-10x2">.</span><span id="map-9x2">.</span><span id="map-8x2">.</span><span id="map-7x2">.</span><span id="map-6x2">.</span><span id="map-5x2">.</span><span id="map-4x2">.</span><span id="map-3x2">.</span><span id="map-2x2">.</span><span id="map-1x2">.</span><span id="map0x2">A</span><span id="map1x2">.</span><span id="map2x2">.</span><span id="map3x2">.</span><span id="map4x2">.</span><span id="map5x2">.</span><span id="map6x2">.</span><span id="map7x2">.</span><span id="map8x2">.</span><span id="map9x2">.</span><span id="map10x2">.</span><span id="map11x2">.</span><span id="map12x2">.</span><span id="map13x2">.</span><span id="map14x2">.</span><span id="map15x2">.</span><span id="map16x2">.</span><span id="map17x2">.</span><span id="map18x2">.</span><span id="map19x2">.</span><br>
+        <span id="map-19x1">.</span><span id="map-18x1">.</span><span id="map-17x1">.</span><span id="map-16x1">.</span><span id="map-15x1">.</span><span id="map-14x1">.</span><span id="map-13x1">.</span><span id="map-12x1">.</span><span id="map-11x1">.</span><span id="map-10x1">.</span><span id="map-9x1">.</span><span id="map-8x1">.</span><span id="map-7x1">.</span><span id="map-6x1">.</span><span id="map-5x1">.</span><span id="map-4x1">.</span><span id="map-3x1">.</span><span id="map-2x1">.</span><span id="map-1x1">/</span><span id="map0x1">I</span><span id="map1x1">\</span><span id="map2x1">.</span><span id="map3x1">.</span><span id="map4x1">.</span><span id="map5x1">.</span><span id="map6x1">.</span><span id="map7x1">.</span><span id="map8x1">.</span><span id="map9x1">.</span><span id="map10x1">.</span><span id="map11x1">.</span><span id="map12x1">.</span><span id="map13x1">.</span><span id="map14x1">.</span><span id="map15x1">.</span><span id="map16x1">.</span><span id="map17x1">.</span><span id="map18x1">.</span><span id="map19x1">.</span><br>
+        <span id="map-19x0">.</span><span id="map-18x0">.</span><span id="map-17x0">.</span><span id="map-16x0">.</span><span id="map-15x0">.</span><span id="map-14x0">.</span><span id="map-13x0">.</span><span id="map-12x0">.</span><span id="map-11x0">.</span><span id="map-10x0">.</span><span id="map-9x0">.</span><span id="map-8x0">.</span><span id="map-7x0">.</span><span id="map-6x0">.</span><span id="map-5x0">.</span><span id="map-4x0">.</span><span id="map-3x0">.</span><span id="map-2x0">/</span><span id="map-1x0">/</span><span id="map0x0">I</span><span id="map1x0">\</span><span id="map2x0">\</span><span id="map3x0">.</span><span id="map4x0">.</span><span id="map5x0">.</span><span id="map6x0">.</span><span id="map7x0">.</span><span id="map8x0">.</span><span id="map9x0">.</span><span id="map10x0">.</span><span id="map11x0">.</span><span id="map12x0">.</span><span id="map13x0">.</span><span id="map14x0">.</span><span id="map15x0">.</span><span id="map16x0">.</span><span id="map17x0">.</span><span id="map18x0">.</span><span id="map19x0">.</span><br>
+        <span id="map-19x-1">.</span><span id="map-18x-1">.</span><span id="map-17x-1">.</span><span id="map-16x-1">.</span><span id="map-15x-1">.</span><span id="map-14x-1">.</span><span id="map-13x-1">.</span><span id="map-12x-1">.</span><span id="map-11x-1">.</span><span id="map-10x-1">.</span><span id="map-9x-1">.</span><span id="map-8x-1">.</span><span id="map-7x-1">.</span><span id="map-6x-1">.</span><span id="map-5x-1">.</span><span id="map-4x-1">.</span><span id="map-3x-1">/</span><span id="map-2x-1">/</span><span id="map-1x-1">/</span><span id="map0x-1">I</span><span id="map1x-1">\</span><span id="map2x-1">\</span><span id="map3x-1">\</span><span id="map4x-1">.</span><span id="map5x-1">.</span><span id="map6x-1">.</span><span id="map7x-1">.</span><span id="map8x-1">.</span><span id="map9x-1">.</span><span id="map10x-1">.</span><span id="map11x-1">.</span><span id="map12x-1">.</span><span id="map13x-1">.</span><span id="map14x-1">.</span><span id="map15x-1">.</span><span id="map16x-1">.</span><span id="map17x-1">.</span><span id="map18x-1">.</span><span id="map19x-1">.</span><br>
+        <span id="map-19x-2">.</span><span id="map-18x-2">.</span><span id="map-17x-2">.</span><span id="map-16x-2">.</span><span id="map-15x-2">.</span><span id="map-14x-2">.</span><span id="map-13x-2">.</span><span id="map-12x-2">.</span><span id="map-11x-2">.</span><span id="map-10x-2">.</span><span id="map-9x-2">.</span><span id="map-8x-2">.</span><span id="map-7x-2">.</span><span id="map-6x-2">.</span><span id="map-5x-2">.</span><span id="map-4x-2">.</span><span id="map-3x-2">.</span><span id="map-2x-2">'</span><span id="map-1x-2">/</span><span id="map0x-2">I</span><span id="map1x-2">\</span><span id="map2x-2">'</span><span id="map3x-2">.</span><span id="map4x-2">.</span><span id="map5x-2">.</span><span id="map6x-2">.</span><span id="map7x-2">.</span><span id="map8x-2">.</span><span id="map9x-2">.</span><span id="map10x-2">.</span><span id="map11x-2">.</span><span id="map12x-2">.</span><span id="map13x-2">.</span><span id="map14x-2">.</span><span id="map15x-2">.</span><span id="map16x-2">.</span><span id="map17x-2">.</span><span id="map18x-2">.</span><span id="map19x-2">.</span><br>
+        <span id="map-19x-3">.</span><span id="map-18x-3">.</span><span id="map-17x-3">.</span><span id="map-16x-3">.</span><span id="map-15x-3">.</span><span id="map-14x-3">.</span><span id="map-13x-3">.</span><span id="map-12x-3">.</span><span id="map-11x-3">.</span><span id="map-10x-3">.</span><span id="map-9x-3">.</span><span id="map-8x-3">.</span><span id="map-7x-3">.</span><span id="map-6x-3">.</span><span id="map-5x-3">.</span><span id="map-4x-3">.</span><span id="map-3x-3">.</span><span id="map-2x-3">.</span><span id="map-1x-3">'</span><span id="map0x-3">I</span><span id="map1x-3">'</span><span id="map2x-3">.</span><span id="map3x-3">.</span><span id="map4x-3">.</span><span id="map5x-3">.</span><span id="map6x-3">.</span><span id="map7x-3">.</span><span id="map8x-3">.</span><span id="map9x-3">.</span><span id="map10x-3">.</span><span id="map11x-3">.</span><span id="map12x-3">.</span><span id="map13x-3">.</span><span id="map14x-3">.</span><span id="map15x-3">.</span><span id="map16x-3">.</span><span id="map17x-3">.</span><span id="map18x-3">.</span><span id="map19x-3">.</span><br>
+        <span id="map-19x-4">.</span><span id="map-18x-4">.</span><span id="map-17x-4">.</span><span id="map-16x-4">.</span><span id="map-15x-4">.</span><span id="map-14x-4">.</span><span id="map-13x-4">.</span><span id="map-12x-4">.</span><span id="map-11x-4">.</span><span id="map-10x-4">.</span><span id="map-9x-4">.</span><span id="map-8x-4">.</span><span id="map-7x-4">.</span><span id="map-6x-4">.</span><span id="map-5x-4">.</span><span id="map-4x-4">.</span><span id="map-3x-4">.</span><span id="map-2x-4">.</span><span id="map-1x-4">.</span><span id="map0x-4">.</span><span id="map1x-4">.</span><span id="map2x-4">.</span><span id="map3x-4">.</span><span id="map4x-4">.</span><span id="map5x-4">.</span><span id="map6x-4">.</span><span id="map7x-4">.</span><span id="map8x-4">.</span><span id="map9x-4">.</span><span id="map10x-4">.</span><span id="map11x-4">.</span><span id="map12x-4">.</span><span id="map13x-4">.</span><span id="map14x-4">.</span><span id="map15x-4">.</span><span id="map16x-4">.</span><span id="map17x-4">.</span><span id="map18x-4">.</span><span id="map19x-4">.</span><br>
+        <span id="map-19x-5">.</span><span id="map-18x-5">.</span><span id="map-17x-5">.</span><span id="map-16x-5">.</span><span id="map-15x-5">.</span><span id="map-14x-5">.</span><span id="map-13x-5">.</span><span id="map-12x-5">.</span><span id="map-11x-5">.</span><span id="map-10x-5">.</span><span id="map-9x-5">.</span><span id="map-8x-5">.</span><span id="map-7x-5">.</span><span id="map-6x-5">.</span><span id="map-5x-5">.</span><span id="map-4x-5">.</span><span id="map-3x-5">.</span><span id="map-2x-5">.</span><span id="map-1x-5">.</span><span id="map0x-5">.</span><span id="map1x-5">.</span><span id="map2x-5">.</span><span id="map3x-5">.</span><span id="map4x-5">.</span><span id="map5x-5">.</span><span id="map6x-5">.</span><span id="map7x-5">.</span><span id="map8x-5">.</span><span id="map9x-5">.</span><span id="map10x-5">.</span><span id="map11x-5">.</span><span id="map12x-5">.</span><span id="map13x-5">.</span><span id="map14x-5">.</span><span id="map15x-5">.</span><span id="map16x-5">.</span><span id="map17x-5">.</span><span id="map18x-5">.</span><span id="map19x-5">.</span><br>
+        <span id="map-19x-6">.</span><span id="map-18x-6">.</span><span id="map-17x-6">.</span><span id="map-16x-6">.</span><span id="map-15x-6">.</span><span id="map-14x-6">.</span><span id="map-13x-6">.</span><span id="map-12x-6">.</span><span id="map-11x-6">.</span><span id="map-10x-6">.</span><span id="map-9x-6">.</span><span id="map-8x-6">.</span><span id="map-7x-6">.</span><span id="map-6x-6">.</span><span id="map-5x-6">.</span><span id="map-4x-6">.</span><span id="map-3x-6">.</span><span id="map-2x-6">.</span><span id="map-1x-6">.</span><span id="map0x-6">.</span><span id="map1x-6">.</span><span id="map2x-6">.</span><span id="map3x-6">.</span><span id="map4x-6">.</span><span id="map5x-6">.</span><span id="map6x-6">.</span><span id="map7x-6">.</span><span id="map8x-6">.</span><span id="map9x-6">.</span><span id="map10x-6">.</span><span id="map11x-6">.</span><span id="map12x-6">.</span><span id="map13x-6">.</span><span id="map14x-6">.</span><span id="map15x-6">.</span><span id="map16x-6">.</span><span id="map17x-6">.</span><span id="map18x-6">.</span><span id="map19x-6">.</span><br>
+        <span id="map-19x-7">.</span><span id="map-18x-7">.</span><span id="map-17x-7">.</span><span id="map-16x-7">.</span><span id="map-15x-7">.</span><span id="map-14x-7">.</span><span id="map-13x-7">.</span><span id="map-12x-7">.</span><span id="map-11x-7">.</span><span id="map-10x-7">.</span><span id="map-9x-7">.</span><span id="map-8x-7">.</span><span id="map-7x-7">.</span><span id="map-6x-7">.</span><span id="map-5x-7">.</span><span id="map-4x-7">.</span><span id="map-3x-7">.</span><span id="map-2x-7">.</span><span id="map-1x-7">.</span><span id="map0x-7">.</span><span id="map1x-7">.</span><span id="map2x-7">.</span><span id="map3x-7">.</span><span id="map4x-7">.</span><span id="map5x-7">.</span><span id="map6x-7">.</span><span id="map7x-7">.</span><span id="map8x-7">.</span><span id="map9x-7">.</span><span id="map10x-7">.</span><span id="map11x-7">.</span><span id="map12x-7">.</span><span id="map13x-7">.</span><span id="map14x-7">.</span><span id="map15x-7">.</span><span id="map16x-7">.</span><span id="map17x-7">.</span><span id="map18x-7">.</span><span id="map19x-7">.</span><br>
+        <span id="map-19x-8">.</span><span id="map-18x-8">.</span><span id="map-17x-8">.</span><span id="map-16x-8">.</span><span id="map-15x-8">.</span><span id="map-14x-8">.</span><span id="map-13x-8">.</span><span id="map-12x-8">.</span><span id="map-11x-8">.</span><span id="map-10x-8">.</span><span id="map-9x-8">.</span><span id="map-8x-8">.</span><span id="map-7x-8">.</span><span id="map-6x-8">.</span><span id="map-5x-8">.</span><span id="map-4x-8">.</span><span id="map-3x-8">.</span><span id="map-2x-8">.</span><span id="map-1x-8">.</span><span id="map0x-8">.</span><span id="map1x-8">.</span><span id="map2x-8">.</span><span id="map3x-8">.</span><span id="map4x-8">.</span><span id="map5x-8">.</span><span id="map6x-8">.</span><span id="map7x-8">.</span><span id="map8x-8">.</span><span id="map9x-8">.</span><span id="map10x-8">.</span><span id="map11x-8">.</span><span id="map12x-8">.</span><span id="map13x-8">.</span><span id="map14x-8">.</span><span id="map15x-8">.</span><span id="map16x-8">.</span><span id="map17x-8">.</span><span id="map18x-8">.</span><span id="map19x-8">.</span><br>
+        <span id="map-19x-9">.</span><span id="map-18x-9">.</span><span id="map-17x-9">.</span><span id="map-16x-9">.</span><span id="map-15x-9">.</span><span id="map-14x-9">.</span><span id="map-13x-9">.</span><span id="map-12x-9">.</span><span id="map-11x-9">.</span><span id="map-10x-9">.</span><span id="map-9x-9">.</span><span id="map-8x-9">.</span><span id="map-7x-9">.</span><span id="map-6x-9">.</span><span id="map-5x-9">.</span><span id="map-4x-9">.</span><span id="map-3x-9">.</span><span id="map-2x-9">.</span><span id="map-1x-9">.</span><span id="map0x-9">.</span><span id="map1x-9">.</span><span id="map2x-9">.</span><span id="map3x-9">.</span><span id="map4x-9">.</span><span id="map5x-9">.</span><span id="map6x-9">.</span><span id="map7x-9">.</span><span id="map8x-9">.</span><span id="map9x-9">.</span><span id="map10x-9">.</span><span id="map11x-9">.</span><span id="map12x-9">.</span><span id="map13x-9">.</span><span id="map14x-9">.</span><span id="map15x-9">.</span><span id="map16x-9">.</span><span id="map17x-9">.</span><span id="map18x-9">.</span><span id="map19x-9">.</span><br>
+        <h3 id="coord" value="1">Location : Unknown</h3> <!--Coordinates-->
+    </header>
+    <nav>
+        <!-- Top Buttons -->
+        <button id="btnAlert" onclick="addItem()"> Debug Item</button>
+        <button id="btnAlert" onclick="randomItem()"> Random Debug Item</button>
+        <button id="btnAlert" onclick="movePoof()"> Debug Telepoof</button>
+        <button id="btnAlert" onclick="printRoomDebug();"> Debug Tile Viewer</button>
+        <button id="btnWorldMap" onclick="writeWorldMap()"> Debug World Map</button>
+        <button id="btnLocalMap" onclick="writeMapTest()"> Debug Local Map</button>
+        <!-- Text Feed -->
+        <p id="feed">LOADING...</p>
+    </nav>
+    <article> <!-- Inventory & other stuff -->
+        <button id="btnSelf" onclick="writeSelf()"> [S]elf</button>
+        <button id="btnInv" onclick="writeInv()"> [I]nventory</button>
+        <button id="btnMind" onclick="writeMind()"> I[n]trospection</button>
+        <button id="btnMOTD" onclick="motd()">MOTD & Other Stuff</button>
+        <br><p id="sideFeed"></p>
+    </article>
+    <section id="view">
+        WIP
+    </section>
+</html>
+
+<script>
+    const invStorage = []; // Sets Storage
+    const coord = {x: 0, y: 0, z: 0};
+    const spawnCoord = {x: 100, y: 100, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
+    const biome = {cur: "Nowhere", a: "#000000", b: "#1a1a1a", c: "#212121", d: "#3d3d3d"}
+    var diceroll = 1 // Sets diceroll
+    const playerCoord = {x: 0, y: 0, z: 0}
+    const worldsize = {x: 300, y: 300} // Sets overworld default width & height
+    var windowHeight = window.innerHeight
+    var windowWidth = window.innerWidth
+
+    // - MOTD -
+    function motd(){
+        x = " - MOTD - <br><br>Current Todo List:<br>- Change default spawnpoint.<br>- Make unique tile listings for each biome."
+        x += "<br>- Finish mouse-over looking system."
+        x += "<br><br> - DEV GOALS -"
+        x += "<br>- Basic Worldgen - X"
+        x += "<br>- Structure System - X"
+        x += "<br>- Building System - "
+        x += "<br>- Biome Generation - X"
+        x += "<br>- Change from Turn-Based to Real-Time - "
+        x += "<br>- Mobile Creatures - "
+        x += "<br>- Combat - "
+        x += "<br>-- Spellcasting - "
+        x += "<br>-- Target locking - "
+        x += "<br>- Survival Elements - "
+        x += "<br>- Complete Z-Level Integration - "
+        x += "<br>- Environment & Biome Variety - "
+        x += "<br>- Dimensions - "
+        x += "<br>- Multiplayer Support - "
+        x += "<br><br> - Make the size of the game self-adjusting to screen size."
+        document.getElementById("sideFeed").innerHTML = x
+    }
+
+    function displayCoords(){ // Sets coord to current coordinates, and updates it.
+        document.getElementById("coord").innerHTML = "Location : " + (coord.x) + ", " + coord.y + ", " + coord.z;
+    }
+    displayCoords()
+    setTimeout(function() {
+        writeWorldMap()
+        writeWorldTiles()
+    }, 1)
+    setTimeout(function() {
+        writeInv()
+        coord.x = spawnCoord.x
+        coord.y = spawnCoord.y
+    }, 2)
+
+    document.getElementById("feed").innerHTML = "PRESS '5' OR 'SPACE' TO START"
+
+    // - KEY SENSORS -
+var menuMode = "overworld" //NOTE: When the menus are fully integrated, this will default to main.
+// -MENU LIST-
+// "main" - Starting menu.
+// "overworld" - Gameplay. Moving around and such.
+// "options" - Exit menu during gameplay.
+// "inv" - Inventory.
+// "self" - Displays appearance & other qualities.
+// "mind" - Displays mental modifiers.
+
+    window.addEventListener("keyup", function (event) {
+  if (event.defaultPrevented) {
+    return; // Do nothing if the event was already processed
+  }
+
+  switch (event.key) { //Assign keybinds here.   //NOTE: The menu integration is incomplete.
+  // Most common inputs
+    case "Escape": if(menuMode=="main"){}else if(menuMode=="overworld"){menuMode="options"; writeMap()}else if(menuMode=="options"){menuMode="overworld"; writeMap()}else if(menuMode=="inv"){menuMode="overworld"; writeMap()}else if(menuMode=="self"){menuMode="overworld"; writeMap()}else if(menuMode=="mind"){menuMode="overworld"; writeMap()}
+        break;
+    case "`": if(menuMode=="main"){}else if(menuMode=="overworld"){}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "1": if(menuMode=="main"){}else if(menuMode=="overworld"){moveSW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "2": if(menuMode=="main"){}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "3": if(menuMode=="main"){}else if(menuMode=="overworld"){moveSE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "4": if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "5": if(menuMode=="main"){}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "6": if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "7": if(menuMode=="main"){}else if(menuMode=="overworld"){moveNW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "8": if(menuMode=="main"){}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "9": if(menuMode=="main"){}else if(menuMode=="overworld"){moveNE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+        break;
+    case "0": 
+        break;
+    case "-":
+        break;
+    case "=":
+        break;
+    case "Backspace": 
+        break;
+    case "Tab":
+        break;
+    case "q":
+        break;
+    case "w":
+        break;
+    case "e":
+        break;
+    case "r":
+        break;
+    case "t":
+        break;
+    case "y":
+        break;
+    case "u":
+        break;
+    case "i":
+        break;
+    case "o":
+        break;
+    case "p":
+        break;
+    case "[":
+        break;
+    case "]":
+        break;
+    case "a":
+        break;
+    case "s":
+        break;
+    case "d":
+        break;
+    case "f":
+        break;
+    case "g":
+        break;
+    case "h":
+        break;
+    case "j":
+        break;
+    case "k":
+        break;
+    case "l":
+        break;
+    case ";":
+        break;
+    case "'":
+        break;
+    case "Enter":
+        break;
+    case "z":
+        break;
+    case "x":
+        break;
+    case "c":
+        break;
+    case "v":
+        break;
+    case "b":
+        break;
+    case "n": writeMind()
+        break;
+    case "m":
+        break;
+    case ",":
+        break;
+    case ".":
+        break;
+    case "/":
+        break;
+    case "ArrowUp": moveNorth()
+        break;
+    case "ArrowDown": moveSouth()
+        break;
+    case "ArrowLeft": moveWest()
+        break;
+    case "ArrowRight": moveEast()
+        break;
+    case " ": moveWait()
+        break;
+    // + Shift
+    case "~":
+        break;
+    case "!":
+        break;
+    case "@":
+        break;
+    case "#":
+        break;
+    case "$":
+        break;
+    case "%":
+        break;
+    case "^":
+        break;
+    case "&":
+        break;
+    case "*":
+        break;
+    case "(":
+        break;
+    case ")":
+        break;
+    case "_":
+        break;
+    case "+":
+        break;
+    case "Q":
+        break;
+    case "W":
+        break;
+    case "E":
+        break;
+    case "R":
+        break;
+    case "T":
+        break;
+    case "Y":
+        break;
+    case "U":
+        break;
+    case "I": writeInv()
+        break;
+    case "O":
+        break;
+    case "P":
+        break;
+    case "{":
+        break;
+    case "}":
+        break;
+    case "|":
+        break;
+    case "A":
+        break;
+    case "S": writeSelf()
+        break;
+    case "D":
+        break;
+    case "F":
+        break;
+    case "G":
+        break;
+    case "H":
+        break;
+    case "J":
+        break;
+    case "K":
+        break;
+    case "L":
+        break;
+    case ":":
+        break;
+    case '"':
+        break;
+    case "Z":
+        break;
+    case "X":
+        break;
+    case "C":
+        break;
+    case "V":
+        break;
+    case "B":
+        break;
+    case "N":
+        break;
+    case "M":
+        break;
+    case "<": moveDown()
+        break;
+    case ">": moveUp()
+        break;
+    case "?":
+        break;
+    // Numpad
+    case "Home": moveNW()
+        break;
+    case "PageUp": moveNE()
+        break;
+    case "Clear": moveWait() //On the numpad, its 5
+        break;
+    case "End": moveSW()
+        break;
+    case "PageDown": moveSE()
+        break;
+    case "Insert":
+        break;
+    case "Delete":
+    // Unknown input
+    default:
+        return;
+  }
+  // Cancel the default action to avoid it being handled twice
+  event.preventDefault();
+}, true);
+// the last option dispatches the event to the listener first then dispatches event to window
+
+
+
+    // - MOVEMENT BUTTONS CORE -
+    function moveUp(){
+        coord.z = coord.z + 1;
+        playerCoord.z = playerCoord.z + 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.stair == 2 || y.stair == 3){ // stair 2 means the stairs move up. stair 3 means the stairs move both up and down.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move up the " + y.name + "."
+        } else if(y.stair == 0 || y.stair == 1){ //stair 0 means the area is solid and inpassable. stair 1 means the stairs move down.
+            coord.z = coord.z - 1
+            playerCoord.z = playerCoord.z - 1
+            document.getElementById("feed").innerHTML = "There is nowhere to move up!" 
+        } else {
+            coord.z = coord.z - 1
+            playerCoord.z = playerCoord.z - 1
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
+        }
+        printRoom();
+    }
+    function moveNorth(){
+        coord.y = coord.y + 1;
+        playerCoord.y = playerCoord.y + 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move North."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.y = coord.y - 1
+            playerCoord.y = playerCoord.y - 1;
+            document.getElementById("feed").innerHTML = "You try to move North, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.y = coord.y - 1
+            playerCoord.y = playerCoord.y - 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveDown(){
+        coord.z = coord.z - 1;
+        playerCoord.z = playerCoord.z - 1
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.stair == 1 || y.stair == 3){ // stair 1 means the stairs move down. stair 3 means the stairs move both up and down.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move down the " + y.name + "."
+        } else if(y.stair == 0 || y.stair == 2){ //stair 0 means the area is solid and inpassable. stair 2 means the stairs move up.
+            coord.z = coord.z + 1
+            playerCoord.z = playerCoord.z + 1;
+            document.getElementById("feed").innerHTML = "There is nowhere to move down!" 
+        } else {
+            coord.z = coord.z + 1
+            playerCoord.z = playerCoord.z + 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
+        }
+        printRoom();
+    }
+    function moveWest(){
+        coord.x = coord.x - 1;
+        playerCoord.x = playerCoord.x - 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move West."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.x = coord.x + 1
+            playerCoord.x = playerCoord.x + 1;
+            document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.x = coord.x + 1
+            playerCoord.x = playerCoord.x + 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveEast(){
+        coord.x = coord.x + 1;
+        playerCoord.x = playerCoord.x + 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move East."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.x = coord.x - 1
+            playerCoord.x = playerCoord.x - 1;
+            document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.x = coord.x - 1
+            playerCoord.x = playerCoord.x - 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveSouth(){
+        coord.y = coord.y - 1;
+        playerCoord.y = playerCoord.y - 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move South."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.y = coord.y + 1
+            playerCoord.y = playerCoord.y + 1;
+            document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.y = coord.y + 1
+            playerCoord.y = playerCoord.y + 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveNW(){
+        coord.x = coord.x - 1;
+        coord.y = coord.y + 1;
+        playerCoord.x = playerCoord.x - 1;
+        playerCoord.y = playerCoord.y + 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move North-West."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.y = coord.y - 1
+            playerCoord.y = playerCoord.y - 1;
+            coord.x = coord.x + 1
+            playerCoord.x = playerCoord.x + 1;
+            document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.y = coord.y - 1
+            playerCoord.y = playerCoord.y - 1;
+            coord.x = coord.x + 1
+            playerCoord.x = playerCoord.x + 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveNE(){
+        coord.x = coord.x + 1;
+        coord.y = coord.y + 1;
+        playerCoord.x = playerCoord.x + 1;
+        playerCoord.y = playerCoord.y + 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move North-East."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.y = coord.y - 1
+            playerCoord.y = playerCoord.y - 1;
+            coord.x = coord.x - 1
+            playerCoord.x = playerCoord.x - 1;
+            document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.y = coord.y - 1
+            playerCoord.y = playerCoord.y - 1;
+            coord.x = coord.x - 1
+            playerCoord.x = playerCoord.x - 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveSW(){
+        coord.x = coord.x - 1;
+        coord.y = coord.y - 1;
+        playerCoord.x = playerCoord.x - 1;
+        playerCoord.y = playerCoord.y - 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move South-West."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.y = coord.y + 1
+            playerCoord.y = playerCoord.y + 1;
+            coord.x = coord.x + 1
+            playerCoord.x = playerCoord.x + 1;
+            document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.y = coord.y + 1
+            playerCoord.y = playerCoord.y + 1;
+            coord.x = coord.x + 1
+            playerCoord.x = playerCoord.x + 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveSE(){
+        coord.x = coord.x + 1;
+        coord.y = coord.y - 1;
+        playerCoord.x = playerCoord.x + 1;
+        playerCoord.y = playerCoord.y - 1;
+        x = tilesList[coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
+        if(y.wall == 0){ // wall 0 means the area is open.
+            displayCoords();
+            checkBiome()
+            document.getElementById("feed").innerHTML = "You move South-East."
+        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            coord.y = coord.y + 1
+            playerCoord.y = playerCoord.y + 1;
+            coord.x = coord.x - 1
+            playerCoord.x = playerCoord.x - 1;
+            document.getElementById("feed").innerHTML = "You try to move South-East, but there is a " + y.name + " in the way!" 
+        } else {
+            coord.y = coord.y + 1
+            playerCoord.y = playerCoord.y + 1;
+            coord.x = coord.x - 1
+            playerCoord.x = playerCoord.x - 1;
+            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }
+        printRoom();
+    }
+    function moveWait(){
+        document.getElementById("feed").innerHTML = "You stay put."
+        
+        displayCoords();
+        checkBiome();
+        printRoom();
+    }
+    
+    // debug teleport
+    function movePoof(){
+        x = prompt("X coord")
+        y = prompt("Y coord")
+        z = prompt("Z coord")
+        coord.x = parseInt(x)
+        coord.y = parseInt(y)
+        coord.z = parseInt(z)
+        playerCoord.x = parseInt(x)
+        playerCoord.y = parseInt(y)
+        playerCoord.z = parseInt(z)
+        moveWait()
+        document.getElementById("feed").innerHTML = "WOOOOSH!!"
+    }
+
+    // - MAP DISPLAY -
+    function writeMap(){
+        var xMoves = 0
+        var yMoves = 0
+        coord.x = coord.x - 8;
+        coord.y = coord.y - 8;
+        while (yMoves != 17){
+            while (xMoves != 17){
+                                x = tilesList[coord.x][coord.y]
+                z = tileIDs.find(y => y.id === x)
+                var xHolder = xMoves - 8
+                var yHolder = yMoves - 8
+                if (yHolder > -9 && yHolder < 9 && xHolder > -9 && xHolder < 9){
+                    y = "map" + xHolder + "x" + yHolder
+                    document.getElementById(y).innerHTML = z.symbol
+                    if (z.color == 0){
+                        document.getElementById(y).style.color = biome.a
+                    } else if (z.color == 1){
+                        document.getElementById(y).style.color = biome.b
+                    } else if (z.color == 2){
+                        document.getElementById(y).style.color = biome.c
+                    } else if (z.color == 3){
+                        document.getElementById(y).style.color = biome.d
+                    } else {
+                        document.getElementById(y).style.color = biome.d
+                    }
+                }
+                coord.x = coord.x + 1;
+                xMoves = xMoves + 1
+            }
+            coord.x = coord.x - 17
+            coord.y = coord.y + 1
+            xMoves = 0
+            yMoves = yMoves + 1
+        }
+        coord.x = coord.x + 8
+        coord.y = coord.y - 9
+        document.getElementById("map0x0").innerHTML = "@"
+        document.getElementById("map0x0").style.color = biome.d
+    }
+
+
+    function checkBiome(){ //Good Colors Here: https://lospec.com/palette-list/tag/gameboy/    //Most palettes are based off of this: https://lospec.com/palette-list/nostalgia
+        if(playerCoord.x == 0 || playerCoord.x <= -1){
+            x = 0
+        }else{
+            x = Math.floor(playerCoord.x / 50)
+        }
+        if(playerCoord.y==0){
+            y = 0
+        }else{
+            y = Math.floor(playerCoord.y / 50)
+        }
+        z = world[y]
+        if (z == undefined){
+                z = 7
+        }else{
+            z = z[x]
+        }
+        if(z == 0){ //NOTE: Add y-level variants to color palettes to accompany the increase in light.
+            biome.a = "#303030"//Darkest Color
+            biome.b = "#545454"
+            biome.c = "#737373"
+            biome.d = "#949494" //Lightest Color
+            biome.cur = "Glacier"
+        }else if(z == 1){
+            biome.a = "#104d50"
+            biome.b = "#288080"
+            biome.c = "#40a8a3"
+            biome.d = "#58d0c1"
+            biome.cur = "Ocean"
+        }else if(z == 2){
+            biome.a = "#405010"
+            biome.b = "#708028"
+            biome.c = "#a0a840"
+            biome.d = "#d0d058"
+            biome.cur = "Plains"
+        }else if(z == 3){
+            biome.a = "#0E420B"
+            biome.b = "#135C10"
+            biome.c = "#197814"
+            biome.d = "#25AD1D"
+            biome.cur = "Forest"
+        }else if(z == 4){
+            biome.a = "#303030"
+            biome.b = "#545454"
+            biome.c = "#737373"
+            biome.d = "#949494"
+            biome.cur = "Mountains"
+        }else if(z == 5){
+            biome.a = "#403726"
+            biome.b = "#5C4F37"
+            biome.c = "#706043"
+            biome.d = "#AD9568"
+            biome.cur = "Desert"
+        }else if(z == 6){
+            biome.a = "#422523"
+            biome.b = "#5C3431"
+            biome.c = "#794440"
+            biome.d = "#AD615C"
+            biome.cur = "Sun-Scorned Wastes"
+        }else if(z == 7){
+            biome.a = "#303030"
+            biome.b = "#545454"
+            biome.c = "#737373"
+            biome.d = "#949494"
+            biome.cur = "Nowhere"
+        }else{
+            biome.a = "#303030"
+            biome.b = "#545454"
+            biome.c = "#737373"
+            biome.d = "#949494"
+            biome.cur = "Nowhere"
+        }
+    }
+    // Make the graphics system a gradient? Perhaps when real-time becomes fully implemented you can have a timeout that slowly adjusts the gradient. You will need to find a good color mixing method though.
+    // PLANNED BIOMES: Swamp, Forest Variants, Mountain & Glacier Variants, Tundra, Bushlands, Hills
+
+
+    // - MAP LOOPS -
+    function startCharBlink(){ //NOTE: Currently unused and slightly delayed.
+        document.getElementById("map00c").innerHTML = "@"
+            setInterval(function(){
+                var charBlinkHolder = tilesList[coord.x][coord.y];
+                document.getElementById("map00c").innerHTML = charBlinkHolder.symbol
+            }, 2000);
+        setTimeout(function() {
+            setInterval(function(){
+                document.getElementById("map00c").innerHTML = "@"
+            }, 2000);
+        }, 1000);
+    }
+
+
+    // - DEBUG BUTTONS - 
+    function writeInv(){ //Writes inventory output, then pastes it. x is text carrier.
+        x = " -- Inventory --"; //Names Inventory Carrier
+        invStorage.forEach(displayInv) //Adds inventory contents to carrier
+        x += "<br><br>Items : " + invStorage.length //Gives total quantity of items
+        document.getElementById("sideFeed").innerHTML = x; //Prints
+    }
+
+    function displayInv(value){ //Related to writeInv, adds everything in invStorage to carrier.
+        x += "<br><br>" + value
+    }
+
+
+    //Placeholder to add things to inventory
+    function addItem(){
+        document.getElementById("feed").innerHTML = "Debug Item Added";
+        invStorage.push("testitem");
+        writeInv()
+    }
+
+    //Placeholder to add random things to inventory
+    function randomItem(){
+        var x = "You find"; //Sets x to be the text carrier.
+        roll1d6(); //Gets a random number from diceroll.
+        var y = loottableDebug1[diceroll]; //Sets y to random table result, as determined by riceroll.
+        invStorage.push(y.name); //Adds random item to table.
+        x += y.an + y.name + "!"; //Strings together the a/an, the name, and an xeclamation point.
+        document.getElementById("feed").innerHTML = x; //Updates script.
+        writeInv()
+    }
+    
+    //Inspect inputed coordinates.
+    function printRoomDebug(){
+        x = prompt("X coord")
+        y = prompt("Y coord")
+        z = prompt("Z coord")
+        x = parseInt(x)
+        y = parseInt(y)
+        z = parseInt(z)
+        a = coord.x
+        b = coord.y
+        c = coord.z
+        coord.x = x
+        coord.y = y
+        coord.z = z
+        carrier = tilesList[coord.x][coord.y]
+        if(coord.x==0 || coord.x<=-1){
+            bioX = 0
+        }else if(coord.x>=25601){
+            bioX = 256
+        }else{
+            bioX = Math.floor(coord.x / 100)
+        }
+        if(coord.y==0){
+            bioY = 0
+        }else{
+            bioY = Math.floor(coord.y / 100)
+        }
+        checkBiome()
+        document.getElementById("feed").innerHTML = carrier.xid + ", " + carrier.yid + ", " + carrier.zid + "<br>" + carrier.id + "<br>" + bioX + "," + bioY + "<br>" + biome.cur
+        coord.x = a
+        coord.y = b
+        coord.z = c
+    }
+
+    // - INTROSPECTION -
+    function writeSelf(){ //Heavy WIP. Will write appearance
+        document.getElementById("sideFeed").innerHTML = "TODO"
+    }
+    function writeMind(){ //Heavy WIP. Will write mental state & skills.
+        document.getElementById("sideFeed").innerHTML = "TODO"
+    }
+
+    // - WORLD GENERATOR - WIP
+    const world = [];
+    var worldDict = {
+        0: '=', // Glacier (Edge of Stage)
+        1: '.', // Ocean (Walkway)
+        2: '_', // Plains (Room)
+        3: '^', // Forest (Flooded Walkway)
+        4: 'M', // Mountains (Flooded Room)
+        5: '~', // Desert (Stairs Room)
+        6: '+', // Sun-Scorned
+    }
+
+    function writeWorldTiles(){ //Used to generate the floor, items, & traps.   //currently designed to only print z-level 0.
+        output = "";
+        var worldheight = worldsize.y;
+        var worldwidth = worldsize.x;
+        for(var row = 0; row < worldheight; row++){
+            tilesList.push([])
+            document.getElementById("sideFeed").innerHTML += "<br>"
+                for (var col = 0; col < worldwidth; col++){
+                    if(col==0){
+                        x = 0
+                    }else{
+                        x = Math.floor(col / 50)
+                    }
+                    if(row==0){
+                        y = 0
+                    }else{
+                        y = Math.floor(row / 50)
+                    }
+                    z = world[x][y]
+                    if (z == 0){
+                        y = "core_stonewall1"
+                    }else if (z == 1){
+                        x = Math.floor(Math.random() * tiletable2.length);
+                        y = tiletable2[x]
+                    }else if (z == 2){
+                        x = Math.floor(Math.random() * tiletable1.length);
+                        y = tiletable1[x]
+                    }else if (z == 3){
+                        x = Math.floor(Math.random() * tiletable1.length);
+                        y = tiletable1[x]
+                    }else if (z == 4){
+                        x = Math.floor(Math.random() * tiletable2.length);
+                        y = tiletable2[x]
+                    }else if (z == 5){
+                        x = Math.floor(Math.random() * tiletable1.length);
+                        y = tiletable1[x]
+                    }else if (z == 6){
+                        x = Math.floor(Math.random() * tiletable1.length);
+                        y = tiletable1[x]
+                    }else if (z == 7){
+                        x = Math.floor(Math.random() * tiletable2.length);
+                        y = tiletable2[x]
+                    }else{
+                        x = Math.floor(Math.random() * tiletable2.length);
+                        y = tiletable2[x]
+                    }
+                    tilesList[row].push(y)
+                    //document.getElementById("sideFeed").innerHTML += x
+                }
+                //document.getElementById("sideFeed").innerHTML += "<br><br>"
+        }
+        playerCoord.x = spawnCoord.x
+        playerCoord.y = spawnCoord.y
+        structureGen()
+    }
+
+    function writeWorldMap(){
+        output = "";
+        var worldheight = (worldsize.x / 50);
+        var worldwidth = (worldsize.y / 50);
+        for(var row = 0; row < worldheight; row++){ //Prints default room layouts.
+            world.push([])
+            output += "<div class = 'row'>"
+                for (var col = 0; col < worldwidth; col++){
+                    if (row >= worldheight - 1 || col >= worldwidth - 1 || row <= 0 || col <= 0){
+                        world[row].push(0)
+                        output += worldDict[world[row][col]];
+                    }else{ //NOTE: Put special dungeon layouts here in the future.
+                        world[row].push(1)
+                        output += worldDict[world[row][col]];
+                    }
+                }
+        }
+        x = Math.floor((Math.random() * (worldheight - 2)) + 1)
+        y = Math.floor((Math.random() * (worldwidth - 2)) + 1)
+        world[x][y] = 5 //Sets a random room as a stairs room. NOTE: filter to check player coords and set that as the stair level.
+        roomsVal = Math.floor((Math.random() * 4) + 2)
+        while (roomsVal != 0){
+            x = Math.floor((Math.random() * (worldheight - 2)) + 1)
+            y = Math.floor((Math.random() * (worldwidth - 2)) + 1)
+            z = world[x][y]
+            if (z == 1){
+                world[x][y] = 2
+                roomsVal = roomsVal - 1
+            } else if (z == 3){
+                world[x][y] = 4
+                roomsVal = roomsVal - 1
+            } else if (z == 2 || z == 4 || z == 5){ //Detects if z is already a room.
+            }
+        document.getElementById('sideFeed').innerHTML = output;
+        }
+    }
+
+    // - TILE GENERATORS & RECALLERS -
+    function printRoom(){
+        var x = tilesList[coord.x][coord.y] //Retrieves space by coords.
+        var y = tileIDs.find(y => y.id === x)
+        document.getElementById("area").innerHTML = biome.cur; // Prints biome name.
+        document.getElementById("feed").innerHTML += "<br><br>" + y.desc // Print room desc.
+        writeMap()
+    }
+
+    function structureGen(){ //Pregenerates rooms & halls.
+        var worldheight = (worldsize.x / 50);
+        var worldwidth = (worldsize.y / 50);
+        for(var row = 1; row < worldheight - 1; row++){
+                for (var col = 1; col < worldwidth - 1; col++){
+                    z = world[col][row]
+                    if (z == 1){
+                        x = structureListA
+                    }else{ //NOTE: Put special room & hall designs here in the future, e.g flooded, burning.
+                        x = structureListA
+                    }
+                    y = Math.floor(Math.random() * x.length)
+                    x = x[y]
+                    y = x.length
+                    for (var build = 0; build != y; build++){
+                        a = x[build][0]
+                        b = x[build][1]
+                        c = row * 50
+                        d = col * 50
+                        a = a + c
+                        b = b + d
+                        tilesList[a][b] = x[build][2]
+                        
+                    }
+                }
+        }
+        var structureSeeker = 0
+        var x = structureListA.length
+        while (structureSeeker != x){
+            var structureBuilder = 0
+            coord.x = structureListA[structureSeeker][0]
+            coord.y = structureListA[structureSeeker][1]
+            y = structureBP[structureSeeker].length
+            while (structureBuilder != y){
+                a = coord.x + structureBP[structureSeeker][structureBuilder][0]
+                b = coord.y + structureBP[structureSeeker][structureBuilder][1]
+                tilesList[a][b] = structureBP[structureSeeker][structureBuilder][2]
+                structureBuilder = structureBuilder + 1
+            }
+            structureSeeker = structureSeeker + 1
+        }
+        coord.x = spawnCoord.x
+        coord.y = spawnCoord.y
+    }
+
+    // - TILES LIST - 
+    const tilesList = []
+
+    // - LIST SELECTORS - 
+
+    // - LISTS -
+    const loottableDebug1 = [
+        { //IMPROMPTU STYLE GUIDE. First: when referencing these, use x.name, ALWAYS, or you will probably get an error.
+            "name": "Apple1", //Name. Used for obvious things.
+            "an": " an " //A or An. Used to make names flow easier.
+        },
+        {
+            "name": "Apple2",
+            "an": " an "
+        },
+        {
+            "name": "Apple3",
+            "an": " an "
+        },
+        {
+            "name": "Lemon",
+            "an": " a "
+        },
+        {
+            "name": "Grape",
+            "an": " a "
+        },
+        {
+            "name": "Orange",
+            "an": " an "
+        }
+    ]
+    const tiletable1 = ["core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass2", "core_grass3", "core_pinetree1", "core_pinetree2", "core_boulder1"]
+    const tiletable2 = ["core_snow1", "core_snow2", "core_grass3", "core_grass3", "core_grass3", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_pinetree1", "core_pinetree2", "core_boulder1"]
+        
+
+    // - STRUCTURE LISTS -
+    const structureListA = [ //List for 1 - Hallways
+        [ // Center Circle
+            [10, 10, "core_spawnslab"], //1 is added to the x value, 2 is added to the y value, 3 is the tile ID.
+            [11, 17, "core_centerpillar"],
+            [9, 17, "core_centerpillar"],
+            [14, 16, "core_centerpillar"],
+            [6, 16, "core_centerpillar"],
+            [16, 14, "core_centerpillar"],
+            [4, 14, "core_centerpillar"],
+            [17, 11, "core_centerpillar"],
+            [3, 11, "core_centerpillar"],
+            [17, 9, "core_centerpillar"],
+            [3, 9, "core_centerpillar"],
+            [16, 6, "core_centerpillar"],
+            [4, 6, "core_centerpillar"],
+            [14, 4, "core_centerpillar"],
+            [6, 4, "core_centerpillar"],
+            [11, 3, "core_centerpillar"],
+            [9, 3, "core_centerpillar"],
+        ],
+    ]
+    const structureListB = [] //List for 2 - Rooms
+    const structureListC = [] //List for 3 - Flooded Walkways
+    const structureListD = [] //List for 4 - Flooded Rooms
+    const structureListE = [] //List for 5 - Stairs Rooms
+    const structureListF = [] //List for 6 - UNSET
+
+    // - ITEM ID LIST - 
+        // TODO
+    
+    // - TILE ID LIST - 
+    const tileIDs = [
+        { //ROOM STYLE GUIDE
+            "id": "core_grass1",
+            "name": "Grass",
+            "desc": "A thin patch of grass.",
+            "symbol": ".",
+            "color": 0,
+            "wall": 0,
+            "stair": 0,
+        },
+        { 
+            "id": "core_grass2",
+            "name": "Grass",
+            "desc": "A patch of grass.",
+            "symbol": ",",
+            "color": 0,
+            "wall": 0,
+            "stair": 0,
+        },
+        { 
+            "id": "core_grass3",
+            "name": "Grass",
+            "desc": "A patch of wilting grass.",
+            "symbol": ".",
+            "color": 0,
+            "wall": 0,
+            "stair": 0,
+        },
+        {
+            "id": "core_snow1",
+            "name": "Snow",
+            "desc": "A patch of snow.",
+            "symbol": "~",
+            "color": 3,
+            "wall": 0,
+            "stair": 0,
+        },
+        { 
+            "id": "core_snow2",
+            "name": "Frost",
+            "desc": "Some frozen ground.",
+            "symbol": "-",
+            "color": 2,
+            "wall": 0,
+            "stair": 0,
+        },
+        {
+            "id": "core_pinetree1",
+            "name": "Tree",
+            "desc": "A pine tree of respectable size.",
+            "symbol": "^",
+            "color": 2,
+            "wall": 1,
+            "stair": 0,
+        },
+        {
+            "id": "core_pinetree2",
+            "name": "Tree",
+            "desc": "A large pine tree.",
+            "symbol": "^",
+            "color": 2,
+            "wall": 1,
+            "stair": 0,
+        },
+        {
+            "id": "core_boulder1",
+            "name": "Boulder",
+            "desc": "A big-ass rock. Makes for good climbing.",
+            "symbol": "O",
+            "color": 1,
+            "wall": 1,
+            "stair": 0,
+        },
+        {
+            "id": "core_stonewall1",
+            "name": "Stone Wall",
+            "desc": "Cobblestones piled together into a sturdy wall",
+            "symbol": "=",
+            "color": 3,
+            "wall": 1,
+            "stair": 0,
+        },
+        {
+            "id": "core_door1",
+            "name": "Door",
+            "desc": "An old wooden door. It is open.",
+            "symbol": "D",
+            "color": 1,
+            "wall": 0,
+            "stair": 0,
+        },
+        {
+            "id": "core_centerpillar",
+            "name": "Stone Pillar",
+            "desc": "A rough stone pillar, engraved with a sigil.",
+            "symbol": "$",
+            "color": 3,
+            "wall": 1,
+            "stair": 0,
+        },
+        {
+            "id": "core_spawnslab",
+            "name": "Stone Slab",
+            "desc": "A cold, clean slab of cut grey stone.",
+            "symbol": "O",
+            "color": 2,
+            "wall": 0,
+            "stair": 0,
+        },
+    ]
+</script>
