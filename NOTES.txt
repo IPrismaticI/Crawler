@@ -1,0 +1,6 @@
+I forgot to add the updated code before I left, so I am making this.
+- The tile generator makes random items, which are then covered by the structure generator.
+- Unknown items and item identification? Could work if descriptions & identification status are stored in the item id list.
+- Stairs are randomly placed post-structure generation. After generation, the player is teleported to the stairs. If the player goes up or down stairs, the level is saved to a storage function and the new one is checked.
+- Enemies spawn both on level generation and randomly after 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
+- Add checks in the map writer that check if there are walls or other obstructions between the player and the target.
