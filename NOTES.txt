@@ -4,5 +4,32 @@ I forgot to add the updated code before I left, so I am making this.
 - Stairs are randomly placed post-structure generation. After generation, the player is teleported to the stairs. If the player goes up or down stairs, the level is saved to a storage function and the new one is checked.
 - Enemies spawn both on level generation and randomly after 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
 - Add checks in the map writer that check if there are walls or other obstructions between the player and the target.
-- Add in ephemera, essences that allow for a form of repeated spellcasting. They degrade over time and as they are used.
+- Add in Skint, a silvery powder found in places between places. It is used as currency, but is rather bulky and often exchanged for bank notes.
 - There are foci that can be used as temporary spells, so long as the player has a weapon with a focal notch in it.
+
+- EPHEMERA NOTES - 
+This is the system that will hopefully seperate the game from others, gameplay-wise.
+- Ephemera are gained from slain enemies. They degrade over time and as they are used. They can be used when equipt, with the player starting with 2 slots; they cannot be removed intact.
+- Chained ephemera exist, gained from dungeons or shops. They are decently rare and very expensive, but only start degrading when equipt.
+- Some items have ephemera essence bound to them. At specific shops or through a few powers, one can extract these ephemera, usually at the cost of the item. Such items can either be specially tagged mundane items or pre-determined relics that always have the same ephemera.
+- Ephemera can be stored at two locations, where they do not degrade. They are very hard to reach.
+- Ephemera fuel various abilities:
+ - Channelling: As the player improves (whether through experience or some other system) they learn Channelling Spells. Most of these require ephemera of a specific type to use, and have effects that are usually only modified by their ability trees.
+ - Infusion: Placing ephemera into items with the occasional help of a practitioner and/or some catalysts. You will need a few ephemera at least to improve an item, but the results are usually good. Unlike other forms, infusion does not require ephemera to be equipt to use, only that the player has them.
+ - Encantation: <TODO, learned powers that are highly unwieldy but potentially lucerative. Usually has a cooldown.>
+ - Words of Power: A handful of powerful spells that require 8 ephemera to function, 4 of which must be of a specific type. Using a Word destroys all ephemera, and its power is determined by the
+- Possible Ephemera Powers
+ - On-the-fly infusion/chained ephemera creation/other stuff.
+ - Elemental strike in a pattern (cone, straight line, circle, square, etc.) (May also only hurt enemies or be effected by terrain.)
+ - Temporarily buff the stats of you and/or your allies.
+ 
+ 
+- PERMENANT UPGRADES NOTES -
+1 - 
+2 - 
+3 - 
+4 - 
+5 - 
+6 - 
+7 - 
+8 - 
