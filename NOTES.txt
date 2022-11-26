@@ -25,10 +25,10 @@ This is the system that will hopefully seperate the game from others, gameplay-w
  
  
 - PERMENANT UPGRADES NOTES -
-1 - 
-2 - 
-3 - 
-4 - 
+1 - Increase ephemera slots to 4
+2 - Increase ephemera slots to 8
+3 - Reduced item loss on death
+4 - Reduced skint loss on death
 5 - 
 6 - 
 7 - 
