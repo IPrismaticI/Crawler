@@ -20,7 +20,7 @@
 
             span {
                 display: inline-block;
-                font-size: 32px;
+                font-size: 40px;
                 transform: scale(1, .75);
                 line-height: 0.5;
             }
@@ -55,25 +55,25 @@
     <header>
         <h1 id="area" value="000">dungeon crawler INDEV</h1>
         <!-- Map : 0,0 is center -->
-        <span id="map-19x9">.</span><span id="map-18x9">.</span><span id="map-17x9">.</span><span id="map-16x9">.</span><span id="map-15x9">.</span><span id="map-14x9">.</span><span id="map-13x9">.</span><span id="map-12x9">.</span><span id="map-11x9">.</span><span id="map-10x9">.</span><span id="map-9x9">.</span><span id="map-8x9">.</span><span id="map-7x9">.</span><span id="map-6x9">.</span><span id="map-5x9">.</span><span id="map-4x9">.</span><span id="map-3x9">.</span><span id="map-2x9">.</span><span id="map-1x9">.</span><span id="map0x9">.</span><span id="map1x9">.</span><span id="map2x9">.</span><span id="map3x9">.</span><span id="map4x9">.</span><span id="map5x9">.</span><span id="map6x9">.</span><span id="map7x9">.</span><span id="map8x9">.</span><span id="map9x9">.</span><span id="map10x9">.</span><span id="map11x9">.</span><span id="map12x9">.</span><span id="map13x9">.</span><span id="map14x9">.</span><span id="map15x9">.</span><span id="map16x9">.</span><span id="map17x9">.</span><span id="map18x9">.</span><span id="map19x9">.</span><br>
-        <span id="map-19x8">.</span><span id="map-18x8">.</span><span id="map-17x8">.</span><span id="map-16x8">.</span><span id="map-15x8">.</span><span id="map-14x8">.</span><span id="map-13x8">.</span><span id="map-12x8">.</span><span id="map-11x8">.</span><span id="map-10x8">.</span><span id="map-9x8">.</span><span id="map-8x8">.</span><span id="map-7x8">.</span><span id="map-6x8">.</span><span id="map-5x8">.</span><span id="map-4x8">.</span><span id="map-3x8">.</span><span id="map-2x8">.</span><span id="map-1x8">.</span><span id="map0x8">.</span><span id="map1x8">.</span><span id="map2x8">.</span><span id="map3x8">.</span><span id="map4x8">.</span><span id="map5x8">.</span><span id="map6x8">.</span><span id="map7x8">.</span><span id="map8x8">.</span><span id="map9x8">.</span><span id="map10x8">.</span><span id="map11x8">.</span><span id="map12x8">.</span><span id="map13x8">.</span><span id="map14x8">.</span><span id="map15x8">.</span><span id="map16x8">.</span><span id="map17x8">.</span><span id="map18x8">.</span><span id="map19x8">.</span><br>
-        <span id="map-19x7">.</span><span id="map-18x7">.</span><span id="map-17x7">.</span><span id="map-16x7">.</span><span id="map-15x7">.</span><span id="map-14x7">.</span><span id="map-13x7">.</span><span id="map-12x7">.</span><span id="map-11x7">.</span><span id="map-10x7">.</span><span id="map-9x7">.</span><span id="map-8x7">.</span><span id="map-7x7">.</span><span id="map-6x7">.</span><span id="map-5x7">.</span><span id="map-4x7">.</span><span id="map-3x7">.</span><span id="map-2x7">.</span><span id="map-1x7">.</span><span id="map0x7">.</span><span id="map1x7">.</span><span id="map2x7">.</span><span id="map3x7">.</span><span id="map4x7">.</span><span id="map5x7">.</span><span id="map6x7">.</span><span id="map7x7">.</span><span id="map8x7">.</span><span id="map9x7">.</span><span id="map10x7">.</span><span id="map11x7">.</span><span id="map12x7">.</span><span id="map13x7">.</span><span id="map14x7">.</span><span id="map15x7">.</span><span id="map16x7">.</span><span id="map17x7">.</span><span id="map18x7">.</span><span id="map19x7">.</span><br>
-        <span id="map-19x6">.</span><span id="map-18x6">.</span><span id="map-17x6">.</span><span id="map-16x6">.</span><span id="map-15x6">.</span><span id="map-14x6">.</span><span id="map-13x6">.</span><span id="map-12x6">.</span><span id="map-11x6">.</span><span id="map-10x6">.</span><span id="map-9x6">.</span><span id="map-8x6">.</span><span id="map-7x6">.</span><span id="map-6x6">.</span><span id="map-5x6">.</span><span id="map-4x6">.</span><span id="map-3x6">.</span><span id="map-2x6">.</span><span id="map-1x6">.</span><span id="map0x6">.</span><span id="map1x6">.</span><span id="map2x6">.</span><span id="map3x6">.</span><span id="map4x6">.</span><span id="map5x6">.</span><span id="map6x6">.</span><span id="map7x6">.</span><span id="map8x6">.</span><span id="map9x6">.</span><span id="map10x6">.</span><span id="map11x6">.</span><span id="map12x6">.</span><span id="map13x6">.</span><span id="map14x6">.</span><span id="map15x6">.</span><span id="map16x6">.</span><span id="map17x6">.</span><span id="map18x6">.</span><span id="map19x6">.</span><br>
-        <span id="map-19x5">.</span><span id="map-18x5">.</span><span id="map-17x5">.</span><span id="map-16x5">.</span><span id="map-15x5">.</span><span id="map-14x5">.</span><span id="map-13x5">.</span><span id="map-12x5">.</span><span id="map-11x5">.</span><span id="map-10x5">.</span><span id="map-9x5">.</span><span id="map-8x5">.</span><span id="map-7x5">.</span><span id="map-6x5">.</span><span id="map-5x5">.</span><span id="map-4x5">.</span><span id="map-3x5">.</span><span id="map-2x5">.</span><span id="map-1x5">.</span><span id="map0x5">.</span><span id="map1x5">.</span><span id="map2x5">.</span><span id="map3x5">.</span><span id="map4x5">.</span><span id="map5x5">.</span><span id="map6x5">.</span><span id="map7x5">.</span><span id="map8x5">.</span><span id="map9x5">.</span><span id="map10x5">.</span><span id="map11x5">.</span><span id="map12x5">.</span><span id="map13x5">.</span><span id="map14x5">.</span><span id="map15x5">.</span><span id="map16x5">.</span><span id="map17x5">.</span><span id="map18x5">.</span><span id="map19x5">.</span><br>
-        <span id="map-19x4">.</span><span id="map-18x4">.</span><span id="map-17x4">.</span><span id="map-16x4">.</span><span id="map-15x4">.</span><span id="map-14x4">.</span><span id="map-13x4">.</span><span id="map-12x4">.</span><span id="map-11x4">.</span><span id="map-10x4">.</span><span id="map-9x4">.</span><span id="map-8x4">.</span><span id="map-7x4">.</span><span id="map-6x4">.</span><span id="map-5x4">.</span><span id="map-4x4">.</span><span id="map-3x4">.</span><span id="map-2x4">.</span><span id="map-1x4">.</span><span id="map0x4">.</span><span id="map1x4">.</span><span id="map2x4">.</span><span id="map3x4">.</span><span id="map4x4">.</span><span id="map5x4">.</span><span id="map6x4">.</span><span id="map7x4">.</span><span id="map8x4">.</span><span id="map9x4">.</span><span id="map10x4">.</span><span id="map11x4">.</span><span id="map12x4">.</span><span id="map13x4">.</span><span id="map14x4">.</span><span id="map15x4">.</span><span id="map16x4">.</span><span id="map17x4">.</span><span id="map18x4">.</span><span id="map19x4">.</span><br>
-        <span id="map-19x3">.</span><span id="map-18x3">.</span><span id="map-17x3">.</span><span id="map-16x3">.</span><span id="map-15x3">.</span><span id="map-14x3">.</span><span id="map-13x3">.</span><span id="map-12x3">.</span><span id="map-11x3">.</span><span id="map-10x3">.</span><span id="map-9x3">.</span><span id="map-8x3">.</span><span id="map-7x3">.</span><span id="map-6x3">.</span><span id="map-5x3">.</span><span id="map-4x3">.</span><span id="map-3x3">.</span><span id="map-2x3">.</span><span id="map-1x3">.</span><span id="map0x3">.</span><span id="map1x3">.</span><span id="map2x3">.</span><span id="map3x3">.</span><span id="map4x3">.</span><span id="map5x3">.</span><span id="map6x3">.</span><span id="map7x3">.</span><span id="map8x3">.</span><span id="map9x3">.</span><span id="map10x3">.</span><span id="map11x3">.</span><span id="map12x3">.</span><span id="map13x3">.</span><span id="map14x3">.</span><span id="map15x3">.</span><span id="map16x3">.</span><span id="map17x3">.</span><span id="map18x3">.</span><span id="map19x3">.</span><br>
-        <span id="map-19x2">.</span><span id="map-18x2">.</span><span id="map-17x2">.</span><span id="map-16x2">.</span><span id="map-15x2">.</span><span id="map-14x2">.</span><span id="map-13x2">.</span><span id="map-12x2">.</span><span id="map-11x2">.</span><span id="map-10x2">.</span><span id="map-9x2">.</span><span id="map-8x2">.</span><span id="map-7x2">.</span><span id="map-6x2">.</span><span id="map-5x2">.</span><span id="map-4x2">.</span><span id="map-3x2">.</span><span id="map-2x2">.</span><span id="map-1x2">.</span><span id="map0x2">A</span><span id="map1x2">.</span><span id="map2x2">.</span><span id="map3x2">.</span><span id="map4x2">.</span><span id="map5x2">.</span><span id="map6x2">.</span><span id="map7x2">.</span><span id="map8x2">.</span><span id="map9x2">.</span><span id="map10x2">.</span><span id="map11x2">.</span><span id="map12x2">.</span><span id="map13x2">.</span><span id="map14x2">.</span><span id="map15x2">.</span><span id="map16x2">.</span><span id="map17x2">.</span><span id="map18x2">.</span><span id="map19x2">.</span><br>
-        <span id="map-19x1">.</span><span id="map-18x1">.</span><span id="map-17x1">.</span><span id="map-16x1">.</span><span id="map-15x1">.</span><span id="map-14x1">.</span><span id="map-13x1">.</span><span id="map-12x1">.</span><span id="map-11x1">.</span><span id="map-10x1">.</span><span id="map-9x1">.</span><span id="map-8x1">.</span><span id="map-7x1">.</span><span id="map-6x1">.</span><span id="map-5x1">.</span><span id="map-4x1">.</span><span id="map-3x1">.</span><span id="map-2x1">.</span><span id="map-1x1">/</span><span id="map0x1">I</span><span id="map1x1">\</span><span id="map2x1">.</span><span id="map3x1">.</span><span id="map4x1">.</span><span id="map5x1">.</span><span id="map6x1">.</span><span id="map7x1">.</span><span id="map8x1">.</span><span id="map9x1">.</span><span id="map10x1">.</span><span id="map11x1">.</span><span id="map12x1">.</span><span id="map13x1">.</span><span id="map14x1">.</span><span id="map15x1">.</span><span id="map16x1">.</span><span id="map17x1">.</span><span id="map18x1">.</span><span id="map19x1">.</span><br>
-        <span id="map-19x0">.</span><span id="map-18x0">.</span><span id="map-17x0">.</span><span id="map-16x0">.</span><span id="map-15x0">.</span><span id="map-14x0">.</span><span id="map-13x0">.</span><span id="map-12x0">.</span><span id="map-11x0">.</span><span id="map-10x0">.</span><span id="map-9x0">.</span><span id="map-8x0">.</span><span id="map-7x0">.</span><span id="map-6x0">.</span><span id="map-5x0">.</span><span id="map-4x0">.</span><span id="map-3x0">.</span><span id="map-2x0">/</span><span id="map-1x0">/</span><span id="map0x0">I</span><span id="map1x0">\</span><span id="map2x0">\</span><span id="map3x0">.</span><span id="map4x0">.</span><span id="map5x0">.</span><span id="map6x0">.</span><span id="map7x0">.</span><span id="map8x0">.</span><span id="map9x0">.</span><span id="map10x0">.</span><span id="map11x0">.</span><span id="map12x0">.</span><span id="map13x0">.</span><span id="map14x0">.</span><span id="map15x0">.</span><span id="map16x0">.</span><span id="map17x0">.</span><span id="map18x0">.</span><span id="map19x0">.</span><br>
-        <span id="map-19x-1">.</span><span id="map-18x-1">.</span><span id="map-17x-1">.</span><span id="map-16x-1">.</span><span id="map-15x-1">.</span><span id="map-14x-1">.</span><span id="map-13x-1">.</span><span id="map-12x-1">.</span><span id="map-11x-1">.</span><span id="map-10x-1">.</span><span id="map-9x-1">.</span><span id="map-8x-1">.</span><span id="map-7x-1">.</span><span id="map-6x-1">.</span><span id="map-5x-1">.</span><span id="map-4x-1">.</span><span id="map-3x-1">/</span><span id="map-2x-1">/</span><span id="map-1x-1">/</span><span id="map0x-1">I</span><span id="map1x-1">\</span><span id="map2x-1">\</span><span id="map3x-1">\</span><span id="map4x-1">.</span><span id="map5x-1">.</span><span id="map6x-1">.</span><span id="map7x-1">.</span><span id="map8x-1">.</span><span id="map9x-1">.</span><span id="map10x-1">.</span><span id="map11x-1">.</span><span id="map12x-1">.</span><span id="map13x-1">.</span><span id="map14x-1">.</span><span id="map15x-1">.</span><span id="map16x-1">.</span><span id="map17x-1">.</span><span id="map18x-1">.</span><span id="map19x-1">.</span><br>
-        <span id="map-19x-2">.</span><span id="map-18x-2">.</span><span id="map-17x-2">.</span><span id="map-16x-2">.</span><span id="map-15x-2">.</span><span id="map-14x-2">.</span><span id="map-13x-2">.</span><span id="map-12x-2">.</span><span id="map-11x-2">.</span><span id="map-10x-2">.</span><span id="map-9x-2">.</span><span id="map-8x-2">.</span><span id="map-7x-2">.</span><span id="map-6x-2">.</span><span id="map-5x-2">.</span><span id="map-4x-2">.</span><span id="map-3x-2">.</span><span id="map-2x-2">'</span><span id="map-1x-2">/</span><span id="map0x-2">I</span><span id="map1x-2">\</span><span id="map2x-2">'</span><span id="map3x-2">.</span><span id="map4x-2">.</span><span id="map5x-2">.</span><span id="map6x-2">.</span><span id="map7x-2">.</span><span id="map8x-2">.</span><span id="map9x-2">.</span><span id="map10x-2">.</span><span id="map11x-2">.</span><span id="map12x-2">.</span><span id="map13x-2">.</span><span id="map14x-2">.</span><span id="map15x-2">.</span><span id="map16x-2">.</span><span id="map17x-2">.</span><span id="map18x-2">.</span><span id="map19x-2">.</span><br>
-        <span id="map-19x-3">.</span><span id="map-18x-3">.</span><span id="map-17x-3">.</span><span id="map-16x-3">.</span><span id="map-15x-3">.</span><span id="map-14x-3">.</span><span id="map-13x-3">.</span><span id="map-12x-3">.</span><span id="map-11x-3">.</span><span id="map-10x-3">.</span><span id="map-9x-3">.</span><span id="map-8x-3">.</span><span id="map-7x-3">.</span><span id="map-6x-3">.</span><span id="map-5x-3">.</span><span id="map-4x-3">.</span><span id="map-3x-3">.</span><span id="map-2x-3">.</span><span id="map-1x-3">'</span><span id="map0x-3">I</span><span id="map1x-3">'</span><span id="map2x-3">.</span><span id="map3x-3">.</span><span id="map4x-3">.</span><span id="map5x-3">.</span><span id="map6x-3">.</span><span id="map7x-3">.</span><span id="map8x-3">.</span><span id="map9x-3">.</span><span id="map10x-3">.</span><span id="map11x-3">.</span><span id="map12x-3">.</span><span id="map13x-3">.</span><span id="map14x-3">.</span><span id="map15x-3">.</span><span id="map16x-3">.</span><span id="map17x-3">.</span><span id="map18x-3">.</span><span id="map19x-3">.</span><br>
-        <span id="map-19x-4">.</span><span id="map-18x-4">.</span><span id="map-17x-4">.</span><span id="map-16x-4">.</span><span id="map-15x-4">.</span><span id="map-14x-4">.</span><span id="map-13x-4">.</span><span id="map-12x-4">.</span><span id="map-11x-4">.</span><span id="map-10x-4">.</span><span id="map-9x-4">.</span><span id="map-8x-4">.</span><span id="map-7x-4">.</span><span id="map-6x-4">.</span><span id="map-5x-4">.</span><span id="map-4x-4">.</span><span id="map-3x-4">.</span><span id="map-2x-4">.</span><span id="map-1x-4">.</span><span id="map0x-4">.</span><span id="map1x-4">.</span><span id="map2x-4">.</span><span id="map3x-4">.</span><span id="map4x-4">.</span><span id="map5x-4">.</span><span id="map6x-4">.</span><span id="map7x-4">.</span><span id="map8x-4">.</span><span id="map9x-4">.</span><span id="map10x-4">.</span><span id="map11x-4">.</span><span id="map12x-4">.</span><span id="map13x-4">.</span><span id="map14x-4">.</span><span id="map15x-4">.</span><span id="map16x-4">.</span><span id="map17x-4">.</span><span id="map18x-4">.</span><span id="map19x-4">.</span><br>
-        <span id="map-19x-5">.</span><span id="map-18x-5">.</span><span id="map-17x-5">.</span><span id="map-16x-5">.</span><span id="map-15x-5">.</span><span id="map-14x-5">.</span><span id="map-13x-5">.</span><span id="map-12x-5">.</span><span id="map-11x-5">.</span><span id="map-10x-5">.</span><span id="map-9x-5">.</span><span id="map-8x-5">.</span><span id="map-7x-5">.</span><span id="map-6x-5">.</span><span id="map-5x-5">.</span><span id="map-4x-5">.</span><span id="map-3x-5">.</span><span id="map-2x-5">.</span><span id="map-1x-5">.</span><span id="map0x-5">.</span><span id="map1x-5">.</span><span id="map2x-5">.</span><span id="map3x-5">.</span><span id="map4x-5">.</span><span id="map5x-5">.</span><span id="map6x-5">.</span><span id="map7x-5">.</span><span id="map8x-5">.</span><span id="map9x-5">.</span><span id="map10x-5">.</span><span id="map11x-5">.</span><span id="map12x-5">.</span><span id="map13x-5">.</span><span id="map14x-5">.</span><span id="map15x-5">.</span><span id="map16x-5">.</span><span id="map17x-5">.</span><span id="map18x-5">.</span><span id="map19x-5">.</span><br>
-        <span id="map-19x-6">.</span><span id="map-18x-6">.</span><span id="map-17x-6">.</span><span id="map-16x-6">.</span><span id="map-15x-6">.</span><span id="map-14x-6">.</span><span id="map-13x-6">.</span><span id="map-12x-6">.</span><span id="map-11x-6">.</span><span id="map-10x-6">.</span><span id="map-9x-6">.</span><span id="map-8x-6">.</span><span id="map-7x-6">.</span><span id="map-6x-6">.</span><span id="map-5x-6">.</span><span id="map-4x-6">.</span><span id="map-3x-6">.</span><span id="map-2x-6">.</span><span id="map-1x-6">.</span><span id="map0x-6">.</span><span id="map1x-6">.</span><span id="map2x-6">.</span><span id="map3x-6">.</span><span id="map4x-6">.</span><span id="map5x-6">.</span><span id="map6x-6">.</span><span id="map7x-6">.</span><span id="map8x-6">.</span><span id="map9x-6">.</span><span id="map10x-6">.</span><span id="map11x-6">.</span><span id="map12x-6">.</span><span id="map13x-6">.</span><span id="map14x-6">.</span><span id="map15x-6">.</span><span id="map16x-6">.</span><span id="map17x-6">.</span><span id="map18x-6">.</span><span id="map19x-6">.</span><br>
-        <span id="map-19x-7">.</span><span id="map-18x-7">.</span><span id="map-17x-7">.</span><span id="map-16x-7">.</span><span id="map-15x-7">.</span><span id="map-14x-7">.</span><span id="map-13x-7">.</span><span id="map-12x-7">.</span><span id="map-11x-7">.</span><span id="map-10x-7">.</span><span id="map-9x-7">.</span><span id="map-8x-7">.</span><span id="map-7x-7">.</span><span id="map-6x-7">.</span><span id="map-5x-7">.</span><span id="map-4x-7">.</span><span id="map-3x-7">.</span><span id="map-2x-7">.</span><span id="map-1x-7">.</span><span id="map0x-7">.</span><span id="map1x-7">.</span><span id="map2x-7">.</span><span id="map3x-7">.</span><span id="map4x-7">.</span><span id="map5x-7">.</span><span id="map6x-7">.</span><span id="map7x-7">.</span><span id="map8x-7">.</span><span id="map9x-7">.</span><span id="map10x-7">.</span><span id="map11x-7">.</span><span id="map12x-7">.</span><span id="map13x-7">.</span><span id="map14x-7">.</span><span id="map15x-7">.</span><span id="map16x-7">.</span><span id="map17x-7">.</span><span id="map18x-7">.</span><span id="map19x-7">.</span><br>
-        <span id="map-19x-8">.</span><span id="map-18x-8">.</span><span id="map-17x-8">.</span><span id="map-16x-8">.</span><span id="map-15x-8">.</span><span id="map-14x-8">.</span><span id="map-13x-8">.</span><span id="map-12x-8">.</span><span id="map-11x-8">.</span><span id="map-10x-8">.</span><span id="map-9x-8">.</span><span id="map-8x-8">.</span><span id="map-7x-8">.</span><span id="map-6x-8">.</span><span id="map-5x-8">.</span><span id="map-4x-8">.</span><span id="map-3x-8">.</span><span id="map-2x-8">.</span><span id="map-1x-8">.</span><span id="map0x-8">.</span><span id="map1x-8">.</span><span id="map2x-8">.</span><span id="map3x-8">.</span><span id="map4x-8">.</span><span id="map5x-8">.</span><span id="map6x-8">.</span><span id="map7x-8">.</span><span id="map8x-8">.</span><span id="map9x-8">.</span><span id="map10x-8">.</span><span id="map11x-8">.</span><span id="map12x-8">.</span><span id="map13x-8">.</span><span id="map14x-8">.</span><span id="map15x-8">.</span><span id="map16x-8">.</span><span id="map17x-8">.</span><span id="map18x-8">.</span><span id="map19x-8">.</span><br>
-        <span id="map-19x-9">.</span><span id="map-18x-9">.</span><span id="map-17x-9">.</span><span id="map-16x-9">.</span><span id="map-15x-9">.</span><span id="map-14x-9">.</span><span id="map-13x-9">.</span><span id="map-12x-9">.</span><span id="map-11x-9">.</span><span id="map-10x-9">.</span><span id="map-9x-9">.</span><span id="map-8x-9">.</span><span id="map-7x-9">.</span><span id="map-6x-9">.</span><span id="map-5x-9">.</span><span id="map-4x-9">.</span><span id="map-3x-9">.</span><span id="map-2x-9">.</span><span id="map-1x-9">.</span><span id="map0x-9">.</span><span id="map1x-9">.</span><span id="map2x-9">.</span><span id="map3x-9">.</span><span id="map4x-9">.</span><span id="map5x-9">.</span><span id="map6x-9">.</span><span id="map7x-9">.</span><span id="map8x-9">.</span><span id="map9x-9">.</span><span id="map10x-9">.</span><span id="map11x-9">.</span><span id="map12x-9">.</span><span id="map13x-9">.</span><span id="map14x-9">.</span><span id="map15x-9">.</span><span id="map16x-9">.</span><span id="map17x-9">.</span><span id="map18x-9">.</span><span id="map19x-9">.</span><br>
+        <span id="map-9x9">.</span><span id="map-8x9">.</span><span id="map-7x9">.</span><span id="map-6x9">.</span><span id="map-5x9">.</span><span id="map-4x9">.</span><span id="map-3x9">.</span><span id="map-2x9">.</span><span id="map-1x9">.</span><span id="map0x9">.</span><span id="map1x9">.</span><span id="map2x9">.</span><span id="map3x9">.</span><span id="map4x9">.</span><span id="map5x9">.</span><span id="map6x9">.</span><span id="map7x9">.</span><span id="map8x9">.</span><span id="map9x9">.</span><span id="map10x9">.</span><span id="map11x9">.</span><span id="map12x9">.</span><span id="map13x9">.</span><span id="map14x9">.</span><span id="map15x9">.</span><span id="map16x9">.</span><span id="map17x9">.</span><span id="map18x9">.</span><span id="map19x9">.</span><br>
+        <span id="map-9x8">.</span><span id="map-8x8">.</span><span id="map-7x8">.</span><span id="map-6x8">.</span><span id="map-5x8">.</span><span id="map-4x8">.</span><span id="map-3x8">.</span><span id="map-2x8">.</span><span id="map-1x8">.</span><span id="map0x8">.</span><span id="map1x8">.</span><span id="map2x8">.</span><span id="map3x8">.</span><span id="map4x8">.</span><span id="map5x8">.</span><span id="map6x8">.</span><span id="map7x8">.</span><span id="map8x8">.</span><span id="map9x8">.</span><span id="map10x8">.</span><span id="map11x8">.</span><span id="map12x8">.</span><span id="map13x8">.</span><span id="map14x8">.</span><span id="map15x8">.</span><span id="map16x8">.</span><span id="map17x8">.</span><span id="map18x8">.</span><span id="map19x8">.</span><br>
+        <span id="map-9x7">.</span><span id="map-8x7">.</span><span id="map-7x7">.</span><span id="map-6x7">.</span><span id="map-5x7">.</span><span id="map-4x7">.</span><span id="map-3x7">.</span><span id="map-2x7">.</span><span id="map-1x7">.</span><span id="map0x7">.</span><span id="map1x7">.</span><span id="map2x7">.</span><span id="map3x7">.</span><span id="map4x7">.</span><span id="map5x7">.</span><span id="map6x7">.</span><span id="map7x7">.</span><span id="map8x7">.</span><span id="map9x7">.</span><span id="map10x7">.</span><span id="map11x7">.</span><span id="map12x7">.</span><span id="map13x7">.</span><span id="map14x7">.</span><span id="map15x7">.</span><span id="map16x7">.</span><span id="map17x7">.</span><span id="map18x7">.</span><span id="map19x7">.</span><br>
+        <span id="map-9x6">.</span><span id="map-8x6">.</span><span id="map-7x6">.</span><span id="map-6x6">.</span><span id="map-5x6">.</span><span id="map-4x6">.</span><span id="map-3x6">.</span><span id="map-2x6">.</span><span id="map-1x6">.</span><span id="map0x6">.</span><span id="map1x6">.</span><span id="map2x6">.</span><span id="map3x6">.</span><span id="map4x6">.</span><span id="map5x6">.</span><span id="map6x6">.</span><span id="map7x6">.</span><span id="map8x6">.</span><span id="map9x6">.</span><span id="map10x6">.</span><span id="map11x6">.</span><span id="map12x6">.</span><span id="map13x6">.</span><span id="map14x6">.</span><span id="map15x6">.</span><span id="map16x6">.</span><span id="map17x6">.</span><span id="map18x6">.</span><span id="map19x6">.</span><br>
+        <span id="map-9x5">.</span><span id="map-8x5">.</span><span id="map-7x5">.</span><span id="map-6x5">.</span><span id="map-5x5">.</span><span id="map-4x5">.</span><span id="map-3x5">.</span><span id="map-2x5">.</span><span id="map-1x5">.</span><span id="map0x5">.</span><span id="map1x5">.</span><span id="map2x5">.</span><span id="map3x5">.</span><span id="map4x5">.</span><span id="map5x5">.</span><span id="map6x5">.</span><span id="map7x5">.</span><span id="map8x5">.</span><span id="map9x5">.</span><span id="map10x5">.</span><span id="map11x5">.</span><span id="map12x5">.</span><span id="map13x5">.</span><span id="map14x5">.</span><span id="map15x5">.</span><span id="map16x5">.</span><span id="map17x5">.</span><span id="map18x5">.</span><span id="map19x5">.</span><br>
+        <span id="map-9x4">.</span><span id="map-8x4">.</span><span id="map-7x4">.</span><span id="map-6x4">.</span><span id="map-5x4">.</span><span id="map-4x4">.</span><span id="map-3x4">.</span><span id="map-2x4">.</span><span id="map-1x4">.</span><span id="map0x4">.</span><span id="map1x4">.</span><span id="map2x4">.</span><span id="map3x4">.</span><span id="map4x4">.</span><span id="map5x4">.</span><span id="map6x4">.</span><span id="map7x4">.</span><span id="map8x4">.</span><span id="map9x4">.</span><span id="map10x4">.</span><span id="map11x4">.</span><span id="map12x4">.</span><span id="map13x4">.</span><span id="map14x4">.</span><span id="map15x4">.</span><span id="map16x4">.</span><span id="map17x4">.</span><span id="map18x4">.</span><span id="map19x4">.</span><br>
+        <span id="map-9x3">.</span><span id="map-8x3">.</span><span id="map-7x3">.</span><span id="map-6x3">.</span><span id="map-5x3">.</span><span id="map-4x3">.</span><span id="map-3x3">.</span><span id="map-2x3">.</span><span id="map-1x3">.</span><span id="map0x3">.</span><span id="map1x3">.</span><span id="map2x3">.</span><span id="map3x3">.</span><span id="map4x3">.</span><span id="map5x3">.</span><span id="map6x3">.</span><span id="map7x3">.</span><span id="map8x3">.</span><span id="map9x3">.</span><span id="map10x3">.</span><span id="map11x3">.</span><span id="map12x3">.</span><span id="map13x3">.</span><span id="map14x3">.</span><span id="map15x3">.</span><span id="map16x3">.</span><span id="map17x3">.</span><span id="map18x3">.</span><span id="map19x3">.</span><br>
+        <span id="map-9x2">.</span><span id="map-8x2">.</span><span id="map-7x2">.</span><span id="map-6x2">.</span><span id="map-5x2">.</span><span id="map-4x2">.</span><span id="map-3x2">.</span><span id="map-2x2">.</span><span id="map-1x2">.</span><span id="map0x2">A</span><span id="map1x2">.</span><span id="map2x2">.</span><span id="map3x2">.</span><span id="map4x2">.</span><span id="map5x2">.</span><span id="map6x2">.</span><span id="map7x2">.</span><span id="map8x2">.</span><span id="map9x2">.</span><span id="map10x2">.</span><span id="map11x2">.</span><span id="map12x2">.</span><span id="map13x2">.</span><span id="map14x2">.</span><span id="map15x2">.</span><span id="map16x2">.</span><span id="map17x2">.</span><span id="map18x2">.</span><span id="map19x2">.</span><br>
+        <span id="map-9x1">.</span><span id="map-8x1">.</span><span id="map-7x1">.</span><span id="map-6x1">.</span><span id="map-5x1">.</span><span id="map-4x1">.</span><span id="map-3x1">.</span><span id="map-2x1">.</span><span id="map-1x1">/</span><span id="map0x1">I</span><span id="map1x1">\</span><span id="map2x1">.</span><span id="map3x1">.</span><span id="map4x1">.</span><span id="map5x1">.</span><span id="map6x1">.</span><span id="map7x1">.</span><span id="map8x1">.</span><span id="map9x1">.</span><span id="map10x1">.</span><span id="map11x1">.</span><span id="map12x1">.</span><span id="map13x1">.</span><span id="map14x1">.</span><span id="map15x1">.</span><span id="map16x1">.</span><span id="map17x1">.</span><span id="map18x1">.</span><span id="map19x1">.</span><br>
+        <span id="map-9x0">.</span><span id="map-8x0">.</span><span id="map-7x0">.</span><span id="map-6x0">.</span><span id="map-5x0">.</span><span id="map-4x0">.</span><span id="map-3x0">.</span><span id="map-2x0">/</span><span id="map-1x0">/</span><span id="map0x0">I</span><span id="map1x0">\</span><span id="map2x0">\</span><span id="map3x0">.</span><span id="map4x0">.</span><span id="map5x0">.</span><span id="map6x0">.</span><span id="map7x0">.</span><span id="map8x0">.</span><span id="map9x0">.</span><span id="map10x0">.</span><span id="map11x0">.</span><span id="map12x0">.</span><span id="map13x0">.</span><span id="map14x0">.</span><span id="map15x0">.</span><span id="map16x0">.</span><span id="map17x0">.</span><span id="map18x0">.</span><span id="map19x0">.</span><br>
+        <span id="map-9x-1">.</span><span id="map-8x-1">.</span><span id="map-7x-1">.</span><span id="map-6x-1">.</span><span id="map-5x-1">.</span><span id="map-4x-1">.</span><span id="map-3x-1">/</span><span id="map-2x-1">/</span><span id="map-1x-1">/</span><span id="map0x-1">I</span><span id="map1x-1">\</span><span id="map2x-1">\</span><span id="map3x-1">\</span><span id="map4x-1">.</span><span id="map5x-1">.</span><span id="map6x-1">.</span><span id="map7x-1">.</span><span id="map8x-1">.</span><span id="map9x-1">.</span><span id="map10x-1">.</span><span id="map11x-1">.</span><span id="map12x-1">.</span><span id="map13x-1">.</span><span id="map14x-1">.</span><span id="map15x-1">.</span><span id="map16x-1">.</span><span id="map17x-1">.</span><span id="map18x-1">.</span><span id="map19x-1">.</span><br>
+        <span id="map-9x-2">.</span><span id="map-8x-2">.</span><span id="map-7x-2">.</span><span id="map-6x-2">.</span><span id="map-5x-2">.</span><span id="map-4x-2">.</span><span id="map-3x-2">.</span><span id="map-2x-2">'</span><span id="map-1x-2">/</span><span id="map0x-2">I</span><span id="map1x-2">\</span><span id="map2x-2">'</span><span id="map3x-2">.</span><span id="map4x-2">.</span><span id="map5x-2">.</span><span id="map6x-2">.</span><span id="map7x-2">.</span><span id="map8x-2">.</span><span id="map9x-2">.</span><span id="map10x-2">.</span><span id="map11x-2">.</span><span id="map12x-2">.</span><span id="map13x-2">.</span><span id="map14x-2">.</span><span id="map15x-2">.</span><span id="map16x-2">.</span><span id="map17x-2">.</span><span id="map18x-2">.</span><span id="map19x-2">.</span><br>
+        <span id="map-9x-3">.</span><span id="map-8x-3">.</span><span id="map-7x-3">.</span><span id="map-6x-3">.</span><span id="map-5x-3">.</span><span id="map-4x-3">.</span><span id="map-3x-3">.</span><span id="map-2x-3">.</span><span id="map-1x-3">'</span><span id="map0x-3">I</span><span id="map1x-3">'</span><span id="map2x-3">.</span><span id="map3x-3">.</span><span id="map4x-3">.</span><span id="map5x-3">.</span><span id="map6x-3">.</span><span id="map7x-3">.</span><span id="map8x-3">.</span><span id="map9x-3">.</span><span id="map10x-3">.</span><span id="map11x-3">.</span><span id="map12x-3">.</span><span id="map13x-3">.</span><span id="map14x-3">.</span><span id="map15x-3">.</span><span id="map16x-3">.</span><span id="map17x-3">.</span><span id="map18x-3">.</span><span id="map19x-3">.</span><br>
+        <span id="map-9x-4">.</span><span id="map-8x-4">.</span><span id="map-7x-4">.</span><span id="map-6x-4">.</span><span id="map-5x-4">.</span><span id="map-4x-4">.</span><span id="map-3x-4">.</span><span id="map-2x-4">.</span><span id="map-1x-4">.</span><span id="map0x-4">.</span><span id="map1x-4">.</span><span id="map2x-4">.</span><span id="map3x-4">.</span><span id="map4x-4">.</span><span id="map5x-4">.</span><span id="map6x-4">.</span><span id="map7x-4">.</span><span id="map8x-4">.</span><span id="map9x-4">.</span><span id="map10x-4">.</span><span id="map11x-4">.</span><span id="map12x-4">.</span><span id="map13x-4">.</span><span id="map14x-4">.</span><span id="map15x-4">.</span><span id="map16x-4">.</span><span id="map17x-4">.</span><span id="map18x-4">.</span><span id="map19x-4">.</span><br>
+        <span id="map-9x-5">.</span><span id="map-8x-5">.</span><span id="map-7x-5">.</span><span id="map-6x-5">.</span><span id="map-5x-5">.</span><span id="map-4x-5">.</span><span id="map-3x-5">.</span><span id="map-2x-5">.</span><span id="map-1x-5">.</span><span id="map0x-5">.</span><span id="map1x-5">.</span><span id="map2x-5">.</span><span id="map3x-5">.</span><span id="map4x-5">.</span><span id="map5x-5">.</span><span id="map6x-5">.</span><span id="map7x-5">.</span><span id="map8x-5">.</span><span id="map9x-5">.</span><span id="map10x-5">.</span><span id="map11x-5">.</span><span id="map12x-5">.</span><span id="map13x-5">.</span><span id="map14x-5">.</span><span id="map15x-5">.</span><span id="map16x-5">.</span><span id="map17x-5">.</span><span id="map18x-5">.</span><span id="map19x-5">.</span><br>
+        <span id="map-9x-6">.</span><span id="map-8x-6">.</span><span id="map-7x-6">.</span><span id="map-6x-6">.</span><span id="map-5x-6">.</span><span id="map-4x-6">.</span><span id="map-3x-6">.</span><span id="map-2x-6">.</span><span id="map-1x-6">.</span><span id="map0x-6">.</span><span id="map1x-6">.</span><span id="map2x-6">.</span><span id="map3x-6">.</span><span id="map4x-6">.</span><span id="map5x-6">.</span><span id="map6x-6">.</span><span id="map7x-6">.</span><span id="map8x-6">.</span><span id="map9x-6">.</span><span id="map10x-6">.</span><span id="map11x-6">.</span><span id="map12x-6">.</span><span id="map13x-6">.</span><span id="map14x-6">.</span><span id="map15x-6">.</span><span id="map16x-6">.</span><span id="map17x-6">.</span><span id="map18x-6">.</span><span id="map19x-6">.</span><br>
+        <span id="map-9x-7">.</span><span id="map-8x-7">.</span><span id="map-7x-7">.</span><span id="map-6x-7">.</span><span id="map-5x-7">.</span><span id="map-4x-7">.</span><span id="map-3x-7">.</span><span id="map-2x-7">.</span><span id="map-1x-7">.</span><span id="map0x-7">.</span><span id="map1x-7">.</span><span id="map2x-7">.</span><span id="map3x-7">.</span><span id="map4x-7">.</span><span id="map5x-7">.</span><span id="map6x-7">.</span><span id="map7x-7">.</span><span id="map8x-7">.</span><span id="map9x-7">.</span><span id="map10x-7">.</span><span id="map11x-7">.</span><span id="map12x-7">.</span><span id="map13x-7">.</span><span id="map14x-7">.</span><span id="map15x-7">.</span><span id="map16x-7">.</span><span id="map17x-7">.</span><span id="map18x-7">.</span><span id="map19x-7">.</span><br>
+        <span id="map-9x-8">.</span><span id="map-8x-8">.</span><span id="map-7x-8">.</span><span id="map-6x-8">.</span><span id="map-5x-8">.</span><span id="map-4x-8">.</span><span id="map-3x-8">.</span><span id="map-2x-8">.</span><span id="map-1x-8">.</span><span id="map0x-8">.</span><span id="map1x-8">.</span><span id="map2x-8">.</span><span id="map3x-8">.</span><span id="map4x-8">.</span><span id="map5x-8">.</span><span id="map6x-8">.</span><span id="map7x-8">.</span><span id="map8x-8">.</span><span id="map9x-8">.</span><span id="map10x-8">.</span><span id="map11x-8">.</span><span id="map12x-8">.</span><span id="map13x-8">.</span><span id="map14x-8">.</span><span id="map15x-8">.</span><span id="map16x-8">.</span><span id="map17x-8">.</span><span id="map18x-8">.</span><span id="map19x-8">.</span><br>
+        <span id="map-9x-9">.</span><span id="map-8x-9">.</span><span id="map-7x-9">.</span><span id="map-6x-9">.</span><span id="map-5x-9">.</span><span id="map-4x-9">.</span><span id="map-3x-9">.</span><span id="map-2x-9">.</span><span id="map-1x-9">.</span><span id="map0x-9">.</span><span id="map1x-9">.</span><span id="map2x-9">.</span><span id="map3x-9">.</span><span id="map4x-9">.</span><span id="map5x-9">.</span><span id="map6x-9">.</span><span id="map7x-9">.</span><span id="map8x-9">.</span><span id="map9x-9">.</span><span id="map10x-9">.</span><span id="map11x-9">.</span><span id="map12x-9">.</span><span id="map13x-9">.</span><span id="map14x-9">.</span><span id="map15x-9">.</span><span id="map16x-9">.</span><span id="map17x-9">.</span><span id="map18x-9">.</span><span id="map19x-9">.</span><br>
         <h3 id="coord" value="1">Location : Unknown</h3> <!--Coordinates-->
     </header>
     <nav>
@@ -102,7 +102,7 @@
 <script>
     const invStorage = []; // Sets Storage
     const coord = {x: 0, y: 0, z: 0};
-    const spawnCoord = {x: 100, y: 100, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
+    const spawnCoord = {x: 110, y: 110, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
     const biome = {cur: "Nowhere", a: "#000000", b: "#1a1a1a", c: "#212121", d: "#3d3d3d"}
     var diceroll = 1 // Sets diceroll
     const playerCoord = {x: 0, y: 0, z: 0}
@@ -112,7 +112,7 @@
 
     // - MOTD -
     function motd(){
-        x = " - MOTD - <br><br>Current Todo List:<br>- Change default spawnpoint.<br>- Make unique tile listings for each biome."
+        x = " - MOTD - <br><br>Current Todo List:<br>- Have stairs spawn and have the player spawn at the up stair."
         x += "<br>- Finish mouse-over looking system."
         x += "<br><br> - DEV GOALS -"
         x += "<br>- Basic Worldgen - X"
@@ -199,7 +199,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case "Tab":
         break;
-    case "q":
+    case "q": //Might be used to interact with objects.
         break;
     case "w":
         break;
@@ -652,8 +652,17 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.y = coord.y - 8;
         while (yMoves != 17){
             while (xMoves != 17){
-                                x = tilesList[coord.x][coord.y]
+                x = tilesList[coord.x][coord.y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
                 z = tileIDs.find(y => y.id === x)
+                if(z.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.
+                    x = itemsList[coord.x][coord.y]
+                    if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full.
+                        x = tilesList[coord.x][coord.y]
+                        z = tileIDs.find(y => y.id === x)
+                    }else{
+                        z = itemIDs.find(y => y.id === x)
+                    } 
+                }
                 var xHolder = xMoves - 8
                 var yHolder = yMoves - 8
                 if (yHolder > -9 && yHolder < 9 && xHolder > -9 && xHolder < 9){
@@ -855,15 +864,15 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     const world = [];
     var worldDict = {
         0: '=', // Glacier (Edge of Stage)
-        1: '.', // Ocean (Walkway)
-        2: '_', // Plains (Room)
-        3: '^', // Forest (Flooded Walkway)
-        4: 'M', // Mountains (Flooded Room)
-        5: '~', // Desert (Stairs Room)
-        6: '+', // Sun-Scorned
+        1: '.', // Ocean (Basic)
+        2: '_', // Plains (Flooded)
+        3: '^', // Forest (UNSET)
+        4: 'M', // Mountains (UNSET)
+        5: '~', // Desert (UNSET)
+        6: '+', // Sun-Scorned (UNSET)
     }
 
-    function writeWorldTiles(){ //Used to generate the floor, items, & traps.   //currently designed to only print z-level 0.
+    function writeWorldTiles(){ //Used to generate the floor, walls, & traps.   //currently designed to only print z-level 0.
         output = "";
         var worldheight = worldsize.y;
         var worldwidth = worldsize.x;
@@ -936,24 +945,6 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                     }
                 }
         }
-        x = Math.floor((Math.random() * (worldheight - 2)) + 1)
-        y = Math.floor((Math.random() * (worldwidth - 2)) + 1)
-        world[x][y] = 5 //Sets a random room as a stairs room. NOTE: filter to check player coords and set that as the stair level.
-        roomsVal = Math.floor((Math.random() * 4) + 2)
-        while (roomsVal != 0){
-            x = Math.floor((Math.random() * (worldheight - 2)) + 1)
-            y = Math.floor((Math.random() * (worldwidth - 2)) + 1)
-            z = world[x][y]
-            if (z == 1){
-                world[x][y] = 2
-                roomsVal = roomsVal - 1
-            } else if (z == 3){
-                world[x][y] = 4
-                roomsVal = roomsVal - 1
-            } else if (z == 2 || z == 4 || z == 5){ //Detects if z is already a room.
-            }
-        document.getElementById('sideFeed').innerHTML = output;
-        }
     }
 
     // - TILE GENERATORS & RECALLERS -
@@ -961,7 +952,12 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         var x = tilesList[coord.x][coord.y] //Retrieves space by coords.
         var y = tileIDs.find(y => y.id === x)
         document.getElementById("area").innerHTML = biome.cur; // Prints biome name.
-        document.getElementById("feed").innerHTML += "<br><br>" + y.desc // Print room desc.
+        document.getElementById("feed").innerHTML += "<br><br>Below you is:<br><br>" + y.name + " : " + y.desc // Print room desc.
+        x = itemsList[coord.x][coord.y]
+        if(x != "empty"){
+            y = itemIDs.find(y => y.id === x)
+            document.getElementById("feed").innerHTML += "<br><br>" + y.name + " : " + y.desc
+        }
         writeMap()
     }
 
@@ -971,7 +967,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         for(var row = 1; row < worldheight - 1; row++){
                 for (var col = 1; col < worldwidth - 1; col++){
                     z = world[col][row]
-                    if (z == 1){
+                    if (z == 1){ //Basic
                         x = structureListA
                     }else{ //NOTE: Put special room & hall designs here in the future, e.g flooded, burning.
                         x = structureListA
@@ -1005,47 +1001,51 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             }
         coord.x = spawnCoord.x
         coord.y = spawnCoord.y
+        itemGen()
     }
 
-    // - TILES LIST - 
-    const tilesList = []
-
-    // - LIST SELECTORS - 
-
-    // - LISTS -
-    const loottableDebug1 = [
-        { //IMPROMPTU STYLE GUIDE. First: when referencing these, use x.name, ALWAYS, or you will probably get an error.
-            "name": "Apple1", //Name. Used for obvious things.
-            "an": " an " //A or An. Used to make names flow easier.
-        },
-        {
-            "name": "Apple2",
-            "an": " an "
-        },
-        {
-            "name": "Apple3",
-            "an": " an "
-        },
-        {
-            "name": "Lemon",
-            "an": " a "
-        },
-        {
-            "name": "Grape",
-            "an": " a "
-        },
-        {
-            "name": "Orange",
-            "an": " an "
+    function itemGen(){
+        a = itemtable1 //NOTE: Base this off of the specific area when those get implemented.
+        var worldheight = worldsize.y;
+        var worldwidth = worldsize.x;
+        for(var row = 0; row < worldheight; row++){
+            itemsList.push([])
+                for (var col = 0; col < worldwidth; col++){
+                    z = tilesList[col][row]
+                    z = tileIDs.find(y => y.id === z)
+                    if (z.wall == 0){
+                        x = Math.floor(Math.random() * 10)
+                        if(x == 0){
+                            y = Math.floor(Math.random() * a.length)
+                            y = a[y]
+                        }else{
+                            y = "empty"
+                        }
+                    }else{ //NOTE: Currently this is set up to only not print items on spaces with wall values of 1. This may need to be changed later on.
+                        y = "empty"
+                    }
+                    itemsList[row].push(y)
+                }
         }
-    ]
+        playerCoord.x = spawnCoord.x
+        playerCoord.y = spawnCoord.y
+    }
+
+    // - OBJECT CARRIERS - 
+    const tilesList = []
+    const itemsList = []
+    const entitiesList = []
+
+    // - TILE LISTS -
     const tiletable1 = ["core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass2", "core_grass3"]
     const tiletable2 = ["core_grass3", "core_grass3", "core_grass3", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1"]
-        
+    
+    // - ITEM LISTS -
+    const itemtable1 = ["core_debug1", "scint", "core_ephemera1", "core_ephemera2", "core_ephemera3", "core_ephemera4", "core_ephemera5", "core_ephemera6", "core_ephemera7", "core_ephemera8", "core_ephemera9", "core_ephemera10", "core_ephemera11", "core_ephemera12", "core_ephemera13", "core_ephemera14", "core_ephemera15", "core_ephemera16"]
 
     // - STRUCTURE LISTS -
-    const structureListTemplate = [ //NOTE: There are some holes in the walls. This is intentional, as these are the exits.
-    [   //Wall Template     //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
+    const structureListTemplate = [ //Intentionally unused, these rooms are to be used as templates. //NOTE: There are some holes in the walls. This is intentional, as these are the exits.
+    [   //Empty Zone     //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
             ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
             ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
             ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
@@ -1097,73 +1097,303 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
             ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
         ],
-    ]
-    const structureListA = [ //List for 1 - Hallways
-        [   //Maze1     //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
+        [   //Filled Zone    //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
             ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","1","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","1","1","1","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","1","1","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","1","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],
-            ["1","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
-            ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1"],
             ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
         ],
     ]
-    const structureListB = [] //List for 2 - Rooms
-    const structureListC = [] //List for 3 - Flooded Walkways
-    const structureListD = [] //List for 4 - Flooded Rooms
-    const structureListE = [] //List for 5 - Stairs Rooms
-    const structureListF = [] //List for 6 - UNSET
+    const structureListA = [ //List for 1 - Basic
+        //xa[   //Labrynth1 //UNFINISHED     //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
+        //xa    ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","1","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","1","1","1","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","1","1","0","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","1","0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["0","0","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],
+        //xa    ["1","0","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
+        //xa    ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+        //xa],
+        [   //Anthill1
+            ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","1","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1"],
+            ["1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1","1","1","0","1","1","1","1","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","1","1","0","1","1","1","1","1","1"],
+            ["1","1","1","1","1","0","1","1","1","1","1","1","0","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","1","0","1","1","0","0","0","1","1","1","1"],
+            ["1","1","1","0","0","0","1","1","1","1","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","1","0","0","0","0","1","0","1","1","1","1"],
+            ["1","1","1","0","1","0","1","1","1","1","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","1","1","1","0","1","1","0","1","1","1","1"],
+            ["1","1","1","0","1","0","0","0","0","0","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","1","1","0","0","0","1","1"],
+            ["0","0","0","0","1","0","1","1","1","1","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","0","0","1","1","1","1","1","1","1","1","0","1","1","1","1","0","0","0"],
+            ["1","1","1","1","1","0","1","1","1","1","0","0","0","0","0","1","1","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","0","0","0","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","0","1","1","1","1","0","0","0","0","0","1","1","0","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","0","1","1","1","1","0","0","0","0","0","1","1","0","1","1","1","0","1","1","1","1","1","1","1","1","0","0","0","0","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","0","1","1","0","0","0","0","0","1","1","1","1","0","1","1","1","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","0","0","0","0","1","1","1","1","1"],
+            ["1","1","1","1","1","0","0","0","0","1","1","1","0","1","1","1","1","0","1","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","0","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1","0","1","1","1","0","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","0","0","0","1","1","1","1","0","1","1","1","1","0","0","0","0","0","1","1","1","1","1"],
+            ["1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","1"],
+            ["1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","1","1","1","1","1","1","1","1","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1"],
+            ["1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","1","0","0","0","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","0","1","1","1","0","0","0","0","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","0","0","0","1","1","1","1","0","1","1","1","1","1","0","0","0","0","0","1","0","0","0","0","0","1","1","0","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","0","0","0","0","0","1","0","1","1","1","1","1","1","0","0","0","0","0","0","0","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","0","0","0","0","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","0","0","1","1","1","1","1","0","0","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","0","0","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","1","1","0","1","1","1","1","1","0","1","1","1","0","1","1","1","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","1","1","0","0","0","0","0","1","0","1","1","1","1","1","1","1","0","1","1","0","0","0","0","0","1","1","1","0","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","1","1","0","1","1","1","0","1","0","1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1"],
+            ["1","1","0","0","1","1","1","0","1","0","1","1","1","1","1","1","1","0","1","1","0","0","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1"],
+            ["1","1","0","1","1","1","1","0","1","0","1","1","1","1","0","0","0","0","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","1","1","1","1","1","1"],
+            ["1","1","0","1","1","1","1","0","0","0","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","0","0","0","1","1","1","0","1","1","1","1","1","1"],
+            ["1","0","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","0","0","1","1","1","1","1","1","0","1","1","0","1","1","1","0","1","1","1","1","1","1"],
+            ["1","0","1","1","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","0","1","1","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","0","1","1","0","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","1"],
+            ["1","0","1","1","0","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","0","1","1","0","1","1","1","1","1","1","1","1","0","1","1","1","1"],
+            ["1","0","1","1","0","1","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","0","1","1","1","1"],
+            ["0","0","1","1","0","1","1","0","0","0","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","0","1","0","0","0"],
+            ["1","1","1","1","0","0","0","0","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","0","0","0","0","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","0","1","0","1","1"],
+            ["1","1","1","1","1","1","1","0","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","0","0","0","1","1"],
+            ["1","1","1","1","1","1","1","0","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1"],
+            ["1","1","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","0","0","0","0","0","0","0","1","1","1","1"],
+            ["1","1","1","1","1","1","1","0","1","1","1","0","0","0","0","0","0","1","1","1","1","1","1","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","0","0","0","1","1","1","1","1","0","0","0","0","0","0","0","0","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+            ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
+        ],
+    ]
+    const structureListB = [] //List for 2 - Flooded Rooms
+    const structureListC = [] //List for 3 - (UNSET)
+    const structureListD = [] //List for 4 - (UNSET)
+    const structureListE = [] //List for 5 - (UNSET)
+    const structureListF = [] //List for 6 - (UNSET)
 
     // - ITEM ID LIST - 
-        // TODO
-    
+    const itemIDs = [
+        { // SCINT
+            "id": "scint",
+            "name": "Scint",
+            "desc": "TODO - Currency",
+            "symbol": "*",
+            "color": 3,
+        },
+        { // DEBUG ITEMS
+            "id": "core_debug1",
+            "name": "Item1",
+            "desc": "Test Item",
+            "symbol": "o",
+            "color": 3,
+        },
+        { // EPHEMERA       //UNFINISHED
+            "id": "core_ephemera1",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera2",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera3",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera4",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera5",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera6",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera7",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera8",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera9",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera10",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera11",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera12",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera13",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera14",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera15",
+            "name": "Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        },
+        {
+            "id": "core_ephemera16",
+            "name": "Umbral Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
+            "color": 3,
+        }, //TODO: Chained Ephemera, Possibly other equipment (Weapons? Armor? Trinkets?)
+    ]
     // - TILE ID LIST - 
     const tileIDs = [
-        { //ROOM STYLE GUIDE
+        {
             "id": "core_grass1",
             "name": "Grass",
             "desc": "A thin patch of grass.",
