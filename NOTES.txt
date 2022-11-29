@@ -1,10 +1,22 @@
 I forgot to add the updated code before I left for the holidays, so I made this.
-- Unknown items and item identification? Could work if descriptions & identification status are stored in the item id list.
+- Unknown items and item identification? Could work if descriptions & identification status are stored in the item id list. Shop items are always identified, and buying them will identify those items when encountered later on.
 - Stairs are randomly placed post-structure generation. After generation, the player is teleported to the stairs. If the player goes up or down stairs, the level is saved to a storage function and the new one is checked.
 - Enemies spawn both on level generation and randomly after 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
 - Add checks in the map writer that check if there are walls or other obstructions between the player and the target.
 - Add in Scint, a silvery powder found in places between places. It is used as currency, but is rather bulky and often exchanged for bank notes.
 - There are foci that can be used as temporary spells, so long as the player has a weapon with a focal notch in it.
+- Experience is gained by killing things, as well as possibly some other things, like lockpicking. When you gain enough experience, you gain a Revelation, which can either be stored for later or used to improve one of several skill trees, including those of your allies. Revelations can be sold at specific places, and rarely bought for a high fee, and some things require revelations to function.
+- Gaining specific ephemera powers (namely those not accessable via skill trees) requires Lore. These can be bought, gained via story events or allies, or found in tomes. When the player gains Lore, they get a selection of four abilities to put it into rather than it going to a random ability. This luxury is not always avaliable.
+- Tinctures/potions also exist. Steal from my other projects. Exact use varies between substance, and is present in the description when identified.
+- Add in coffers, reliquaries, lockboxes, and tomes. These need to be unlocked, which can be done via several means.
+ - The most notable way to do this is to take them to a locksmith NPC in a town or a dungeon shop. They do this for a fee, but it always works.
+ - Lockpicks have a chance to fail and a chance to break, but can be used in the field. These items are very rare as loot but common at shops. Can also be used to open locked doors.
+ - Skeleton keys are extremely rare and single-use, but always succeed.
+ - Some ephemera powers can unlock things as well.
+ - Coffers can contain a variety of items, mostly consumables, such as chained ephemera, tinctures/potions, foci, & reagents. They also have a high chance to contain scint. If openned by a locksmith and scint is dropped, it is garunteed to give slightly more than the cost of opening the coffer.
+ - Reliquaries give relics, reagents, and rarely, a revelation.
+ - Lockboxes contain weapons, relics, and various consumables. They usually give more than coffers and reliquaries, but are harder to open.
+ - Tomes give experience, and rarely a revelation as well. They may also give Lore fragments on specific ephemera powers, sometimes more than one.
 
 - EPHEMERA NOTES - 
 This is the system that will hopefully seperate the game from others, gameplay-wise.
@@ -15,7 +27,7 @@ This is the system that will hopefully seperate the game from others, gameplay-w
 - Ephemera fuel various abilities:
  - Channelling: As the player improves (whether through experience or some other system) they learn Channelling Spells. Most of these require ephemera of a specific type to use, and have effects that are usually only modified by their ability trees.
  - Infusion: Placing ephemera into items with the occasional help of a practitioner and/or some catalysts. You will need a few ephemera at least to improve an item, but the results are usually good. Unlike other forms, infusion does not require ephemera to be equipt to use, only that the player has them.
- - Encantation: <TODO, learned powers that are highly unwieldy but potentially lucerative. Usually has a cooldown.>
+ - Encantation: Learned powers that require reagents to use. Usually quite powerful, but costly.
  - Words of Power: A handful of powerful spells that require 8 ephemera to function, 4 of which must be of a specific type. Using a Word destroys all ephemera, and its power is determined by the
 - Possible Ephemera Powers
  - On-the-fly infusion/chained ephemera creation/other stuff.
