@@ -40,7 +40,7 @@
                 width: 100%;
                 height: 20%;
                 clear: both;
-                color: gray;
+                color: rgb(177, 177, 177);
             }
             
             /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
@@ -55,25 +55,25 @@
     <header>
         <h1 id="area" value="000">dungeon crawler INDEV</h1>
         <!-- Map : 0,0 is center -->
-        <span id="map-9x9">.</span><span id="map-8x9">.</span><span id="map-7x9">.</span><span id="map-6x9">.</span><span id="map-5x9">.</span><span id="map-4x9">.</span><span id="map-3x9">.</span><span id="map-2x9">.</span><span id="map-1x9">.</span><span id="map0x9">.</span><span id="map1x9">.</span><span id="map2x9">.</span><span id="map3x9">.</span><span id="map4x9">.</span><span id="map5x9">.</span><span id="map6x9">.</span><span id="map7x9">.</span><span id="map8x9">.</span><span id="map9x9">.</span><span id="map10x9">.</span><span id="map11x9">.</span><span id="map12x9">.</span><span id="map13x9">.</span><span id="map14x9">.</span><span id="map15x9">.</span><span id="map16x9">.</span><span id="map17x9">.</span><span id="map18x9">.</span><span id="map19x9">.</span><br>
-        <span id="map-9x8">.</span><span id="map-8x8">.</span><span id="map-7x8">.</span><span id="map-6x8">.</span><span id="map-5x8">.</span><span id="map-4x8">.</span><span id="map-3x8">.</span><span id="map-2x8">.</span><span id="map-1x8">.</span><span id="map0x8">.</span><span id="map1x8">.</span><span id="map2x8">.</span><span id="map3x8">.</span><span id="map4x8">.</span><span id="map5x8">.</span><span id="map6x8">.</span><span id="map7x8">.</span><span id="map8x8">.</span><span id="map9x8">.</span><span id="map10x8">.</span><span id="map11x8">.</span><span id="map12x8">.</span><span id="map13x8">.</span><span id="map14x8">.</span><span id="map15x8">.</span><span id="map16x8">.</span><span id="map17x8">.</span><span id="map18x8">.</span><span id="map19x8">.</span><br>
-        <span id="map-9x7">.</span><span id="map-8x7">.</span><span id="map-7x7">.</span><span id="map-6x7">.</span><span id="map-5x7">.</span><span id="map-4x7">.</span><span id="map-3x7">.</span><span id="map-2x7">.</span><span id="map-1x7">.</span><span id="map0x7">.</span><span id="map1x7">.</span><span id="map2x7">.</span><span id="map3x7">.</span><span id="map4x7">.</span><span id="map5x7">.</span><span id="map6x7">.</span><span id="map7x7">.</span><span id="map8x7">.</span><span id="map9x7">.</span><span id="map10x7">.</span><span id="map11x7">.</span><span id="map12x7">.</span><span id="map13x7">.</span><span id="map14x7">.</span><span id="map15x7">.</span><span id="map16x7">.</span><span id="map17x7">.</span><span id="map18x7">.</span><span id="map19x7">.</span><br>
-        <span id="map-9x6">.</span><span id="map-8x6">.</span><span id="map-7x6">.</span><span id="map-6x6">.</span><span id="map-5x6">.</span><span id="map-4x6">.</span><span id="map-3x6">.</span><span id="map-2x6">.</span><span id="map-1x6">.</span><span id="map0x6">.</span><span id="map1x6">.</span><span id="map2x6">.</span><span id="map3x6">.</span><span id="map4x6">.</span><span id="map5x6">.</span><span id="map6x6">.</span><span id="map7x6">.</span><span id="map8x6">.</span><span id="map9x6">.</span><span id="map10x6">.</span><span id="map11x6">.</span><span id="map12x6">.</span><span id="map13x6">.</span><span id="map14x6">.</span><span id="map15x6">.</span><span id="map16x6">.</span><span id="map17x6">.</span><span id="map18x6">.</span><span id="map19x6">.</span><br>
-        <span id="map-9x5">.</span><span id="map-8x5">.</span><span id="map-7x5">.</span><span id="map-6x5">.</span><span id="map-5x5">.</span><span id="map-4x5">.</span><span id="map-3x5">.</span><span id="map-2x5">.</span><span id="map-1x5">.</span><span id="map0x5">.</span><span id="map1x5">.</span><span id="map2x5">.</span><span id="map3x5">.</span><span id="map4x5">.</span><span id="map5x5">.</span><span id="map6x5">.</span><span id="map7x5">.</span><span id="map8x5">.</span><span id="map9x5">.</span><span id="map10x5">.</span><span id="map11x5">.</span><span id="map12x5">.</span><span id="map13x5">.</span><span id="map14x5">.</span><span id="map15x5">.</span><span id="map16x5">.</span><span id="map17x5">.</span><span id="map18x5">.</span><span id="map19x5">.</span><br>
-        <span id="map-9x4">.</span><span id="map-8x4">.</span><span id="map-7x4">.</span><span id="map-6x4">.</span><span id="map-5x4">.</span><span id="map-4x4">.</span><span id="map-3x4">.</span><span id="map-2x4">.</span><span id="map-1x4">.</span><span id="map0x4">.</span><span id="map1x4">.</span><span id="map2x4">.</span><span id="map3x4">.</span><span id="map4x4">.</span><span id="map5x4">.</span><span id="map6x4">.</span><span id="map7x4">.</span><span id="map8x4">.</span><span id="map9x4">.</span><span id="map10x4">.</span><span id="map11x4">.</span><span id="map12x4">.</span><span id="map13x4">.</span><span id="map14x4">.</span><span id="map15x4">.</span><span id="map16x4">.</span><span id="map17x4">.</span><span id="map18x4">.</span><span id="map19x4">.</span><br>
-        <span id="map-9x3">.</span><span id="map-8x3">.</span><span id="map-7x3">.</span><span id="map-6x3">.</span><span id="map-5x3">.</span><span id="map-4x3">.</span><span id="map-3x3">.</span><span id="map-2x3">.</span><span id="map-1x3">.</span><span id="map0x3">.</span><span id="map1x3">.</span><span id="map2x3">.</span><span id="map3x3">.</span><span id="map4x3">.</span><span id="map5x3">.</span><span id="map6x3">.</span><span id="map7x3">.</span><span id="map8x3">.</span><span id="map9x3">.</span><span id="map10x3">.</span><span id="map11x3">.</span><span id="map12x3">.</span><span id="map13x3">.</span><span id="map14x3">.</span><span id="map15x3">.</span><span id="map16x3">.</span><span id="map17x3">.</span><span id="map18x3">.</span><span id="map19x3">.</span><br>
-        <span id="map-9x2">.</span><span id="map-8x2">.</span><span id="map-7x2">.</span><span id="map-6x2">.</span><span id="map-5x2">.</span><span id="map-4x2">.</span><span id="map-3x2">.</span><span id="map-2x2">.</span><span id="map-1x2">.</span><span id="map0x2">A</span><span id="map1x2">.</span><span id="map2x2">.</span><span id="map3x2">.</span><span id="map4x2">.</span><span id="map5x2">.</span><span id="map6x2">.</span><span id="map7x2">.</span><span id="map8x2">.</span><span id="map9x2">.</span><span id="map10x2">.</span><span id="map11x2">.</span><span id="map12x2">.</span><span id="map13x2">.</span><span id="map14x2">.</span><span id="map15x2">.</span><span id="map16x2">.</span><span id="map17x2">.</span><span id="map18x2">.</span><span id="map19x2">.</span><br>
-        <span id="map-9x1">.</span><span id="map-8x1">.</span><span id="map-7x1">.</span><span id="map-6x1">.</span><span id="map-5x1">.</span><span id="map-4x1">.</span><span id="map-3x1">.</span><span id="map-2x1">.</span><span id="map-1x1">/</span><span id="map0x1">I</span><span id="map1x1">\</span><span id="map2x1">.</span><span id="map3x1">.</span><span id="map4x1">.</span><span id="map5x1">.</span><span id="map6x1">.</span><span id="map7x1">.</span><span id="map8x1">.</span><span id="map9x1">.</span><span id="map10x1">.</span><span id="map11x1">.</span><span id="map12x1">.</span><span id="map13x1">.</span><span id="map14x1">.</span><span id="map15x1">.</span><span id="map16x1">.</span><span id="map17x1">.</span><span id="map18x1">.</span><span id="map19x1">.</span><br>
-        <span id="map-9x0">.</span><span id="map-8x0">.</span><span id="map-7x0">.</span><span id="map-6x0">.</span><span id="map-5x0">.</span><span id="map-4x0">.</span><span id="map-3x0">.</span><span id="map-2x0">/</span><span id="map-1x0">/</span><span id="map0x0">I</span><span id="map1x0">\</span><span id="map2x0">\</span><span id="map3x0">.</span><span id="map4x0">.</span><span id="map5x0">.</span><span id="map6x0">.</span><span id="map7x0">.</span><span id="map8x0">.</span><span id="map9x0">.</span><span id="map10x0">.</span><span id="map11x0">.</span><span id="map12x0">.</span><span id="map13x0">.</span><span id="map14x0">.</span><span id="map15x0">.</span><span id="map16x0">.</span><span id="map17x0">.</span><span id="map18x0">.</span><span id="map19x0">.</span><br>
-        <span id="map-9x-1">.</span><span id="map-8x-1">.</span><span id="map-7x-1">.</span><span id="map-6x-1">.</span><span id="map-5x-1">.</span><span id="map-4x-1">.</span><span id="map-3x-1">/</span><span id="map-2x-1">/</span><span id="map-1x-1">/</span><span id="map0x-1">I</span><span id="map1x-1">\</span><span id="map2x-1">\</span><span id="map3x-1">\</span><span id="map4x-1">.</span><span id="map5x-1">.</span><span id="map6x-1">.</span><span id="map7x-1">.</span><span id="map8x-1">.</span><span id="map9x-1">.</span><span id="map10x-1">.</span><span id="map11x-1">.</span><span id="map12x-1">.</span><span id="map13x-1">.</span><span id="map14x-1">.</span><span id="map15x-1">.</span><span id="map16x-1">.</span><span id="map17x-1">.</span><span id="map18x-1">.</span><span id="map19x-1">.</span><br>
-        <span id="map-9x-2">.</span><span id="map-8x-2">.</span><span id="map-7x-2">.</span><span id="map-6x-2">.</span><span id="map-5x-2">.</span><span id="map-4x-2">.</span><span id="map-3x-2">.</span><span id="map-2x-2">'</span><span id="map-1x-2">/</span><span id="map0x-2">I</span><span id="map1x-2">\</span><span id="map2x-2">'</span><span id="map3x-2">.</span><span id="map4x-2">.</span><span id="map5x-2">.</span><span id="map6x-2">.</span><span id="map7x-2">.</span><span id="map8x-2">.</span><span id="map9x-2">.</span><span id="map10x-2">.</span><span id="map11x-2">.</span><span id="map12x-2">.</span><span id="map13x-2">.</span><span id="map14x-2">.</span><span id="map15x-2">.</span><span id="map16x-2">.</span><span id="map17x-2">.</span><span id="map18x-2">.</span><span id="map19x-2">.</span><br>
-        <span id="map-9x-3">.</span><span id="map-8x-3">.</span><span id="map-7x-3">.</span><span id="map-6x-3">.</span><span id="map-5x-3">.</span><span id="map-4x-3">.</span><span id="map-3x-3">.</span><span id="map-2x-3">.</span><span id="map-1x-3">'</span><span id="map0x-3">I</span><span id="map1x-3">'</span><span id="map2x-3">.</span><span id="map3x-3">.</span><span id="map4x-3">.</span><span id="map5x-3">.</span><span id="map6x-3">.</span><span id="map7x-3">.</span><span id="map8x-3">.</span><span id="map9x-3">.</span><span id="map10x-3">.</span><span id="map11x-3">.</span><span id="map12x-3">.</span><span id="map13x-3">.</span><span id="map14x-3">.</span><span id="map15x-3">.</span><span id="map16x-3">.</span><span id="map17x-3">.</span><span id="map18x-3">.</span><span id="map19x-3">.</span><br>
-        <span id="map-9x-4">.</span><span id="map-8x-4">.</span><span id="map-7x-4">.</span><span id="map-6x-4">.</span><span id="map-5x-4">.</span><span id="map-4x-4">.</span><span id="map-3x-4">.</span><span id="map-2x-4">.</span><span id="map-1x-4">.</span><span id="map0x-4">.</span><span id="map1x-4">.</span><span id="map2x-4">.</span><span id="map3x-4">.</span><span id="map4x-4">.</span><span id="map5x-4">.</span><span id="map6x-4">.</span><span id="map7x-4">.</span><span id="map8x-4">.</span><span id="map9x-4">.</span><span id="map10x-4">.</span><span id="map11x-4">.</span><span id="map12x-4">.</span><span id="map13x-4">.</span><span id="map14x-4">.</span><span id="map15x-4">.</span><span id="map16x-4">.</span><span id="map17x-4">.</span><span id="map18x-4">.</span><span id="map19x-4">.</span><br>
-        <span id="map-9x-5">.</span><span id="map-8x-5">.</span><span id="map-7x-5">.</span><span id="map-6x-5">.</span><span id="map-5x-5">.</span><span id="map-4x-5">.</span><span id="map-3x-5">.</span><span id="map-2x-5">.</span><span id="map-1x-5">.</span><span id="map0x-5">.</span><span id="map1x-5">.</span><span id="map2x-5">.</span><span id="map3x-5">.</span><span id="map4x-5">.</span><span id="map5x-5">.</span><span id="map6x-5">.</span><span id="map7x-5">.</span><span id="map8x-5">.</span><span id="map9x-5">.</span><span id="map10x-5">.</span><span id="map11x-5">.</span><span id="map12x-5">.</span><span id="map13x-5">.</span><span id="map14x-5">.</span><span id="map15x-5">.</span><span id="map16x-5">.</span><span id="map17x-5">.</span><span id="map18x-5">.</span><span id="map19x-5">.</span><br>
-        <span id="map-9x-6">.</span><span id="map-8x-6">.</span><span id="map-7x-6">.</span><span id="map-6x-6">.</span><span id="map-5x-6">.</span><span id="map-4x-6">.</span><span id="map-3x-6">.</span><span id="map-2x-6">.</span><span id="map-1x-6">.</span><span id="map0x-6">.</span><span id="map1x-6">.</span><span id="map2x-6">.</span><span id="map3x-6">.</span><span id="map4x-6">.</span><span id="map5x-6">.</span><span id="map6x-6">.</span><span id="map7x-6">.</span><span id="map8x-6">.</span><span id="map9x-6">.</span><span id="map10x-6">.</span><span id="map11x-6">.</span><span id="map12x-6">.</span><span id="map13x-6">.</span><span id="map14x-6">.</span><span id="map15x-6">.</span><span id="map16x-6">.</span><span id="map17x-6">.</span><span id="map18x-6">.</span><span id="map19x-6">.</span><br>
-        <span id="map-9x-7">.</span><span id="map-8x-7">.</span><span id="map-7x-7">.</span><span id="map-6x-7">.</span><span id="map-5x-7">.</span><span id="map-4x-7">.</span><span id="map-3x-7">.</span><span id="map-2x-7">.</span><span id="map-1x-7">.</span><span id="map0x-7">.</span><span id="map1x-7">.</span><span id="map2x-7">.</span><span id="map3x-7">.</span><span id="map4x-7">.</span><span id="map5x-7">.</span><span id="map6x-7">.</span><span id="map7x-7">.</span><span id="map8x-7">.</span><span id="map9x-7">.</span><span id="map10x-7">.</span><span id="map11x-7">.</span><span id="map12x-7">.</span><span id="map13x-7">.</span><span id="map14x-7">.</span><span id="map15x-7">.</span><span id="map16x-7">.</span><span id="map17x-7">.</span><span id="map18x-7">.</span><span id="map19x-7">.</span><br>
-        <span id="map-9x-8">.</span><span id="map-8x-8">.</span><span id="map-7x-8">.</span><span id="map-6x-8">.</span><span id="map-5x-8">.</span><span id="map-4x-8">.</span><span id="map-3x-8">.</span><span id="map-2x-8">.</span><span id="map-1x-8">.</span><span id="map0x-8">.</span><span id="map1x-8">.</span><span id="map2x-8">.</span><span id="map3x-8">.</span><span id="map4x-8">.</span><span id="map5x-8">.</span><span id="map6x-8">.</span><span id="map7x-8">.</span><span id="map8x-8">.</span><span id="map9x-8">.</span><span id="map10x-8">.</span><span id="map11x-8">.</span><span id="map12x-8">.</span><span id="map13x-8">.</span><span id="map14x-8">.</span><span id="map15x-8">.</span><span id="map16x-8">.</span><span id="map17x-8">.</span><span id="map18x-8">.</span><span id="map19x-8">.</span><br>
-        <span id="map-9x-9">.</span><span id="map-8x-9">.</span><span id="map-7x-9">.</span><span id="map-6x-9">.</span><span id="map-5x-9">.</span><span id="map-4x-9">.</span><span id="map-3x-9">.</span><span id="map-2x-9">.</span><span id="map-1x-9">.</span><span id="map0x-9">.</span><span id="map1x-9">.</span><span id="map2x-9">.</span><span id="map3x-9">.</span><span id="map4x-9">.</span><span id="map5x-9">.</span><span id="map6x-9">.</span><span id="map7x-9">.</span><span id="map8x-9">.</span><span id="map9x-9">.</span><span id="map10x-9">.</span><span id="map11x-9">.</span><span id="map12x-9">.</span><span id="map13x-9">.</span><span id="map14x-9">.</span><span id="map15x-9">.</span><span id="map16x-9">.</span><span id="map17x-9">.</span><span id="map18x-9">.</span><span id="map19x-9">.</span><br>
+        <span id="map-9x9" onclick="viewTile(-9,9)">.</span><span id="map-8x9" onclick="viewTile(-8,9)">.</span><span id="map-7x9" onclick="viewTile(-7,9)">.</span><span id="map-6x9" onclick="viewTile(-6,9)">.</span><span id="map-5x9" onclick="viewTile(-5,9)">.</span><span id="map-4x9" onclick="viewTile(-4,9)">.</span><span id="map-3x9" onclick="viewTile(-3,9)">.</span><span id="map-2x9" onclick="viewTile(-2,9)">.</span><span id="map-1x9" onclick="viewTile(-1,9)">.</span><span id="map0x9" onclick="viewTile(0,9)">.</span><span id="map1x9" onclick="viewTile(1,9)">.</span><span id="map2x9" onclick="viewTile(2,9)">.</span><span id="map3x9" onclick="viewTile(3,9)">.</span><span id="map4x9" onclick="viewTile(4,9)">.</span><span id="map5x9" onclick="viewTile(5,9)">.</span><span id="map6x9" onclick="viewTile(6,9)">.</span><span id="map7x9" onclick="viewTile(7,9)">.</span><span id="map8x9" onclick="viewTile(8,9)">.</span><span id="map9x9" onclick="viewTile(9,9)">.</span><br>
+        <span id="map-9x8" onclick="viewTile(-9,8)">.</span><span id="map-8x8" onclick="viewTile(-8,8)">.</span><span id="map-7x8" onclick="viewTile(-7,8)">.</span><span id="map-6x8" onclick="viewTile(-6,8)">.</span><span id="map-5x8" onclick="viewTile(-5,8)">.</span><span id="map-4x8" onclick="viewTile(-4,8)">.</span><span id="map-3x8" onclick="viewTile(-3,8)">.</span><span id="map-2x8" onclick="viewTile(-2,8)">.</span><span id="map-1x8" onclick="viewTile(-1,8)">.</span><span id="map0x8" onclick="viewTile(0,8)">.</span><span id="map1x8" onclick="viewTile(1,8)">.</span><span id="map2x8" onclick="viewTile(2,8)">.</span><span id="map3x8" onclick="viewTile(3,8)">.</span><span id="map4x8" onclick="viewTile(4,8)">.</span><span id="map5x8" onclick="viewTile(5,8)">.</span><span id="map6x8" onclick="viewTile(6,8)">.</span><span id="map7x8" onclick="viewTile(7,8)">.</span><span id="map8x8" onclick="viewTile(8,8)">.</span><span id="map9x8" onclick="viewTile(9,8)">.</span><br>
+        <span id="map-9x7" onclick="viewTile(-9,7)">.</span><span id="map-8x7" onclick="viewTile(-8,7)">.</span><span id="map-7x7" onclick="viewTile(-7,7)">.</span><span id="map-6x7" onclick="viewTile(-6,7)">.</span><span id="map-5x7" onclick="viewTile(-5,7)">.</span><span id="map-4x7" onclick="viewTile(-4,7)">.</span><span id="map-3x7" onclick="viewTile(-3,7)">.</span><span id="map-2x7" onclick="viewTile(-2,7)">.</span><span id="map-1x7" onclick="viewTile(-1,7)">.</span><span id="map0x7" onclick="viewTile(0,7)">.</span><span id="map1x7" onclick="viewTile(1,7)">.</span><span id="map2x7" onclick="viewTile(2,7)">.</span><span id="map3x7" onclick="viewTile(3,7)">.</span><span id="map4x7" onclick="viewTile(4,7)">.</span><span id="map5x7" onclick="viewTile(5,7)">.</span><span id="map6x7" onclick="viewTile(6,7)">.</span><span id="map7x7" onclick="viewTile(7,7)">.</span><span id="map8x7" onclick="viewTile(8,7)">.</span><span id="map9x7" onclick="viewTile(9,7)">.</span><br>
+        <span id="map-9x6" onclick="viewTile(-9,6)">.</span><span id="map-8x6" onclick="viewTile(-8,6)">.</span><span id="map-7x6" onclick="viewTile(-7,6)">.</span><span id="map-6x6" onclick="viewTile(-6,6)">.</span><span id="map-5x6" onclick="viewTile(-5,6)">.</span><span id="map-4x6" onclick="viewTile(-4,6)">.</span><span id="map-3x6" onclick="viewTile(-3,6)">.</span><span id="map-2x6" onclick="viewTile(-2,6)">.</span><span id="map-1x6" onclick="viewTile(-1,6)">.</span><span id="map0x6" onclick="viewTile(0,6)">.</span><span id="map1x6" onclick="viewTile(1,6)">.</span><span id="map2x6" onclick="viewTile(2,6)">.</span><span id="map3x6" onclick="viewTile(3,6)">.</span><span id="map4x6" onclick="viewTile(4,6)">.</span><span id="map5x6" onclick="viewTile(5,6)">.</span><span id="map6x6" onclick="viewTile(6,6)">.</span><span id="map7x6" onclick="viewTile(7,6)">.</span><span id="map8x6" onclick="viewTile(8,6)">.</span><span id="map9x6" onclick="viewTile(9,6)">.</span><br>
+        <span id="map-9x5" onclick="viewTile(-9,5)">.</span><span id="map-8x5" onclick="viewTile(-8,5)">.</span><span id="map-7x5" onclick="viewTile(-7,5)">.</span><span id="map-6x5" onclick="viewTile(-6,5)">.</span><span id="map-5x5" onclick="viewTile(-5,5)">.</span><span id="map-4x5" onclick="viewTile(-4,5)">.</span><span id="map-3x5" onclick="viewTile(-3,5)">.</span><span id="map-2x5" onclick="viewTile(-2,5)">.</span><span id="map-1x5" onclick="viewTile(-1,5)">.</span><span id="map0x5" onclick="viewTile(0,5)">.</span><span id="map1x5" onclick="viewTile(1,5)">.</span><span id="map2x5" onclick="viewTile(2,5)">.</span><span id="map3x5" onclick="viewTile(3,5)">.</span><span id="map4x5" onclick="viewTile(4,5)">.</span><span id="map5x5" onclick="viewTile(5,5)">.</span><span id="map6x5" onclick="viewTile(6,5)">.</span><span id="map7x5" onclick="viewTile(7,5)">.</span><span id="map8x5" onclick="viewTile(8,5)">.</span><span id="map9x5" onclick="viewTile(9,5)">.</span><br>
+        <span id="map-9x4" onclick="viewTile(-9,4)">.</span><span id="map-8x4" onclick="viewTile(-8,4)">.</span><span id="map-7x4" onclick="viewTile(-7,4)">.</span><span id="map-6x4" onclick="viewTile(-6,4)">.</span><span id="map-5x4" onclick="viewTile(-5,4)">.</span><span id="map-4x4" onclick="viewTile(-4,4)">.</span><span id="map-3x4" onclick="viewTile(-3,4)">.</span><span id="map-2x4" onclick="viewTile(-2,4)">.</span><span id="map-1x4" onclick="viewTile(-1,4)">.</span><span id="map0x4" onclick="viewTile(0,4)">.</span><span id="map1x4" onclick="viewTile(1,4)">.</span><span id="map2x4" onclick="viewTile(2,4)">.</span><span id="map3x4" onclick="viewTile(3,4)">.</span><span id="map4x4" onclick="viewTile(4,4)">.</span><span id="map5x4" onclick="viewTile(5,4)">.</span><span id="map6x4" onclick="viewTile(6,4)">.</span><span id="map7x4" onclick="viewTile(7,4)">.</span><span id="map8x4" onclick="viewTile(8,4)">.</span><span id="map9x4" onclick="viewTile(9,4)">.</span><br>
+        <span id="map-9x3" onclick="viewTile(-9,3)">.</span><span id="map-8x3" onclick="viewTile(-8,3)">.</span><span id="map-7x3" onclick="viewTile(-7,3)">.</span><span id="map-6x3" onclick="viewTile(-6,3)">.</span><span id="map-5x3" onclick="viewTile(-5,3)">.</span><span id="map-4x3" onclick="viewTile(-4,3)">.</span><span id="map-3x3" onclick="viewTile(-3,3)">.</span><span id="map-2x3" onclick="viewTile(-2,3)">.</span><span id="map-1x3" onclick="viewTile(-1,3)">.</span><span id="map0x3" onclick="viewTile(0,3)">.</span><span id="map1x3" onclick="viewTile(1,3)">.</span><span id="map2x3" onclick="viewTile(2,3)">.</span><span id="map3x3" onclick="viewTile(3,3)">.</span><span id="map4x3" onclick="viewTile(4,3)">.</span><span id="map5x3" onclick="viewTile(5,3)">.</span><span id="map6x3" onclick="viewTile(6,3)">.</span><span id="map7x3" onclick="viewTile(7,3)">.</span><span id="map8x3" onclick="viewTile(8,3)">.</span><span id="map9x3" onclick="viewTile(9,3)">.</span><br>
+        <span id="map-9x2" onclick="viewTile(-9,2)">.</span><span id="map-8x2" onclick="viewTile(-8,2)">.</span><span id="map-7x2" onclick="viewTile(-7,2)">.</span><span id="map-6x2" onclick="viewTile(-6,2)">.</span><span id="map-5x2" onclick="viewTile(-5,2)">.</span><span id="map-4x2" onclick="viewTile(-4,2)">.</span><span id="map-3x2" onclick="viewTile(-3,2)">.</span><span id="map-2x2" onclick="viewTile(-2,2)">.</span><span id="map-1x2" onclick="viewTile(-1,2)">.</span><span id="map0x2" onclick="viewTile(0,2)">A</span><span id="map1x2" onclick="viewTile(1,2)">.</span><span id="map2x2" onclick="viewTile(2,2)">.</span><span id="map3x2" onclick="viewTile(3,2)">.</span><span id="map4x2" onclick="viewTile(4,2)">.</span><span id="map5x2" onclick="viewTile(5,2)">.</span><span id="map6x2" onclick="viewTile(6,2)">.</span><span id="map7x2" onclick="viewTile(7,2)">.</span><span id="map8x2" onclick="viewTile(8,2)">.</span><span id="map9x2" onclick="viewTile(9,2)">.</span><br>
+        <span id="map-9x1" onclick="viewTile(-9,1)">.</span><span id="map-8x1" onclick="viewTile(-8,1)">.</span><span id="map-7x1" onclick="viewTile(-7,1)">.</span><span id="map-6x1" onclick="viewTile(-6,1)">.</span><span id="map-5x1" onclick="viewTile(-5,1)">.</span><span id="map-4x1" onclick="viewTile(-4,1)">.</span><span id="map-3x1" onclick="viewTile(-3,1)">.</span><span id="map-2x1" onclick="viewTile(-2,1)">.</span><span id="map-1x1" onclick="viewTile(-1,1)">/</span><span id="map0x1" onclick="viewTile(0,1)">I</span><span id="map1x1" onclick="viewTile(1,1)">\</span><span id="map2x1" onclick="viewTile(2,1)">.</span><span id="map3x1" onclick="viewTile(3,1)">.</span><span id="map4x1" onclick="viewTile(4,1)">.</span><span id="map5x1" onclick="viewTile(5,1)">.</span><span id="map6x1" onclick="viewTile(6,1)">.</span><span id="map7x1" onclick="viewTile(7,1)">.</span><span id="map8x1" onclick="viewTile(8,1)">.</span><span id="map9x1" onclick="viewTile(9,1)">.</span><br>
+        <span id="map-9x0" onclick="viewTile(-9,0)">.</span><span id="map-8x0" onclick="viewTile(-8,0)">.</span><span id="map-7x0" onclick="viewTile(-7,0)">.</span><span id="map-6x0" onclick="viewTile(-6,0)">.</span><span id="map-5x0" onclick="viewTile(-5,0)">.</span><span id="map-4x0" onclick="viewTile(-4,0)">.</span><span id="map-3x0" onclick="viewTile(-3,0)">.</span><span id="map-2x0" onclick="viewTile(-2,0)">/</span><span id="map-1x0" onclick="viewTile(-1,0)">/</span><span id="map0x0" onclick="viewTile(0,0)">I</span><span id="map1x0" onclick="viewTile(1,0)">\</span><span id="map2x0" onclick="viewTile(2,0)">\</span><span id="map3x0" onclick="viewTile(3,0)">.</span><span id="map4x0" onclick="viewTile(4,0)">.</span><span id="map5x0" onclick="viewTile(5,0)">.</span><span id="map6x0" onclick="viewTile(6,0)">.</span><span id="map7x0" onclick="viewTile(7,0)">.</span><span id="map8x0" onclick="viewTile(8,0)">.</span><span id="map9x0" onclick="viewTile(9,0)">.</span><br>
+        <span id="map-9x-1" onclick="viewTile(-9,-1)">.</span><span id="map-8x-1" onclick="viewTile(-8,-1)">.</span><span id="map-7x-1" onclick="viewTile(-7,-1)">.</span><span id="map-6x-1" onclick="viewTile(-6,-1)">.</span><span id="map-5x-1" onclick="viewTile(-5,-1)">.</span><span id="map-4x-1" onclick="viewTile(-4,-1)">.</span><span id="map-3x-1" onclick="viewTile(-3,-1)">/</span><span id="map-2x-1" onclick="viewTile(-2,-1)">/</span><span id="map-1x-1" onclick="viewTile(-1,-1)">/</span><span id="map0x-1" onclick="viewTile(0,-1)">I</span><span id="map1x-1" onclick="viewTile(1,-1)">\</span><span id="map2x-1" onclick="viewTile(2,-1)">\</span><span id="map3x-1" onclick="viewTile(3,-1)">\</span><span id="map4x-1" onclick="viewTile(4,-1)">.</span><span id="map5x-1" onclick="viewTile(5,-1)">.</span><span id="map6x-1" onclick="viewTile(6,-1)">.</span><span id="map7x-1" onclick="viewTile(7,-1)">.</span><span id="map8x-1" onclick="viewTile(8,-1)">.</span><span id="map9x-1" onclick="viewTile(9,-1)">.</span><br>
+        <span id="map-9x-2" onclick="viewTile(-9,-2)">.</span><span id="map-8x-2" onclick="viewTile(-8,-2)">.</span><span id="map-7x-2" onclick="viewTile(-7,-2)">.</span><span id="map-6x-2" onclick="viewTile(-6,-2)">.</span><span id="map-5x-2" onclick="viewTile(-5,-2)">.</span><span id="map-4x-2" onclick="viewTile(-4,-2)">.</span><span id="map-3x-2" onclick="viewTile(-3,-2)">.</span><span id="map-2x-2" onclick="viewTile(-2,-2)">'</span><span id="map-1x-2" onclick="viewTile(-1,-2)">/</span><span id="map0x-2" onclick="viewTile(0,-2)">I</span><span id="map1x-2" onclick="viewTile(1,-2)">\</span><span id="map2x-2" onclick="viewTile(2,-2)">'</span><span id="map3x-2" onclick="viewTile(3,-2)">.</span><span id="map4x-2" onclick="viewTile(4,-2)">.</span><span id="map5x-2" onclick="viewTile(5,-2)">.</span><span id="map6x-2" onclick="viewTile(6,-2)">.</span><span id="map7x-2" onclick="viewTile(7,-2)">.</span><span id="map8x-2" onclick="viewTile(8,-2)">.</span><span id="map9x-2" onclick="viewTile(9,-2)">.</span><br>
+        <span id="map-9x-3" onclick="viewTile(-9,-3)">.</span><span id="map-8x-3" onclick="viewTile(-8,-3)">.</span><span id="map-7x-3" onclick="viewTile(-7,-3)">.</span><span id="map-6x-3" onclick="viewTile(-6,-3)">.</span><span id="map-5x-3" onclick="viewTile(-5,-3)">.</span><span id="map-4x-3" onclick="viewTile(-4,-3)">.</span><span id="map-3x-3" onclick="viewTile(-3,-3)">.</span><span id="map-2x-3" onclick="viewTile(-2,-3)">.</span><span id="map-1x-3" onclick="viewTile(-1,-3)">'</span><span id="map0x-3" onclick="viewTile(0,-3)">I</span><span id="map1x-3" onclick="viewTile(1,-3)">'</span><span id="map2x-3" onclick="viewTile(2,-3)">.</span><span id="map3x-3" onclick="viewTile(3,-3)">.</span><span id="map4x-3" onclick="viewTile(4,-3)">.</span><span id="map5x-3" onclick="viewTile(5,-3)">.</span><span id="map6x-3" onclick="viewTile(6,-3)">.</span><span id="map7x-3" onclick="viewTile(7,-3)">.</span><span id="map8x-3" onclick="viewTile(8,-3)">.</span><span id="map9x-3" onclick="viewTile(9,-3)">.</span><br>
+        <span id="map-9x-4" onclick="viewTile(-9,-4)">.</span><span id="map-8x-4" onclick="viewTile(-8,-4)">.</span><span id="map-7x-4" onclick="viewTile(-7,-4)">.</span><span id="map-6x-4" onclick="viewTile(-6,-4)">.</span><span id="map-5x-4" onclick="viewTile(-5,-4)">.</span><span id="map-4x-4" onclick="viewTile(-4,-4)">.</span><span id="map-3x-4" onclick="viewTile(-3,-4)">.</span><span id="map-2x-4" onclick="viewTile(-2,-4)">.</span><span id="map-1x-4" onclick="viewTile(-1,-4)">.</span><span id="map0x-4" onclick="viewTile(0,-4)">.</span><span id="map1x-4" onclick="viewTile(1,-4)">.</span><span id="map2x-4" onclick="viewTile(2,-4)">.</span><span id="map3x-4" onclick="viewTile(3,-4)">.</span><span id="map4x-4" onclick="viewTile(4,-4)">.</span><span id="map5x-4" onclick="viewTile(5,-4)">.</span><span id="map6x-4" onclick="viewTile(6,-4)">.</span><span id="map7x-4" onclick="viewTile(7,-4)">.</span><span id="map8x-4" onclick="viewTile(8,-4)">.</span><span id="map9x-4" onclick="viewTile(9,-4)">.</span><br>
+        <span id="map-9x-5" onclick="viewTile(-9,-5)">.</span><span id="map-8x-5" onclick="viewTile(-8,-5)">.</span><span id="map-7x-5" onclick="viewTile(-7,-5)">.</span><span id="map-6x-5" onclick="viewTile(-6,-5)">.</span><span id="map-5x-5" onclick="viewTile(-5,-5)">.</span><span id="map-4x-5" onclick="viewTile(-4,-5)">.</span><span id="map-3x-5" onclick="viewTile(-3,-5)">.</span><span id="map-2x-5" onclick="viewTile(-2,-5)">.</span><span id="map-1x-5" onclick="viewTile(-1,-5)">.</span><span id="map0x-5" onclick="viewTile(0,-5)">.</span><span id="map1x-5" onclick="viewTile(1,-5)">.</span><span id="map2x-5" onclick="viewTile(2,-5)">.</span><span id="map3x-5" onclick="viewTile(3,-5)">.</span><span id="map4x-5" onclick="viewTile(4,-5)">.</span><span id="map5x-5" onclick="viewTile(5,-5)">.</span><span id="map6x-5" onclick="viewTile(6,-5)">.</span><span id="map7x-5" onclick="viewTile(7,-5)">.</span><span id="map8x-5" onclick="viewTile(8,-5)">.</span><span id="map9x-5" onclick="viewTile(9,-5)">.</span><br>
+        <span id="map-9x-6" onclick="viewTile(-9,-6)">.</span><span id="map-8x-6" onclick="viewTile(-8,-6)">.</span><span id="map-7x-6" onclick="viewTile(-7,-6)">.</span><span id="map-6x-6" onclick="viewTile(-6,-6)">.</span><span id="map-5x-6" onclick="viewTile(-5,-6)">.</span><span id="map-4x-6" onclick="viewTile(-4,-6)">.</span><span id="map-3x-6" onclick="viewTile(-3,-6)">.</span><span id="map-2x-6" onclick="viewTile(-2,-6)">.</span><span id="map-1x-6" onclick="viewTile(-1,-6)">.</span><span id="map0x-6" onclick="viewTile(0,-6)">.</span><span id="map1x-6" onclick="viewTile(1,-6)">.</span><span id="map2x-6" onclick="viewTile(2,-6)">.</span><span id="map3x-6" onclick="viewTile(3,-6)">.</span><span id="map4x-6" onclick="viewTile(4,-6)">.</span><span id="map5x-6" onclick="viewTile(5,-6)">.</span><span id="map6x-6" onclick="viewTile(6,-6)">.</span><span id="map7x-6" onclick="viewTile(7,-6)">.</span><span id="map8x-6" onclick="viewTile(8,-6)">.</span><span id="map9x-6" onclick="viewTile(9,-6)">.</span><br>
+        <span id="map-9x-7" onclick="viewTile(-9,-7)">.</span><span id="map-8x-7" onclick="viewTile(-8,-7)">.</span><span id="map-7x-7" onclick="viewTile(-7,-7)">.</span><span id="map-6x-7" onclick="viewTile(-6,-7)">.</span><span id="map-5x-7" onclick="viewTile(-5,-7)">.</span><span id="map-4x-7" onclick="viewTile(-4,-7)">.</span><span id="map-3x-7" onclick="viewTile(-3,-7)">.</span><span id="map-2x-7" onclick="viewTile(-2,-7)">.</span><span id="map-1x-7" onclick="viewTile(-1,-7)">.</span><span id="map0x-7" onclick="viewTile(0,-7)">.</span><span id="map1x-7" onclick="viewTile(1,-7)">.</span><span id="map2x-7" onclick="viewTile(2,-7)">.</span><span id="map3x-7" onclick="viewTile(3,-7)">.</span><span id="map4x-7" onclick="viewTile(4,-7)">.</span><span id="map5x-7" onclick="viewTile(5,-7)">.</span><span id="map6x-7" onclick="viewTile(6,-7)">.</span><span id="map7x-7" onclick="viewTile(7,-7)">.</span><span id="map8x-7" onclick="viewTile(8,-7)">.</span><span id="map9x-7" onclick="viewTile(9,-7)">.</span><br>
+        <span id="map-9x-8" onclick="viewTile(-9,-8)">.</span><span id="map-8x-8" onclick="viewTile(-8,-8)">.</span><span id="map-7x-8" onclick="viewTile(-7,-8)">.</span><span id="map-6x-8" onclick="viewTile(-6,-8)">.</span><span id="map-5x-8" onclick="viewTile(-5,-8)">.</span><span id="map-4x-8" onclick="viewTile(-4,-8)">.</span><span id="map-3x-8" onclick="viewTile(-3,-8)">.</span><span id="map-2x-8" onclick="viewTile(-2,-8)">.</span><span id="map-1x-8" onclick="viewTile(-1,-8)">.</span><span id="map0x-8" onclick="viewTile(0,-8)">.</span><span id="map1x-8" onclick="viewTile(1,-8)">.</span><span id="map2x-8" onclick="viewTile(2,-8)">.</span><span id="map3x-8" onclick="viewTile(3,-8)">.</span><span id="map4x-8" onclick="viewTile(4,-8)">.</span><span id="map5x-8" onclick="viewTile(5,-8)">.</span><span id="map6x-8" onclick="viewTile(6,-8)">.</span><span id="map7x-8" onclick="viewTile(7,-8)">.</span><span id="map8x-8" onclick="viewTile(8,-8)">.</span><span id="map9x-8" onclick="viewTile(9,-8)">.</span><br>
+        <span id="map-9x-9" onclick="viewTile(-9,-9)">.</span><span id="map-8x-9" onclick="viewTile(-8,-9)">.</span><span id="map-7x-9" onclick="viewTile(-7,-9)">.</span><span id="map-6x-9" onclick="viewTile(-6,-9)">.</span><span id="map-5x-9" onclick="viewTile(-5,-9)">.</span><span id="map-4x-9" onclick="viewTile(-4,-9)">.</span><span id="map-3x-9" onclick="viewTile(-3,-9)">.</span><span id="map-2x-9" onclick="viewTile(-2,-9)">.</span><span id="map-1x-9" onclick="viewTile(-1,-9)">.</span><span id="map0x-9" onclick="viewTile(0,-9)">.</span><span id="map1x-9" onclick="viewTile(1,-9)">.</span><span id="map2x-9" onclick="viewTile(2,-9)">.</span><span id="map3x-9" onclick="viewTile(3,-9)">.</span><span id="map4x-9" onclick="viewTile(4,-9)">.</span><span id="map5x-9" onclick="viewTile(5,-9)">.</span><span id="map6x-9" onclick="viewTile(6,-9)">.</span><span id="map7x-9" onclick="viewTile(7,-9)">.</span><span id="map8x-9" onclick="viewTile(8,-9)">.</span><span id="map9x-9" onclick="viewTile(9,-9)">.</span><br>
         <h3 id="coord" value="1">Location : Unknown</h3> <!--Coordinates-->
     </header>
     <nav>
@@ -95,7 +95,7 @@
         <br><p id="sideFeed"></p>
     </article>
     <section id="view">
-        WIP
+        --
     </section>
 </html>
 
@@ -114,7 +114,10 @@
     // - MOTD -
     function motd(){
         x = " - MOTD - <br><br>Current Todo List:<br>- Have stairs spawn and have the player spawn at the up stair."
-        x += "<br>- Finish mouse-over looking system."
+        x += "<br>- Update inventory display so that it actually displays item names & properties. Possibly also add item identification."
+        x += "<br>- Finish item dropping."
+        x += "<br>- Finish item throwing."
+        x += "<br>- Add line-of-sight blocking."
         x += "<br><br> - DEV GOALS -"
         x += "<br>- Basic Worldgen - X"
         x += "<br>- Structure System - X"
@@ -271,13 +274,13 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case "/":
         break;
-    case "ArrowUp": moveNorth()
+    case "ArrowUp": x = "N"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "ArrowDown": moveSouth()
+    case "ArrowDown": x = "S"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "ArrowLeft": moveWest()
+    case "ArrowLeft": x = "W"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "ArrowRight": moveEast()
+    case "ArrowRight": x = "E"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case " ": moveWait()
         break;
@@ -399,7 +402,29 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 }, true);
 // the last option dispatches the event to the listener first then dispatches event to window
 
-
+    // - VIEW OBJECT -
+    function viewTile(x,y){
+        x=coord.x+x
+        y=coord.y+y
+        z = tilesList[x][y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
+        a = tileIDs.find(y => y.id === z)
+        if(a.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.
+            z = itemsList[x][y]
+            if(z == "empty" || z == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full. Both ground items & entities will be visible on the same tile.
+                z = tilesList[x][y]
+                a = tileIDs.find(y => y.id === z)
+            }else if(Array.isArray(z)){
+                a = z[0]
+                a = itemIDs.find(y => y.id === a)
+                if(z[0]=="scint"){
+                    a.name = z[1]+" Scint"
+                }
+            }else{
+                a = itemIDs.find(y => y.id === z)
+            } 
+        }
+        document.getElementById("view").innerHTML=a.name + "<br>" + a.desc
+    }
 
     // - MOVEMENT BUTTONS CORE -
     function moveUp(){
@@ -662,16 +687,16 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         }else if(x=="S"){
             coord.y=coord.y-1
         }else if(x=="SE"){
-            coord.x=coord.x-1
-            coord.y=coord.y+1
+            coord.x=coord.x+1
+            coord.y=coord.y-1
         }else if(x=="W"){
             coord.x=coord.x-1
         }else if(x=="C"){
         }else if(x=="E"){
             coord.x=coord.x+1
         }else if(x=="NW"){
-            coord.x=coord.x+1
-            coord.y=coord.y-1
+            coord.x=coord.x-1
+            coord.y=coord.y+1
         }else if(x=="N"){
             coord.y=coord.y+1
         }else if(x=="NE"){
@@ -755,8 +780,10 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                         document.getElementById(y).style.color = biome.c
                     } else if (z.color == 3){
                         document.getElementById(y).style.color = biome.d
-                    } else {
+                    } else if (z.color == undefined){
                         document.getElementById(y).style.color = biome.d
+                    } else {
+                        document.getElementById(y).style.color = z.color
                     }
                 }
                 coord.x = coord.x + 1;
@@ -874,7 +901,8 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     }
 
     function displayInv(value){ //Related to writeInv, adds everything in invStorage to carrier.
-        x += "<br><br>" + value
+        y = itemIDs.find(z => z.id === value)
+        x += "<br><br>" + y.name
     }
 
 
@@ -1372,112 +1400,112 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "name": "Resplendant Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#ffffff",
         },
         {
             "id": "core_ephemera2",
-            "name": "Resplendant Ephemera",
+            "name": "Orange Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#ffbb00",
         },
         {
             "id": "core_ephemera3",
-            "name": "Resplendant Ephemera",
+            "name": "Magenta Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#e600ff",
         },
         {
             "id": "core_ephemera4",
-            "name": "Resplendant Ephemera",
+            "name": "Lblue Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#00f7ff",
         },
         {
             "id": "core_ephemera5",
-            "name": "Resplendant Ephemera",
+            "name": "Yellow Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#fff700",
         },
         {
             "id": "core_ephemera6",
-            "name": "Resplendant Ephemera",
+            "name": "Entrancing Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#15ff00",
         },
         {
             "id": "core_ephemera7",
-            "name": "Resplendant Ephemera",
+            "name": "Furtive Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#ffa8f1",
         },
         {
             "id": "core_ephemera8",
-            "name": "Resplendant Ephemera",
+            "name": "Radiant Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#808080",
         },
         {
             "id": "core_ephemera9",
-            "name": "Resplendant Ephemera",
+            "name": "Resonant Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#cfcfcf",
         },
         {
             "id": "core_ephemera10",
-            "name": "Resplendant Ephemera",
+            "name": "Fading Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#1bb57a",
         },
         {
             "id": "core_ephemera11",
-            "name": "Resplendant Ephemera",
+            "name": "Ashen Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#8219bf",
         },
         {
             "id": "core_ephemera12",
-            "name": "Resplendant Ephemera",
+            "name": "Serene Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#0700d6",
         },
         {
             "id": "core_ephemera13",
-            "name": "Resplendant Ephemera",
+            "name": "Brown Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#693f00",
         },
         {
             "id": "core_ephemera14",
-            "name": "Resplendant Ephemera",
+            "name": "Verdant Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#006910",
         },
         {
             "id": "core_ephemera15",
-            "name": "Resplendant Ephemera",
+            "name": "Red Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#ff0000",
         },
         {
             "id": "core_ephemera16",
             "name": "Umbral Ephemera",
             "desc": "Test Item",
             "symbol": "+",
-            "color": 3,
+            "color": "#262626",
         }, //TODO: Chained Ephemera, Possibly other equipment (Weapons? Armor? Trinkets?)
     ]
     // - TILE ID LIST - 
