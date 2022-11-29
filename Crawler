@@ -101,6 +101,7 @@
 
 <script>
     const invStorage = []; // Sets Storage
+    var scint = 0
     const coord = {x: 0, y: 0, z: 0};
     const spawnCoord = {x: 110, y: 110, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
     const biome = {cur: "Nowhere", a: "#000000", b: "#1a1a1a", c: "#212121", d: "#3d3d3d"}
@@ -159,6 +160,9 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 // "inv" - Inventory.
 // "self" - Displays appearance & other qualities.
 // "mind" - Displays mental modifiers.
+// "pickup" - Displayed when picking up items.
+// "drop"
+// "throw"
 
     window.addEventListener("keyup", function (event) {
   if (event.defaultPrevented) {
@@ -167,29 +171,29 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 
   switch (event.key) { //Assign keybinds here.   //NOTE: The menu integration is incomplete.
   // Most common inputs
-    case "Escape": if(menuMode=="main"){}else if(menuMode=="overworld"){menuMode="options"; writeMap()}else if(menuMode=="options"){menuMode="overworld"; writeMap()}else if(menuMode=="inv"){menuMode="overworld"; writeMap()}else if(menuMode=="self"){menuMode="overworld"; writeMap()}else if(menuMode=="mind"){menuMode="overworld"; writeMap()}
+    case "Escape": if(menuMode=="main"){}else if(menuMode=="overworld"){menuMode="options"; writeMap()}else{menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind."; writeMap()}
         break;
     case "`": if(menuMode=="main"){}else if(menuMode=="overworld"){}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
         break;
-    case "1": if(menuMode=="main"){}else if(menuMode=="overworld"){moveSW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "1": x = "SW"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "2": if(menuMode=="main"){}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "2": x = "S"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "3": if(menuMode=="main"){}else if(menuMode=="overworld"){moveSE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "3": x = "SE"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "4": if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "4": x = "W"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "5": if(menuMode=="main"){}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "5": x = "C"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "6": if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "6": x = "E"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "7": if(menuMode=="main"){}else if(menuMode=="overworld"){moveNW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "7": x = "NW"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "8": if(menuMode=="main"){}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "8": x = "N"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "9": if(menuMode=="main"){}else if(menuMode=="overworld"){moveNE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}
+    case "9": x = "NE"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "0": 
+    case "0": x = "0"; if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "-":
         break;
@@ -199,7 +203,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case "Tab":
         break;
-    case "q": //Might be used to interact with objects.
+    case "q": if(menuMode=="overworld"){menuMode="pickup"; menuPickup()}
         break;
     case "w":
         break;
@@ -247,7 +251,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case "Enter":
         break;
-    case "z":
+    case "z": if(menuMode=="overworld"){menuMode="drop"; menuDrop()}
         break;
     case "x":
         break;
@@ -352,7 +356,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case '"':
         break;
-    case "Z":
+    case "Z": if(menuMode=="overworld"){menuMode="throw"; menuThrow()}
         break;
     case "X":
         break;
@@ -644,6 +648,78 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         document.getElementById("feed").innerHTML = "WOOOOSH!!"
     }
 
+    // - ITEM INTERACTION -
+    // ITEM PICKUP MENU
+    function menuPickup(){
+        document.getElementById("feed").innerHTML = "Pick up where?<br>(Use arrow keys or numpad.)"
+    }
+    // ITEM PICKUP PROCESSOR
+    function pickupItem(x){
+        y = 1
+        if(x=="SW"){
+            coord.x=coord.x-1
+            coord.y=coord.y-1
+        }else if(x=="S"){
+            coord.y=coord.y-1
+        }else if(x=="SE"){
+            coord.x=coord.x-1
+            coord.y=coord.y+1
+        }else if(x=="W"){
+            coord.x=coord.x-1
+        }else if(x=="C"){
+        }else if(x=="E"){
+            coord.x=coord.x+1
+        }else if(x=="NW"){
+            coord.x=coord.x+1
+            coord.y=coord.y-1
+        }else if(x=="N"){
+            coord.y=coord.y+1
+        }else if(x=="NE"){
+            coord.x=coord.x+1
+            coord.y=coord.y+1
+        }else{
+            document.getElementById("feed").innerHTML = "What was I doing again?<br>(ERROR: Pickup Direction Invalid. Cancelling.)"
+            y = 0
+        }
+        if(y==1){
+            x = itemsList[coord.x][coord.y]
+            itemsList[coord.x][coord.y] = "empty"
+            if(Array.isArray(x)){
+                if(x[0]=="scint"){
+                    scint = scint + x[1]
+                    document.getElementById("feed").innerHTML = "Picked Up : " + x[1] + " Scint"
+                }else{
+                    invStorage.push(x)
+                    z = itemIDs.find(y => y.id === x[0])
+                    document.getElementById("feed").innerHTML = "Picked Up : " + z.name
+                }                
+            }else if(x=="empty"){
+                document.getElementById("feed").innerHTML = "There is nothing here to pick up!"
+            }else{
+                invStorage.push(x)
+                z = itemIDs.find(y => y.id === x)
+                document.getElementById("feed").innerHTML = "Picked Up : " + z.name
+            }
+        }
+        coord.x=playerCoord.x
+        coord.y=playerCoord.y
+        menuMode="overworld"
+        writeMap()
+        writeInv()
+    }
+
+    // ITEM DROP        //WIP
+    function menuDrop(){
+        document.getElementById("feed").innerHTML = "Drop where?<br>(Use arrow keys or numpad.)"
+    }
+    function dropItem(x){
+    }
+    // ITEM THROW       //WIP
+    function menuThrow(){
+        document.getElementById("feed").innerHTML = "Throw where?<br>(Use arrow keys or numpad.)"
+    }
+    function throwItem(x){
+    }
     // - MAP DISPLAY -
     function writeMap(){
         var xMoves = 0
@@ -659,6 +735,9 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                     if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full.
                         x = tilesList[coord.x][coord.y]
                         z = tileIDs.find(y => y.id === x)
+                    }else if(Array.isArray(x)){
+                        x = x[0]
+                        z = itemIDs.find(y => y.id === x)
                     }else{
                         z = itemIDs.find(y => y.id === x)
                     } 
@@ -769,7 +848,6 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         }
     }
     // Make the graphics system a gradient? Perhaps when real-time becomes fully implemented you can have a timeout that slowly adjusts the gradient. You will need to find a good color mixing method though.
-    // PLANNED BIOMES: Swamp, Forest Variants, Mountain & Glacier Variants, Tundra, Bushlands, Hills
 
 
     // - MAP LOOPS -
@@ -789,7 +867,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 
     // - DEBUG BUTTONS - 
     function writeInv(){ //Writes inventory output, then pastes it. x is text carrier.
-        x = " -- Inventory --"; //Names Inventory Carrier
+        x = " -- Inventory --<br><br>Scint : " + scint; //Names Inventory Carrier
         invStorage.forEach(displayInv) //Adds inventory contents to carrier
         x += "<br><br>Items : " + invStorage.length //Gives total quantity of items
         document.getElementById("sideFeed").innerHTML = x; //Prints
@@ -955,8 +1033,16 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         document.getElementById("feed").innerHTML += "<br><br>Below you is:<br><br>" + y.name + " : " + y.desc // Print room desc.
         x = itemsList[coord.x][coord.y]
         if(x != "empty"){
+            if(Array.isArray(x)){
+                a = x[1]
+                x = x[0]
+            }
             y = itemIDs.find(y => y.id === x)
-            document.getElementById("feed").innerHTML += "<br><br>" + y.name + " : " + y.desc
+            if(x=="scint"){
+                document.getElementById("feed").innerHTML += "<br><br>" + a + " " + y.name + " : " + y.desc
+            }else{
+                document.getElementById("feed").innerHTML += "<br><br>" + y.name + " : " + y.desc
+            }
         }
         writeMap()
     }
@@ -1018,6 +1104,9 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                         if(x == 0){
                             y = Math.floor(Math.random() * a.length)
                             y = a[y]
+                            if(y=="scint"){
+                                y = ["scint",Math.floor((Math.random() * 100) + 50)] //Heavily considering having all items be arrays so that I can easily have ephemera-infused items.
+                            }
                         }else{
                             y = "empty"
                         }
@@ -1041,7 +1130,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     const tiletable2 = ["core_grass3", "core_grass3", "core_grass3", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1"]
     
     // - ITEM LISTS -
-    const itemtable1 = ["core_debug1", "scint", "core_ephemera1", "core_ephemera2", "core_ephemera3", "core_ephemera4", "core_ephemera5", "core_ephemera6", "core_ephemera7", "core_ephemera8", "core_ephemera9", "core_ephemera10", "core_ephemera11", "core_ephemera12", "core_ephemera13", "core_ephemera14", "core_ephemera15", "core_ephemera16"]
+    const itemtable1 = ["core_debug1", "scint", "scint", "scint", "scint", "scint", "scint", "core_ephemera1", "core_ephemera2", "core_ephemera3", "core_ephemera4", "core_ephemera5", "core_ephemera6", "core_ephemera7", "core_ephemera8", "core_ephemera9", "core_ephemera10", "core_ephemera11", "core_ephemera12", "core_ephemera13", "core_ephemera14", "core_ephemera15", "core_ephemera16"]
 
     // - STRUCTURE LISTS -
     const structureListTemplate = [ //Intentionally unused, these rooms are to be used as templates. //NOTE: There are some holes in the walls. This is intentional, as these are the exits.
