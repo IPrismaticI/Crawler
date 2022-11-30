@@ -31,9 +31,9 @@
                 height: 40%;
             }
             article {
-                float: left;
+                float: right;
                 width: 50%;
-                height: 40%;
+                height: 5%;
             }
 
             section {
@@ -77,7 +77,7 @@
         <h3 id="coord" value="1">Location : Unknown</h3> <!--Coordinates-->
     </header>
     <nav>
-        <!-- Top Buttons -->
+        <!-- Debug Buttons -->
         <button id="btnAlert" onclick="addItem()"> Debug Item</button>
         <button id="btnAlert" onclick="randomItem()"> Random Debug Item</button>
         <button id="btnAlert" onclick="movePoof()"> Debug Telepoof</button>
@@ -86,13 +86,27 @@
         <button id="btnLocalMap" onclick="writeMapTest()"> Debug Local Map</button>
         <!-- Text Feed -->
         <p id="feed">LOADING...</p>
-    </nav>
-    <article> <!-- Inventory & other stuff -->
+        <!-- Buttons -->
         <button id="btnSelf" onclick="writeSelf()"> [S]elf</button>
         <button id="btnInv" onclick="writeInv()"> [I]nventory</button>
         <button id="btnMind" onclick="writeMind()"> I[n]trospection</button>
         <button id="btnMOTD" onclick="motd()">MOTD & Other Stuff</button>
-        <br><p id="sideFeed"></p>
+        <!-- Menu Feed Title -->
+        <br><p id="sideFeedTitle"></p>
+    </nav>
+    <article> <!-- Inventory & other stuff -->
+        <p id="sideFeed1"></p>
+        <p id="sideFeed2"></p>
+        <p id="sideFeed3"></p>
+        <p id="sideFeed4"></p>
+        <p id="sideFeed5"></p>
+        <p id="sideFeed6"></p>
+        <p id="sideFeed7"></p>
+        <p id="sideFeed8"></p>
+        <p id="sideFeed9"></p>
+        <p id="sideFeed10"></p>
+        <p id="sideFeed11"></p>
+        <button id=sideButton1 style="border-color:gray;color:gray">&#60;-</button><button id=sideButton2 style="border-color:gray;color:gray">-&#62;</button><p id="sideFeed12"></p>
     </article>
     <section id="view">
         --
@@ -110,11 +124,13 @@
     const worldsize = {x: 300, y: 300} // Sets overworld default width & height
     var windowHeight = window.innerHeight
     var windowWidth = window.innerWidth
+    var invPage = 0
 
     // - MOTD -
     function motd(){
+        resetSideView()
         x = " - MOTD - <br><br>Current Todo List:<br>- Have stairs spawn and have the player spawn at the up stair."
-        x += "<br>- Update inventory display so that it actually displays item names & properties. Possibly also add item identification."
+        x += "<br>- Add in item identification."
         x += "<br>- Finish item dropping."
         x += "<br>- Finish item throwing."
         x += "<br>- Add line-of-sight blocking."
@@ -135,7 +151,7 @@
         x += "<br>- Preset Rooms - "
         x += "<br>- Multiplayer Support - "
         x += "<br><br> - Make the size of the game self-adjusting to screen size."
-        document.getElementById("sideFeed").innerHTML = x
+        document.getElementById("sideFeed1").innerHTML = x
     }
 
     function displayCoords(){ // Sets coord to current coordinates, and updates it.
@@ -154,6 +170,26 @@
 
     document.getElementById("feed").innerHTML = "PRESS '5' OR 'SPACE' TO START"
 
+    // - SIDE VIEW CLEANER -
+    function resetSideView(){
+        document.getElementById("sideFeed1").innerHTML = ""
+        document.getElementById("sideFeed2").innerHTML = ""
+        document.getElementById("sideFeed3").innerHTML = ""
+        document.getElementById("sideFeed4").innerHTML = ""
+        document.getElementById("sideFeed5").innerHTML = ""
+        document.getElementById("sideFeed6").innerHTML = ""
+        document.getElementById("sideFeed7").innerHTML = ""
+        document.getElementById("sideFeed8").innerHTML = ""
+        document.getElementById("sideFeed9").innerHTML = ""
+        document.getElementById("sideFeed10").innerHTML = ""
+        document.getElementById("sideFeed11").innerHTML = ""
+        document.getElementById("sideFeed12").innerHTML = ""
+        document.getElementById("sideButton1").onclick = undefined
+        document.getElementById("sideButton1").style = "border-color:gray;color:gray"
+        document.getElementById("sideButton2").onclick = undefined
+        document.getElementById("sideButton2").style = "border-color:gray;color:gray"
+    }
+
     // - KEY SENSORS -
 var menuMode = "overworld" //NOTE: When the menus are fully integrated, this will default to main.
 // -MENU LIST-
@@ -167,7 +203,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 // "drop"
 // "throw"
 
-    window.addEventListener("keyup", function (event) {
+    window.addEventListener("keyup", function (event) { //NOTE: Enabling and disabling buttons breaks this for some reason.
   if (event.defaultPrevented) {
     return; // Do nothing if the event was already processed
   }
@@ -408,22 +444,21 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         y=coord.y+y
         z = tilesList[x][y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
         a = tileIDs.find(y => y.id === z)
-        if(a.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.
+        if(a.wall != 0){b=a.name}else{ //Checks if tile x is a wall. If it is, it is used for writing.
             z = itemsList[x][y]
             if(z == "empty" || z == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full. Both ground items & entities will be visible on the same tile.
                 z = tilesList[x][y]
                 a = tileIDs.find(y => y.id === z)
-            }else if(Array.isArray(z)){
+                b = a.name
+            }else if(z[0]=="scint"){
+                b = z[1]+" Scint"
+            }else{
                 a = z[0]
                 a = itemIDs.find(y => y.id === a)
-                if(z[0]=="scint"){
-                    a.name = z[1]+" Scint"
-                }
-            }else{
-                a = itemIDs.find(y => y.id === z)
+                b = a.name
             } 
         }
-        document.getElementById("view").innerHTML=a.name + "<br>" + a.desc
+        document.getElementById("view").innerHTML=b + "<br>" + a.desc
     }
 
     // - MOVEMENT BUTTONS CORE -
@@ -708,22 +743,20 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         }
         if(y==1){
             x = itemsList[coord.x][coord.y]
-            itemsList[coord.x][coord.y] = "empty"
-            if(Array.isArray(x)){
-                if(x[0]=="scint"){
-                    scint = scint + x[1]
-                    document.getElementById("feed").innerHTML = "Picked Up : " + x[1] + " Scint"
-                }else{
-                    invStorage.push(x)
-                    z = itemIDs.find(y => y.id === x[0])
-                    document.getElementById("feed").innerHTML = "Picked Up : " + z.name
-                }                
-            }else if(x=="empty"){
+            if(x[0]=="scint"){
+                scint = scint + x[1]
+                document.getElementById("feed").innerHTML = "Picked Up : " + x[1] + " Scint"
+                itemsList[coord.x][coord.y] = "empty"   
+            }else if(x=="empty"||x==undefined){
                 document.getElementById("feed").innerHTML = "There is nothing here to pick up!"
+            }else if(invStorage.length >= 20){
+                z = itemIDs.find(y => y.id === x[0])
+                document.getElementById("feed").innerHTML = "You tried to pick up the " + z.name + " but your inventory was too full!"
             }else{
                 invStorage.push(x)
-                z = itemIDs.find(y => y.id === x)
+                z = itemIDs.find(y => y.id === x[0])
                 document.getElementById("feed").innerHTML = "Picked Up : " + z.name
+                itemsList[coord.x][coord.y] = "empty"
             }
         }
         coord.x=playerCoord.x
@@ -760,10 +793,8 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                     if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full.
                         x = tilesList[coord.x][coord.y]
                         z = tileIDs.find(y => y.id === x)
-                    }else if(Array.isArray(x)){
-                        x = x[0]
-                        z = itemIDs.find(y => y.id === x)
                     }else{
+                        x = x[0]
                         z = itemIDs.find(y => y.id === x)
                     } 
                 }
@@ -892,20 +923,42 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     }
 
 
-    // - DEBUG BUTTONS - 
+    // - WRITE INV -
     function writeInv(){ //Writes inventory output, then pastes it. x is text carrier.
-        x = " -- Inventory --<br><br>Scint : " + scint; //Names Inventory Carrier
-        invStorage.forEach(displayInv) //Adds inventory contents to carrier
-        x += "<br><br>Items : " + invStorage.length //Gives total quantity of items
-        document.getElementById("sideFeed").innerHTML = x; //Prints
+        resetSideView()
+        document.getElementById("sideFeed1").innerHTML = " -- Inventory --<br><br>Items : " + invStorage.length + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + "Scint : " + scint
+        g = 2
+        for(let i = 10 * invPage; i < (10 * invPage) + 10; i++){
+            x = invStorage[i]
+            y = "sideFeed"+g
+            g = g+1
+            if(Array.isArray(x)){
+                x = itemIDs.find(y => y.id === x[0])
+                document.getElementById(y).innerHTML = x.symbol + " " + x.name
+            }else{
+                document.getElementById(y).innerHTML = "&nbsp"
+            }
+        document.getElementById("sideFeed12").innerHTML = "Page : " + (invPage + 1)
+        }
+        if(invPage >= 1){
+            document.getElementById("sideButton1").onclick = turnInvPageLeft
+            document.getElementById("sideButton1").style = "border-color:white;color:white"
+        }
+        if(invPage <= 0){
+            document.getElementById("sideButton2").onclick = turnInvPageRight
+            document.getElementById("sideButton2").style = "border-color:white;color:white"
+        }
+    }
+    function turnInvPageLeft(){
+        invPage = invPage-1;
+        writeInv()
+    }
+    function turnInvPageRight(){
+        invPage = invPage+1;
+        writeInv()
     }
 
-    function displayInv(value){ //Related to writeInv, adds everything in invStorage to carrier.
-        y = itemIDs.find(z => z.id === value)
-        x += "<br><br>" + y.name
-    }
-
-
+    // - DEBUG BUTTONS - 
     //Placeholder to add things to inventory
     function addItem(){
         document.getElementById("feed").innerHTML = "Debug Item Added";
@@ -960,10 +1013,12 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 
     // - INTROSPECTION -
     function writeSelf(){ //Heavy WIP. Will write appearance
-        document.getElementById("sideFeed").innerHTML = "TODO"
+        resetSideView()
+        document.getElementById("sideFeed1").innerHTML = "TODO"
     }
     function writeMind(){ //Heavy WIP. Will write mental state & skills.
-        document.getElementById("sideFeed").innerHTML = "TODO"
+        resetSideView()
+        document.getElementById("sideFeed1").innerHTML = "TODO"
     }
 
     // - WORLD GENERATOR - WIP
@@ -984,7 +1039,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         var worldwidth = worldsize.x;
         for(var row = 0; row < worldheight; row++){
             tilesList.push([])
-            document.getElementById("sideFeed").innerHTML += "<br>"
+            document.getElementById("sideFeed1").innerHTML += "<br>"
                 for (var col = 0; col < worldwidth; col++){
                     if(col==0){
                         x = 0
@@ -1025,9 +1080,9 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                         y = tiletable2[x]
                     }
                     tilesList[row].push(y)
-                    //document.getElementById("sideFeed").innerHTML += x
+                    //document.getElementById("sideFeed1").innerHTML += x
                 }
-                //document.getElementById("sideFeed").innerHTML += "<br><br>"
+                //document.getElementById("sideFeed1").innerHTML += "<br><br>"
         }
         playerCoord.x = spawnCoord.x
         playerCoord.y = spawnCoord.y
@@ -1061,13 +1116,9 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         document.getElementById("feed").innerHTML += "<br><br>Below you is:<br><br>" + y.name + " : " + y.desc // Print room desc.
         x = itemsList[coord.x][coord.y]
         if(x != "empty"){
-            if(Array.isArray(x)){
-                a = x[1]
-                x = x[0]
-            }
-            y = itemIDs.find(y => y.id === x)
-            if(x=="scint"){
-                document.getElementById("feed").innerHTML += "<br><br>" + a + " " + y.name + " : " + y.desc
+            y = itemIDs.find(y => y.id === x[0])
+            if(x[0]=="scint"){
+                document.getElementById("feed").innerHTML += "<br><br>" + x[1] + " " + y.name + " : " + y.desc
             }else{
                 document.getElementById("feed").innerHTML += "<br><br>" + y.name + " : " + y.desc
             }
@@ -1134,6 +1185,15 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                             y = a[y]
                             if(y=="scint"){
                                 y = ["scint",Math.floor((Math.random() * 100) + 50)] //Heavily considering having all items be arrays so that I can easily have ephemera-infused items.
+                            }else{
+                                x=itemIDs.find(z => z.id === y)
+                                x=x.mod
+                                if(x==undefined){
+                                    y=[y,x]
+                                }else{
+                                    b=[Math.floor(Math.random() * x.length)]
+                                    y = [y,x[b]]
+                                }
                             }
                         }else{
                             y = "empty"
@@ -1158,7 +1218,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     const tiletable2 = ["core_grass3", "core_grass3", "core_grass3", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1"]
     
     // - ITEM LISTS -
-    const itemtable1 = ["core_debug1", "scint", "scint", "scint", "scint", "scint", "scint", "core_ephemera1", "core_ephemera2", "core_ephemera3", "core_ephemera4", "core_ephemera5", "core_ephemera6", "core_ephemera7", "core_ephemera8", "core_ephemera9", "core_ephemera10", "core_ephemera11", "core_ephemera12", "core_ephemera13", "core_ephemera14", "core_ephemera15", "core_ephemera16"]
+    const itemtable1 = ["core_debug1", "scint", "scint", "scint", "scint", "scint", "core_coffer1", "core_reliquary1", "core_lockbox1", "core_tome1", "core_chainedephemera1", "core_chainedephemera2", "core_chainedephemera3", "core_chainedephemera4", "core_chainedephemera5", "core_chainedephemera6", "core_chainedephemera7", "core_chainedephemera8", "core_chainedephemera9", "core_chainedephemera10", "core_chainedephemera11", "core_chainedephemera12", "core_chainedephemera13", "core_chainedephemera14", "core_chainedephemera15", "core_chainedephemera16"]
 
     // - STRUCTURE LISTS -
     const structureListTemplate = [ //Intentionally unused, these rooms are to be used as templates. //NOTE: There are some holes in the walls. This is intentional, as these are the exits.
@@ -1384,9 +1444,10 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         { // SCINT
             "id": "scint",
             "name": "Scint",
-            "desc": "TODO - Currency",
+            "desc": "A silver powder found most frequently in places between places. While usually extracted from scint-infused liquids, it has proliferated enough that most find it through trade or scavanging. It is primarily valued as a pigment, but has come to be used as a common currency within recent centuries, measured by weight.",
             "symbol": "*",
             "color": 3,
+            "mod": undefined
         },
         { // DEBUG ITEMS
             "id": "core_debug1",
@@ -1394,6 +1455,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "o",
             "color": 3,
+            "mod": undefined
         },
         { // EPHEMERA       //UNFINISHED
             "id": "core_ephemera1",
@@ -1401,6 +1463,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#ffffff",
+            "mod": undefined
         },
         {
             "id": "core_ephemera2",
@@ -1408,6 +1471,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#ffbb00",
+            "mod": undefined
         },
         {
             "id": "core_ephemera3",
@@ -1415,6 +1479,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#e600ff",
+            "mod": undefined
         },
         {
             "id": "core_ephemera4",
@@ -1422,6 +1487,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#00f7ff",
+            "mod": undefined
         },
         {
             "id": "core_ephemera5",
@@ -1429,6 +1495,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#fff700",
+            "mod": undefined
         },
         {
             "id": "core_ephemera6",
@@ -1436,6 +1503,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#15ff00",
+            "mod": undefined
         },
         {
             "id": "core_ephemera7",
@@ -1443,20 +1511,23 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#ffa8f1",
+            "mod": undefined
         },
         {
             "id": "core_ephemera8",
-            "name": "Radiant Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#808080",
-        },
-        {
-            "id": "core_ephemera9",
             "name": "Resonant Ephemera",
             "desc": "Test Item",
             "symbol": "+",
+            "color": "#808080",
+            "mod": undefined
+        },
+        {
+            "id": "core_ephemera9",
+            "name": "Radiant Ephemera",
+            "desc": "Test Item",
+            "symbol": "+",
             "color": "#cfcfcf",
+            "mod": undefined
         },
         {
             "id": "core_ephemera10",
@@ -1464,13 +1535,15 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#1bb57a",
+            "mod": undefined
         },
         {
             "id": "core_ephemera11",
-            "name": "Ashen Ephemera",
+            "name": "Splintered Ephemera",
             "desc": "Test Item",
             "symbol": "+",
             "color": "#8219bf",
+            "mod": undefined
         },
         {
             "id": "core_ephemera12",
@@ -1478,6 +1551,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#0700d6",
+            "mod": undefined
         },
         {
             "id": "core_ephemera13",
@@ -1485,6 +1559,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#693f00",
+            "mod": undefined
         },
         {
             "id": "core_ephemera14",
@@ -1492,6 +1567,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#006910",
+            "mod": undefined
         },
         {
             "id": "core_ephemera15",
@@ -1499,6 +1575,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#ff0000",
+            "mod": undefined
         },
         {
             "id": "core_ephemera16",
@@ -1506,7 +1583,176 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "desc": "Test Item",
             "symbol": "+",
             "color": "#262626",
-        }, //TODO: Chained Ephemera, Possibly other equipment (Weapons? Armor? Trinkets?)
+            "mod": undefined
+        }, 
+        { // CHAINED EPHEMERA       //UNFINISHED
+            "id": "core_chainedephemera1",
+            "name": "Chained Resplendant Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#ffffff",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera2",
+            "name": "Chained Orange Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#ffbb00",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera3",
+            "name": "Chained Magenta Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#e600ff",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera4",
+            "name": "Chained Lblue Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#00f7ff",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera5",
+            "name": "Chained Yellow Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#fff700",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera6",
+            "name": "Chained Entrancing Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#15ff00",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera7",
+            "name": "Chained Furtive Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#ffa8f1",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera8",
+            "name": "Chained Resonant Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#808080",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera9",
+            "name": "Chained Radiant Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#cfcfcf",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera10",
+            "name": "Chained Fading Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#1bb57a",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera11",
+            "name": "Chained Splintered Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#8219bf",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera12",
+            "name": "Chained Serene Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#0700d6",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera13",
+            "name": "Chained Brown Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#693f00",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera14",
+            "name": "Chained Verdant Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#006910",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera15",
+            "name": "Chained Red Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#ff0000",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera16",
+            "name": "Chained Umbral Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#262626",
+            "mod": undefined
+        },
+        {
+            "id": "core_chainedephemera16",
+            "name": "Chained Umbral Ephemera",
+            "desc": "Test Item",
+            "symbol": "#",
+            "color": "#262626",
+            "mod": undefined
+        },
+        { // COFFERS
+            "id": "core_coffer1",
+            "name": "Battered Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined], //TODO: [coffer1,coffer2,coffer3]       //Make it weighted to a degree. The number is the number of items. Loot table will be placed below "mod" as its own value.
+        },
+        { // RELIQUARIES
+            "id": "core_reliquary1",
+            "name": "Battered Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined], //TODO: [coffer1,coffer2,reliquary]       //Coffer# is just items. Reliquary is one revelation and one item. Tome gives a: a number of exp, b: 0-3 revelations, and c: 0-3 lores.
+        },
+        { // LOCKBOXES
+            "id": "core_lockbox1",
+            "name": "Battered Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined], //TODO: [coffer3,coffer4,coffer5]
+        },
+        { // TOMES
+            "id": "core_tome1",
+            "name": "Battered Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined], //TODO: [tome, coffer1]         //Rarely contains an item, having been revealed to be hollow. This is rare.
+        },//TODO: Reagents, foci, other equipment (Weapons? Armor? Trinkets?)
     ]
     // - TILE ID LIST - 
     const tileIDs = [
@@ -1618,5 +1864,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             "wall": 0,
             "stair": 0,
         },
+    ]
+    const modIDs = [
     ]
 </script>
