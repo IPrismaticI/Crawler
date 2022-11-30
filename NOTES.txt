@@ -40,7 +40,7 @@ This is the system that will hopefully seperate the game from others, gameplay-w
 2 - Increase ephemera slots to 8
 3 - Reduced item loss on death
 4 - Reduced skint loss on death
-5 - 
-6 - 
+5 - Increase bag size to 32
+6 - Increase bag size to 64
 7 - 
 8 - 
