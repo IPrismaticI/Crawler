@@ -131,7 +131,7 @@
         resetSideView()
         x = " - MOTD - <br><br>Current Todo List:<br>- Have the player teleport to stairs when going up or down."
         x += "<br>- Since the current code sets all dungeons to be 0-100, make alternate up/down stairs that say the opposite of what is actually going on in the code."
-        x += "<br>- Finish item dropping."
+        x += "<br>- Allow scint to be dropped. Figure out how to do non-invasive text popups."
         x += "<br>- Finish item throwing."
         x += "<br>- Add line-of-sight blocking."
         x += "<br>- Have the game detect a player going to floor -1, having a popup saying 'WOULD YOU LIKE TO LEAVE?'"
@@ -782,7 +782,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         writeInv()
     }
 
-    // ITEM DROP        //WIP
+    // ITEM DROP
     function menuDrop(){
         if(invStorage.length==0){ //NOTE: When scint dropping gets added, have another sensor that skips item dropping if the player has scint but no items.
             document.getElementById("feed").innerHTML = "You have nothing to drop!"
