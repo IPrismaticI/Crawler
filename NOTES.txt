@@ -1,11 +1,13 @@
 I forgot to add the updated code before I left for the holidays, so I made this.
 - Unknown items and item identification? Could work if descriptions & identification status are stored in the item id list. Shop items are always identified, and buying them will identify those items when encountered later on.
-- Stairs are randomly placed post-structure generation. After generation, the player is teleported to the stairs. If the player goes up or down stairs, the level is saved to a storage function and the new one is checked.
 - Enemies spawn both on level generation and randomly after every 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
 - Add checks in the map writer that check if there are walls or other obstructions between the player and the target.
 - Add in Scint, a silvery powder found in places between places. It is used as currency, but is rather bulky and often exchanged for bank notes.
 - There are foci that can be used as temporary spells, so long as the player has a weapon with a focal notch in it.
 - Experience is gained by killing things, as well as possibly some other things, like lockpicking. When you gain enough experience, you gain a Revelation, which can either be stored for later or used to improve one of several skill trees, including those of your allies. Revelations can be sold at specific places, and rarely bought for a high fee, and some things require revelations to function.
+- Lock behind some of the more powerful skill trees behind bosses?
+- Had an idea: The reason for the MC's quasi-revival and ability to use ephemera is due to the weapon they have.
+- To complement this, relics will take the role of adjusting stats rather than weapons & armor.
 - Gaining specific ephemera powers (namely those not accessable via skill trees) requires Lore. These can be bought, gained via story events or allies, or found in tomes. When the player gains Lore, they get a selection of four abilities to put it into rather than it going to a random ability. This luxury is not always avaliable.
 - Tinctures/potions also exist. Steal from my other projects. Exact use varies between substance, and is present in the description when identified.
 - Add in coffers, reliquaries, lockboxes, and tomes. These need to be unlocked, which can be done via several means.
