@@ -35,6 +35,7 @@ This is the system that will hopefully seperate the game from others, gameplay-w
  - On-the-fly infusion/chained ephemera creation/other stuff.
  - Elemental strike in a pattern (cone, straight line, circle, square, etc.) (May also only hurt enemies or be effected by terrain.)
  - Temporarily buff the stats of you and/or your allies.
+ - Turn not-regular fire into regular fire and vice versa.
  
  
 - PERMENANT UPGRADES NOTES -
