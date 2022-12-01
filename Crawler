@@ -74,7 +74,7 @@
         <span id="map-9x-7" onclick="viewTile(-9,-7)">║</span><span id="map-8x-7" onclick="viewTile(-8,-7)">.</span><span id="map-7x-7" onclick="viewTile(-7,-7)">.</span><span id="map-6x-7" onclick="viewTile(-6,-7)">.</span><span id="map-5x-7" onclick="viewTile(-5,-7)">.</span><span id="map-4x-7" onclick="viewTile(-4,-7)">.</span><span id="map-3x-7" onclick="viewTile(-3,-7)">.</span><span id="map-2x-7" onclick="viewTile(-2,-7)">.</span><span id="map-1x-7" onclick="viewTile(-1,-7)">.</span><span id="map0x-7" onclick="viewTile(0,-7)">.</span><span id="map1x-7" onclick="viewTile(1,-7)">.</span><span id="map2x-7" onclick="viewTile(2,-7)">.</span><span id="map3x-7" onclick="viewTile(3,-7)">.</span><span id="map4x-7" onclick="viewTile(4,-7)">.</span><span id="map5x-7" onclick="viewTile(5,-7)">.</span><span id="map6x-7" onclick="viewTile(6,-7)">.</span><span id="map7x-7" onclick="viewTile(7,-7)">.</span><span id="map8x-7" onclick="viewTile(8,-7)">.</span><span id="map9x-7" onclick="viewTile(9,-7)">║</span><br>
         <span id="map-9x-8" onclick="viewTile(-9,-8)">║</span><span id="map-8x-8" onclick="viewTile(-8,-8)">.</span><span id="map-7x-8" onclick="viewTile(-7,-8)">.</span><span id="map-6x-8" onclick="viewTile(-6,-8)">.</span><span id="map-5x-8" onclick="viewTile(-5,-8)">.</span><span id="map-4x-8" onclick="viewTile(-4,-8)">.</span><span id="map-3x-8" onclick="viewTile(-3,-8)">.</span><span id="map-2x-8" onclick="viewTile(-2,-8)">.</span><span id="map-1x-8" onclick="viewTile(-1,-8)">.</span><span id="map0x-8" onclick="viewTile(0,-8)">.</span><span id="map1x-8" onclick="viewTile(1,-8)">.</span><span id="map2x-8" onclick="viewTile(2,-8)">.</span><span id="map3x-8" onclick="viewTile(3,-8)">.</span><span id="map4x-8" onclick="viewTile(4,-8)">.</span><span id="map5x-8" onclick="viewTile(5,-8)">.</span><span id="map6x-8" onclick="viewTile(6,-8)">.</span><span id="map7x-8" onclick="viewTile(7,-8)">.</span><span id="map8x-8" onclick="viewTile(8,-8)">.</span><span id="map9x-8" onclick="viewTile(9,-8)">║</span><br>
         <span id="map-9x-9" onclick="viewTile(-9,-9)">╚</span><span id="map-8x-9" onclick="viewTile(-8,-9)">═</span><span id="map-7x-9" onclick="viewTile(-7,-9)">═</span><span id="map-6x-9" onclick="viewTile(-6,-9)">═</span><span id="map-5x-9" onclick="viewTile(-5,-9)">═</span><span id="map-4x-9" onclick="viewTile(-4,-9)">═</span><span id="map-3x-9" onclick="viewTile(-3,-9)">═</span><span id="map-2x-9" onclick="viewTile(-2,-9)">═</span><span id="map-1x-9" onclick="viewTile(-1,-9)">═</span><span id="map0x-9" onclick="viewTile(0,-9)">═</span><span id="map1x-9" onclick="viewTile(1,-9)">═</span><span id="map2x-9" onclick="viewTile(2,-9)">═</span><span id="map3x-9" onclick="viewTile(3,-9)">═</span><span id="map4x-9" onclick="viewTile(4,-9)">═</span><span id="map5x-9" onclick="viewTile(5,-9)">═</span><span id="map6x-9" onclick="viewTile(6,-9)">═</span><span id="map7x-9" onclick="viewTile(7,-9)">═</span><span id="map8x-9" onclick="viewTile(8,-9)">═</span><span id="map9x-9" onclick="viewTile(9,-9)">╝</span><br>
-        <h3 id="coord" value="1">Location : Unknown</h3> <!--Coordinates-->
+        <h3 id="coord" value="1"></h3> <!--Coordinates-->
     </header>
     <nav>
         <!-- Debug Buttons -->
@@ -117,19 +117,26 @@
     const coord = {x: 0, y: 0, z: 0};
     const spawnCoord = {x: 50, y: 50, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
     const biome = {cur: "Nowhere", a: "#000000", b: "#1a1a1a", c: "#212121", d: "#3d3d3d"}
-    var dropcarrier = 0 //Sets carrier. This is used in dropping items.
+    var dropcarrier = 0 //Sets carrier. This is used in the side feed, selecting which line to use.
     const playerCoord = {x: 0, y: 0, z: 0}
     const worldsize = {x: 300, y: 300} // Sets overworld default width & height
     var windowHeight = window.innerHeight
     var windowWidth = window.innerWidth
     var invPage = 0
     var invMax = 16
-    var curFloor = 0
+    var exp = 0
+    var lore = 0
+
+    // - MENU STORAGES -
+    const mainMenuStorage = ["PLAY DEMO","OPTIONS","CREDITS","QUIT"]
+
+    // - RUN ON STARTUP -
+    mainMenu()
 
     // - MOTD -
     function motd(){
         resetSideView()
-        x = " - MOTD - <br><br>Current Todo List:<br>- Have the player teleport to stairs when going up or down."
+        x = " - MOTD - <br><br>Current Todo List:"
         x += "<br>- Since the current code sets all dungeons to be 0-100, make alternate up/down stairs that say the opposite of what is actually going on in the code."
         x += "<br>- Allow scint to be dropped. Figure out how to do non-invasive text popups."
         x += "<br>- Finish item throwing."
@@ -161,18 +168,8 @@
     function displayCoords(){ // Sets coord to current coordinates, and updates it.
         document.getElementById("coord").innerHTML = "Location : " + (coord.x) + ", " + coord.y + ", " + coord.z;
     }
-    displayCoords()
-    setTimeout(function() {
-        writeWorldMap()
-        writeWorldTiles()
-    }, 1)
-    setTimeout(function() {
-        writeInv()
-        coord.x = spawnCoord.x
-        coord.y = spawnCoord.y
-    }, 2)
 
-    document.getElementById("feed").innerHTML = "PRESS '5' OR 'SPACE' TO START"
+    document.getElementById("feed").innerHTML = "Use arrowkeys or numpad to select. Use space or 5 to confirm."
 
     // - SIDE VIEW CLEANER -
     function resetSideView(){
@@ -203,7 +200,7 @@
     }
 
     // - KEY SENSORS -
-var menuMode = "overworld" //NOTE: When the menus are fully integrated, this will default to main.
+var menuMode = "main"
 // -MENU LIST-
 // "main" - Starting menu.
 // "overworld" - Gameplay. Moving around and such.
@@ -228,19 +225,19 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case "1": x = "SW"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "2": x = "S"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
+    case "2": x = "S"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "3": x = "SE"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "4": x = "W"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "5": x = "C"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItemConfirm()}else if(menuMode=="throw"){menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind.";}
+    case "5": x = "C"; if(menuMode=="main"){mainMenuConfirm()}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItemConfirm()}else if(menuMode=="throw"){menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind.";}
         break;
     case "6": x = "E"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "7": x = "NW"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "8": x = "N"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
+    case "8": x = "N"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "9": x = "NE"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
@@ -322,15 +319,15 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         break;
     case "/":
         break;
-    case "ArrowUp": x = "N"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
+    case "ArrowUp": x = "N"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "ArrowDown": x = "S"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
+    case "ArrowDown": x = "S"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "ArrowLeft": x = "W"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "ArrowRight": x = "E"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case " ": x = "C"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItemConfirm()}else if(menuMode=="throw"){menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind.";}
+    case " ": x = "C"; if(menuMode=="main"){mainMenuConfirm()}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItemConfirm()}else if(menuMode=="throw"){menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind.";}
         break;
     // + Shift
     case "~":
@@ -450,16 +447,89 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 }, true);
 // the last option dispatches the event to the listener first then dispatches event to window
 
+    // - MAIN MENU -
+    function mainMenu(x){
+        if(x=="N"){
+            if(dropcarrier==0){}else{
+                dropcarrier=dropcarrier-1
+            }
+        }else if(x=="S"){
+            if(dropcarrier!=7){
+                x = mainMenuStorage[dropcarrier+1]
+                if(x==undefined){}else{
+                    dropcarrier=dropcarrier+1
+                }
+            }else{}
+        }
+        resetSideView()
+        g = 1
+        for(let i = 0; i < 9; i++){
+            x = mainMenuStorage[i]
+            y = "sideFeed"+g
+            g = g+1
+            if(x!=undefined){
+                if(g-2==dropcarrier){
+                    document.getElementById(y).innerHTML = "> " + x
+                    document.getElementById(y).style.color = "yellow"
+                }else{
+                    document.getElementById(y).innerHTML = "◬ " + x
+                }
+            }else{
+                document.getElementById(y).innerHTML = "&nbsp"
+            }
+        }
+    }
+
+    function mainMenuConfirm(){
+        if(dropcarrier==0){
+            //PLAY DEMO
+            document.getElementById("feed").innerHTML = "LOADING COMPLETE"
+            displayCoords()
+            setTimeout(function() {
+                writeWorldMap()
+                writeWorldTiles()
+                menuMode="overworld"
+            }, 1)
+            setTimeout(function() {
+                writeInv()
+                coord.x = spawnCoord.x
+                coord.y = spawnCoord.y
+                document.getElementById("feed").innerHTML = "PRESS '5' OR 'SPACE' TO START"
+            }, 2)
+            dropcarrier=0
+        }else if(dropcarrier==1){
+            //OPTIONS
+            x="X"
+            dropcarrier=0
+            mainMenu(x)
+            document.getElementById("feed").innerHTML = "WIP"
+        }else if(dropcarrier==2){
+            //CREDITS
+            x="X"
+            dropcarrier=0
+            mainMenu(x)
+            document.getElementById("feed").innerHTML = "Made pretty much entirely by Deane Barberio using Javascript & HTML."
+        }else if(dropcarrier==3){
+            //QUIT
+            x="X"
+            dropcarrier=0
+            mainMenu(x)
+            document.getElementById("feed").innerHTML = "You are gonna need to do that manually for now."
+        }else if(dropcarrier==4){
+            //UNSET BUFFER
+        }
+    }
+
     // - VIEW OBJECT -
     function viewTile(x,y){
         x=coord.x+x
         y=coord.y+y
-        z = tilesList[curFloor][x][y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
+        z = tilesList[coord.z][x][y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
         a = tileIDs.find(y => y.id === z)
         if(a.wall != 0){b=a.name}else{ //Checks if tile x is a wall. If it is, it is used for writing.
-            z = itemsList[curFloor][x][y]
+            z = itemsList[coord.z][x][y]
             if(z == "empty" || z == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full. Both ground items & entities will be visible on the same tile.
-                z = tilesList[curFloor][x][y]
+                z = tilesList[coord.z][x][y]
                 a = tileIDs.find(y => y.id === z)
                 b = a.name
             }else if(z[0]=="scint"){
@@ -475,15 +545,15 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 
     // - MOVEMENT BUTTONS CORE -
     function moveUp(){
-        coord.z = coord.z + 1;
-        playerCoord.z = playerCoord.z + 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
+        coord.z = coord.z + 1;
+        playerCoord.z = playerCoord.z + 1
         if(y.stair == 2 || y.stair == 3){ // stair 2 means the stairs move up. stair 3 means the stairs move both up and down.
             displayCoords();
             checkBiome()
             document.getElementById("feed").innerHTML = "You move up the " + y.name + "."
-            curFloor = curFloor + 1
+            coord.z = coord.z + 1
             checkFloor()
         } else if(y.stair == 0 || y.stair == 1){ //stair 0 means the area is solid and inpassable. stair 1 means the stairs move down.
             coord.z = coord.z - 1
@@ -499,7 +569,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     function moveNorth(){
         coord.y = coord.y + 1;
         playerCoord.y = playerCoord.y + 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -517,31 +587,39 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         printRoom();
     }
     function moveDown(){
+        x = tilesList[coord.z][coord.x][coord.y]
+        var y = tileIDs.find(y => y.id === x)
         coord.z = coord.z - 1;
         playerCoord.z = playerCoord.z - 1
-        x = tilesList[curFloor][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.stair == 1 || y.stair == 3){ // stair 1 means the stairs move down. stair 3 means the stairs move both up and down.
+        if(coord.z<0){ //If the player tries to go below 0, they are asked if they want to leave.      //NOTE: You cannot leave just yet.
+            document.getElementById("feed").innerHTML = "Would you like to leave?"
+            a=["YES","NO"]
+            coord.z = coord.z + 1
+            playerCoord.z = playerCoord.z + 1;
+            document.getElementById("feed").innerHTML += "<br>NOTE: YOU CANNOT LEAVE AS OF YET." //PLACEHOLDER
+        }else if(y.stair == 1 || y.stair == 3){ // stair 1 means the stairs move down. stair 3 means the stairs move both up and down.
             displayCoords();
             checkBiome()
             document.getElementById("feed").innerHTML = "You move down the " + y.name + "."
-            curFloor = curFloor - 1
+            coord.z = coord.z - 1
             checkFloor()
+            printRoom();
         } else if(y.stair == 0 || y.stair == 2){ //stair 0 means the area is solid and inpassable. stair 2 means the stairs move up.
             coord.z = coord.z + 1
             playerCoord.z = playerCoord.z + 1;
             document.getElementById("feed").innerHTML = "There is nowhere to move down!" 
+            printRoom();
         } else {
             coord.z = coord.z + 1
             playerCoord.z = playerCoord.z + 1;
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
+            printRoom();
         }
-        printRoom();
     }
     function moveWest(){
         coord.x = coord.x - 1;
         playerCoord.x = playerCoord.x - 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -561,7 +639,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     function moveEast(){
         coord.x = coord.x + 1;
         playerCoord.x = playerCoord.x + 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -581,7 +659,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     function moveSouth(){
         coord.y = coord.y - 1;
         playerCoord.y = playerCoord.y - 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -603,7 +681,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.y = coord.y + 1;
         playerCoord.x = playerCoord.x - 1;
         playerCoord.y = playerCoord.y + 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -629,7 +707,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.y = coord.y + 1;
         playerCoord.x = playerCoord.x + 1;
         playerCoord.y = playerCoord.y + 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -655,7 +733,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.y = coord.y - 1;
         playerCoord.x = playerCoord.x - 1;
         playerCoord.y = playerCoord.y - 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -681,7 +759,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.y = coord.y - 1;
         playerCoord.x = playerCoord.x + 1;
         playerCoord.y = playerCoord.y - 1;
-        x = tilesList[curFloor][coord.x][coord.y]
+        x = tilesList[coord.z][coord.x][coord.y]
         var y = tileIDs.find(y => y.id === x)
         if(y.wall == 0){ // wall 0 means the area is open.
             displayCoords();
@@ -758,11 +836,11 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             y = 0
         }
         if(y==1){
-            x = itemsList[curFloor][coord.x][coord.y]
+            x = itemsList[coord.z][coord.x][coord.y]
             if(x[0]=="scint"){
                 scint = scint + x[1]
                 document.getElementById("feed").innerHTML = "Picked Up : " + x[1] + " Scint"
-                itemsList[curFloor][coord.x][coord.y] = "empty"   
+                itemsList[coord.z][coord.x][coord.y] = "empty"   
             }else if(x=="empty"||x==undefined){
                 document.getElementById("feed").innerHTML = "There is nothing here to pick up!"
             }else if(invStorage.length >= invMax){
@@ -772,7 +850,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                 invStorage.push(x)
                 z = itemIDs.find(y => y.id === x[0])
                 document.getElementById("feed").innerHTML = "Picked Up : " + z.name
-                itemsList[curFloor][coord.x][coord.y] = "empty"
+                itemsList[coord.z][coord.x][coord.y] = "empty"
             }
         }
         coord.x=playerCoord.x
@@ -845,40 +923,40 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     }
     function dropItemConfirm(){
         z = invStorage[dropcarrier]
-        y = itemsList[curFloor][coord.x][coord.y]
-        x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+        y = itemsList[coord.z][coord.x][coord.y]
+        x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
         if(x!=0||y!="empty"){
             coord.y=coord.y+1
-            y = itemsList[curFloor][coord.x][coord.y]
-            x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+            y = itemsList[coord.z][coord.x][coord.y]
+            x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
             if(x!=0||y!="empty"){
                 coord.x=coord.x-1
-                y = itemsList[curFloor][coord.x][coord.y]
-                x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                y = itemsList[coord.z][coord.x][coord.y]
+                x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                 if(x!=0||y!="empty"){
                     coord.y=coord.y-1
-                    y = itemsList[curFloor][coord.x][coord.y]
-                    x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                    y = itemsList[coord.z][coord.x][coord.y]
+                    x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                     if(x!=0||y!="empty"){
                         coord.y=coord.y-1
-                        y = itemsList[curFloor][coord.x][coord.y]
-                        x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                        y = itemsList[coord.z][coord.x][coord.y]
+                        x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                         if(x!=0||y!="empty"){
                             coord.x=coord.x+1
-                            y = itemsList[curFloor][coord.x][coord.y]
-                            x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                            y = itemsList[coord.z][coord.x][coord.y]
+                            x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                             if(x!=0||y!="empty"){
                                 coord.x=coord.x+1
-                                y = itemsList[curFloor][coord.x][coord.y]
-                                x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                                y = itemsList[coord.z][coord.x][coord.y]
+                                x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                                 if(x!=0||y!="empty"){
                                     coord.y=coord.y+1
-                                    y = itemsList[curFloor][coord.x][coord.y]
-                                    x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                                    y = itemsList[coord.z][coord.x][coord.y]
+                                    x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                                     if(x!=0||y!="empty"){
                                         coord.y=coord.y+1
-                                        y = itemsList[curFloor][coord.x][coord.y]
-                                        x = tileIDs.find(y => y.id === tilesList[curFloor][coord.x][coord.y]).wall
+                                        y = itemsList[coord.z][coord.x][coord.y]
+                                        x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
                                         if(x!=0||y!="empty"){
                                             document.getElementById("feed").innerHTML = "There is nowhere to drop your " + itemIDs.find(y => y.id === z[0]).name + "!"
                                             y=0
@@ -892,7 +970,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
             }
         }
         if(y==0){}else{
-            itemsList[curFloor][coord.x][coord.y] = z
+            itemsList[coord.z][coord.x][coord.y] = z
             invStorage.splice(dropcarrier, 1)
             document.getElementById("feed").innerHTML = "You drop your " + itemIDs.find(y => y.id === z[0]).name + "."
         }
@@ -916,12 +994,12 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.y = coord.y - 8;
         while (yMoves != 17){
             while (xMoves != 17){
-                x = tilesList[curFloor][coord.x][coord.y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
+                x = tilesList[coord.z][coord.x][coord.y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
                 z = tileIDs.find(y => y.id === x)
                 if(z.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.
-                    x = itemsList[curFloor][coord.x][coord.y]
+                    x = itemsList[coord.z][coord.x][coord.y]
                     if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full.
-                        x = tilesList[curFloor][coord.x][coord.y]
+                        x = tilesList[coord.z][coord.x][coord.y]
                         z = tileIDs.find(y => y.id === x)
                     }else{
                         x = x[0]
@@ -1041,7 +1119,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     function startCharBlink(){ //NOTE: Currently unused and slightly delayed.
         document.getElementById("map00c").innerHTML = "@"
             setInterval(function(){
-                var charBlinkHolder = tilesList[curFloor][coord.x][coord.y];
+                var charBlinkHolder = tilesList[coord.z][coord.x][coord.y];
                 document.getElementById("map00c").innerHTML = charBlinkHolder.symbol
             }, 2000);
         setTimeout(function() {
@@ -1120,7 +1198,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         coord.x = x
         coord.y = y
         coord.z = z
-        carrier = tilesList[curFloor][coord.x][coord.y]
+        carrier = tilesList[coord.z][coord.x][coord.y]
         if(coord.x==0 || coord.x<=-1){
             bioX = 0
         }else if(coord.x>=25601){
@@ -1167,8 +1245,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         var worldheight = worldsize.y;
         var worldwidth = worldsize.x;
         for(var row = 0; row < worldheight; row++){
-            tilesList[curFloor].push([])
-            document.getElementById("sideFeed1").innerHTML += "<br>"
+            tilesList[coord.z].push([])
                 for (var col = 0; col < worldwidth; col++){
                     if(col==0){
                         x = 0
@@ -1208,7 +1285,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                         x = Math.floor(Math.random() * tiletable2.length);
                         y = tiletable2[x]
                     }
-                    tilesList[curFloor][row].push(y)
+                    tilesList[coord.z][row].push(y)
                     //document.getElementById("sideFeed1").innerHTML += x
                 }
                 //document.getElementById("sideFeed1").innerHTML += "<br><br>"
@@ -1239,7 +1316,7 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
 
     // - TILE GENERATORS & RECALLERS -
     function checkFloor(){
-        if(floorList[curFloor] == false){
+        if(floorList[coord.z] == false){
             writeWorldMap()
             writeWorldTiles()
             printRoom()
@@ -1247,11 +1324,11 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
     }
 
     function printRoom(){
-        var x = tilesList[curFloor][coord.x][coord.y] //Retrieves space by coords.
+        var x = tilesList[coord.z][coord.x][coord.y] //Retrieves space by coords.
         var y = tileIDs.find(y => y.id === x)
         document.getElementById("area").innerHTML = biome.cur; // Prints biome name.
         document.getElementById("feed").innerHTML += "<br><br>Below you is:<br><br>" + y.name + " : " + y.desc // Print room desc.
-        x = itemsList[curFloor][coord.x][coord.y]
+        x = itemsList[coord.z][coord.x][coord.y]
         if(x != "empty"){
             y = itemIDs.find(y => y.id === x[0])
             if(x[0]=="scint"){
@@ -1285,17 +1362,17 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                             carrier = x[buildcol][buildrow]
                             if(carrier == "0"){ //Detects tile as Empty.
                             }else if(carrier == "1"){ //Palette-based Wall        //NOTE: Set this and most others to place a tile based on a central palette. Preferably check this earlier on in the for loop rather than on every placement.
-                                tilesList[curFloor][a][b] = "core_stonewall1"
+                                tilesList[coord.z][a][b] = "core_stonewall1"
                             }else if(carrier == "2"){ //Palette-based Fluid
-                                tilesList[curFloor][a][b] = carrier //TODO
+                                tilesList[coord.z][a][b] = carrier //TODO
                             }else if(carrier == "3"){ //Palette-based Pit
-                                tilesList[curFloor][a][b] = carrier //TODO
+                                tilesList[coord.z][a][b] = carrier //TODO
                             }else if(carrier == "4"){ //UNSET
-                                tilesList[curFloor][a][b] = carrier
+                                tilesList[coord.z][a][b] = carrier
                             }else if(carrier == "5"){ //UNSET
-                                tilesList[curFloor][a][b] = carrier
+                                tilesList[coord.z][a][b] = carrier
                             }else{ // For special variables.
-                                tilesList[curFloor][a][b] = carrier
+                                tilesList[coord.z][a][b] = carrier
                             }
                         }
                     }
@@ -1304,19 +1381,19 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         while(a.wall != 0 || a.stair != 0){
             x = Math.floor((Math.random() * (worldsize.x-50))+50)
             y = Math.floor((Math.random() * (worldsize.y-50))+50)
-            z = tilesList[curFloor][x][y]
+            z = tilesList[coord.z][x][y]
             a = tileIDs.find(x => x.id === z)
         }
-        tilesList[curFloor][x][y] = "core_stairsup1" //NOTE: Replace this with palette-based stairs.
+        tilesList[coord.z][x][y] = "core_stairsdown1" //NOTE: Replace this with palette-based stairs.
         spawnCoord.x = x
         spawnCoord.y = y
         while(b.wall != 0 || b.stair != 0){
             x = Math.floor((Math.random() * (worldsize.x-50))+50)
             y = Math.floor((Math.random() * (worldsize.y-50))+50)
-            z = tilesList[curFloor][x][y]
+            z = tilesList[coord.z][x][y]
             b = tileIDs.find(x => x.id === z)
         }
-        tilesList[curFloor][x][y] = "core_stairsdown1"
+        tilesList[coord.z][x][y] = "core_stairsup1"
         coord.x = spawnCoord.x
         coord.y = spawnCoord.y
         itemGen()
@@ -1327,9 +1404,9 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
         var worldheight = worldsize.y;
         var worldwidth = worldsize.x;
         for(var row = 0; row < worldheight; row++){
-            itemsList[curFloor].push([])
+            itemsList[coord.z].push([])
                 for (var col = 0; col < worldwidth; col++){
-                    z = tilesList[curFloor][col][row]
+                    z = tilesList[coord.z][col][row]
                     z = tileIDs.find(y => y.id === z)
                     if (z.wall == 0 && z.stair == 0){
                         x = Math.floor(Math.random() * 10)
@@ -1354,12 +1431,12 @@ var menuMode = "overworld" //NOTE: When the menus are fully integrated, this wil
                     }else{ //NOTE: Currently this is set up to only not print items on spaces with wall values of 1. This may need to be changed later on.
                         y = "empty"
                     }
-                    itemsList[curFloor][row].push(y)
+                    itemsList[coord.z][row].push(y)
                 }
         }
         playerCoord.x = spawnCoord.x
         playerCoord.y = spawnCoord.y
-        floorList[curFloor] = true
+        floorList[coord.z] = true
     }
 
     // - OBJECT CARRIERS - 
