@@ -47,3 +47,118 @@ This is the system that will hopefully seperate the game from others, gameplay-w
 6 - Increase bag size to 64
 7 - 
 8 - 
+
+- REVELATION UPGRADES NOTES -
+NOTE: 'B-' requires both of the options that come after the directional option. The others require the one before them.
+1-<White>
+- 
+ - 
+  - Unleash <> : Consumes a White Ephemera to unleash a randomized wave of pale crystal. This is liable to hitting allies. Further levels improve damage and reduce damage vs. friendlies.
+ - Valuable Understanding : Items hidden behind cover glow slightly. Increased levels make this more obvious, but its cheap after the initial purchace.
+  - <> : Makes different items glow different colors(White for Scint, Red for Coffers, Blue for Relics, etc.)
+  B- Object of Desire : A 4th-power relic spawns in the player's storage. This can be taken endlessly at an exponentially rising cost.
+2-<Orange>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+3-<Magenta>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+4-<Lblue>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+5-<Yellow>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+6-<Lime>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+7-<Pink>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+8-<Gray>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+9-<Lgray>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+10-<Cyan>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+11-<Purple>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+12-<Blue>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+13-<Brown>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+14-<Green>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+15-<Red>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
+16-<Black>
+- 
+ - 
+  - 
+ - 
+  - 
+  B- 
