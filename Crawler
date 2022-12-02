@@ -89,7 +89,7 @@
         <!-- Buttons -->
         <button id="btnSelf" onclick="writeSelf()"> [S]elf</button>
         <button id="btnInv" onclick="writeInv()"> [I]nventory</button>
-        <button id="btnMind" onclick="writeMind()"> I[n]trospection</button>
+        <button id="btnMind" onclick="menuMagic()"> [A]rcana</button>
         <button id="btnMOTD" onclick="motd()">MOTD & Other Stuff</button>
         <!-- Menu Feed Title -->
         <br><p id="sideFeedTitle"></p>
@@ -113,6 +113,8 @@
 
 <script>
     const invStorage = []; // Sets Storage
+    const magicStorage = []; // Currently equipt magics.    //NOTE: Several test magics were added. When equipping spells is fully functional, remove them, as the player starts with 0 spells by default.
+    const magicKnown = []; 
     var scint = 0
     const coord = {x: 0, y: 0, z: 0};
     const spawnCoord = {x: 50, y: 50, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
@@ -142,6 +144,11 @@
         x += "<br>- Finish item throwing."
         x += "<br>- Add line-of-sight blocking."
         x += "<br>- Have the game detect a player going to floor -1, having a popup saying 'WOULD YOU LIKE TO LEAVE?'"
+        x += "<br>- Magic is a big WIP, see if you can change that."
+        x += "<br>- I decided to implement NPCs since testing most of the other things will be hard without them. Their code is currently near the room lists."
+        x += "<br>- Update the map printer so that it registers entities."
+        x += "<br>- Rig up a debug entity spawner using data from the telepoof button. Repurpose those old item spawners if you want."
+        x += "<br>- Clean up the tile and item data so that it is consistent with entity data and looks nicer."
         x += "<br><br> - DEV GOALS -"
         x += "<br>- Basic Worldgen - X"
         x += "<br>- Structure System - X"
@@ -211,6 +218,7 @@ var menuMode = "main"
 // "pickup" - Displayed when picking up items.
 // "drop"
 // "throw"
+// "magic"
 
     window.addEventListener("keyup", function (event) { //NOTE: Enabling and disabling buttons breaks this for some reason.
   if (event.defaultPrevented) {
@@ -225,19 +233,19 @@ var menuMode = "main"
         break;
     case "1": x = "SW"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "2": x = "S"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
+    case "2": x = "S"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveSouth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}else if(menuMode=="magic"){menuMagic(x)}
         break;
     case "3": x = "SE"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveSE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "4": x = "W"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveWest()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "5": x = "C"; if(menuMode=="main"){mainMenuConfirm()}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItemConfirm()}else if(menuMode=="throw"){menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind.";}
+    case "5": x = "C"; if(menuMode=="main"){mainMenuConfirm()}else if(menuMode=="overworld"){moveWait()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItemConfirm()}else if(menuMode=="throw"){menuMode="overworld"; document.getElementById("feed").innerHTML = "Nevermind.";}else if(menuMode=="magic"){confirmMagic(x)}
         break;
     case "6": x = "E"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveEast()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
     case "7": x = "NW"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNW()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
-    case "8": x = "N"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}
+    case "8": x = "N"; if(menuMode=="main"){mainMenu(x)}else if(menuMode=="overworld"){moveNorth()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="drop"){dropItem(x)}else if(menuMode=="throw"){throwItem(x)}else if(menuMode=="magic"){menuMagic(x)}
         break;
     case "9": x = "NE"; if(menuMode=="main"){}else if(menuMode=="overworld"){moveNE()}else if(menuMode=="options"){}else if(menuMode=="inv"){}else if(menuMode=="self"){}else if(menuMode=="mind"){}else if(menuMode=="pickup"){pickupItem(x)}else if(menuMode=="throw"){throwItem(x)}
         break;
@@ -382,9 +390,9 @@ var menuMode = "main"
         break;
     case "|":
         break;
-    case "A":
+    case "A": if(menuMode=="overworld"){writeMagic()}
         break;
-    case "S": writeSelf()
+    case "S": if(menuMode=="overworld"){writeSelf()}
         break;
     case "D":
         break;
@@ -488,6 +496,9 @@ var menuMode = "main"
             setTimeout(function() {
                 writeWorldMap()
                 writeWorldTiles()
+                displayCoords()
+                checkBiome()
+                printRoom()
                 menuMode="overworld"
             }, 1)
             setTimeout(function() {
@@ -585,6 +596,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn(0,0);
     }
     function moveDown(){
         x = tilesList[coord.z][coord.x][coord.y]
@@ -977,6 +989,7 @@ var menuMode = "main"
         coord.x=playerCoord.x
         coord.y=playerCoord.y
         menuMode="overworld"
+        dropcarrier=0
         writeMap()
         writeInv()
     }
@@ -1131,7 +1144,7 @@ var menuMode = "main"
 
 
     // - WRITE INV -
-    function writeInv(){ //Writes inventory output, then pastes it. x is text carrier.
+    function writeInv(){
         resetSideView()
         document.getElementById("sideFeed1").innerHTML = " -- Inventory --<br><br>Items : " + invStorage.length + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + "Scint : " + scint
         g = 2
@@ -1438,6 +1451,113 @@ var menuMode = "main"
         playerCoord.y = spawnCoord.y
         floorList[coord.z] = true
     }
+    
+    // - MAGIC SYSTEMS -
+    function viewMagic(x){
+        for(let i = 0; i < 8; i++){
+            x = magicStorage[i]
+            y = "sideFeed"+g
+            g = g+1
+            if(x!=undefined){ //NOTE: Currently no spells have been implemented.
+                x = spellIDs.find(y => y.id === x)
+                document.getElementById(y).innerHTML = x.symbol + " " + x.name
+            }else{
+                document.getElementById(y).innerHTML = "&nbsp"
+            }
+        }
+    }
+    function writeMagic(x){
+        if(x=="N"){
+            if(dropcarrier==0){}else{
+                dropcarrier=dropcarrier-1
+            }
+        }else if(x=="S"){
+            x = invStorage[dropcarrier+1]
+            if(dropcarrier!=7&&x!=undefined){dropcarrier=dropcarrier+1
+            }else{}
+        }
+        menuMode="magic"
+        resetSideView()
+        document.getElementById("sideFeed1").innerHTML = " -- Arcana --"
+        g = 2
+        for(let i = 0; i < 8; i++){
+            x = magicStorage[i]
+            y = "sideFeed"+g
+            g = g+1
+            if(x!=undefined){ //NOTE: Currently no spells have been implemented.
+                x = magicIDs.find(y => y.id === x)
+                document.getElementById(y).innerHTML = x.symbol + " " + x.name
+            }else{
+                document.getElementById(y).innerHTML = "&nbsp"
+            }
+        }
+    }
+    function confirmMagic(){
+        document.getElementById("feed").innerHTML = "IOU: several magics."
+        menuMode="overworld"
+        dropcarrier=0
+    }
+
+    // - TURN SYSTEM & NPC ACTIONS -
+    function endTurn(x,y){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
+        document.getElementById("feed").innerHTML += "<br>Turn ended!"
+        z = entitiesList[coord.z][x][y]
+        z = entityIDs.find(y => y.id === z)
+        if(z==undefined){
+        }else if(Array.isArray(z)){
+            if(z[5]=="core_testfollower"){
+                turncore_testfollower(x,y)
+            }
+            if(z[5]=="core_testwanderer"){
+                turncore_testwanderer(x,y)
+            }
+            if(z[5]=="core_testcrawler"){
+                turncore_testcrawler(x,y)
+            }
+        }
+        if(x==worldsize.x-1){
+            x=0
+            y=y+1
+            endTurn(x,y)
+        }else if(y==worldsize.y-1){
+            return
+        }else{
+            x=x+1
+            endTurn(x,y)
+        }
+    }
+    // - NPC AI -                               //NOTE: Pretty much all of this is unfinished.
+    function turncore_testfollower(x,y){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?
+        if(Math.abs(x-playerCoord.x)>10&&Math.abs(y-playerCoord.y)>10){ //If entity's coords minus player's coords create a number larger than 10, it uses testwanderer code.
+            turncore_testwanderer(x,y)
+        }
+    }
+    function turncore_testwanderer(x,y){ //It is supposed to wander around. Exactly how depends on how I decide to go about it, though it probably follows the walls.
+
+    }
+    function turncore_testcrawler(x,y){ //NOTE: UNTESTED. It is supposed to move 1 space in a random direction.
+        a=x+Math.floor(Math.random()*2)
+        b=y+Math.floor(Math.random()*2)
+        if(tilesList[coord.z][a][b].wall!=0){
+            a=x+Math.floor(Math.random()*2)
+            b=y+Math.floor(Math.random()*2)
+            if(tilesList[coord.z][a][b].wall!=0){
+                a=x+Math.floor(Math.random()*2)
+                b=y+Math.floor(Math.random()*2)
+                if(tilesList[coord.z][a][b].wall!=0){
+                    a=x+Math.floor(Math.random()*2)
+                    b=y+Math.floor(Math.random()*2)
+                    if(tilesList[coord.z][a][b].wall!=0){
+                        setTimeout(endTurn(x,y),1000)
+                        return
+                    }
+                }
+            }
+        }
+        entitiesList[coord.z][a][b] = entitiesList[coord.z][x][y]
+        entitiesList[coord.z][x][y] = undefined
+        setTimeout(endTurn(x,y),1000)
+    }
 
     // - OBJECT CARRIERS - 
     const floorList = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
@@ -1724,7 +1844,7 @@ var menuMode = "main"
     const structureListF = [] //List for 6 - (UNSET)
 
     // - ITEM ID LIST - 
-    const itemIDs = [
+    const itemIDs = [       //NOTE: These values can be condensed into objects. Do that if you want later, though it will require some code reworking.
         { // SCINT
             "id": "scint",
             "name": "Scint",
@@ -2208,5 +2328,12 @@ var menuMode = "main"
         },
     ]
     const modIDs = [
+    ]
+    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-health
+        ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10],
+        ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15],
+        ["core_testcrawler","Helper","This one is extatically writhing in the grass.","@",2,"core_testcrawler",5],
+    ]
+    const magicIDs = [
     ]
 </script>
