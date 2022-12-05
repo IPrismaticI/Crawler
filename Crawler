@@ -596,7 +596,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
-        endTurn(0,0);
+        endTurn();
     }
     function moveDown(){
         x = tilesList[coord.z][coord.x][coord.y]
@@ -1412,14 +1412,16 @@ var menuMode = "main"
         itemGen()
     }
 
-    function itemGen(){
+    function itemGen(){ //Generates items & sets entity list up for the floor.
         a = itemtable1 //NOTE: Base this off of the specific area when those get implemented.
         var worldheight = worldsize.y;
         var worldwidth = worldsize.x;
         for(var row = 0; row < worldheight; row++){
             itemsList[coord.z].push([])
+            entitiesList[coord.z].push([])
                 for (var col = 0; col < worldwidth; col++){
                     z = tilesList[coord.z][col][row]
+                    entitiesList[coord.z][row].push("0")
                     z = tileIDs.find(y => y.id === z)
                     if (z.wall == 0 && z.stair == 0){
                         x = Math.floor(Math.random() * 10)
@@ -1499,31 +1501,37 @@ var menuMode = "main"
     }
 
     // - TURN SYSTEM & NPC ACTIONS -
-    function endTurn(x,y){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
+    function endTurn(){
         document.getElementById("feed").innerHTML += "<br>Turn ended!"
-        z = entitiesList[coord.z][x][y]
+        menuMode="turn"
+        x = 100
+        y = 100
+        endTurnLoop(x,y)
+    }
+    function endTurnLoop(x,y){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
+        z = entitiesList[coord.z][x][y] //NOTE: I just realized that this system will likely trigger entities multiple times. Find a better one.
         z = entityIDs.find(y => y.id === z)
         if(z==undefined){
         }else if(Array.isArray(z)){
             if(z[5]=="core_testfollower"){
                 turncore_testfollower(x,y)
-            }
-            if(z[5]=="core_testwanderer"){
+            }else if(z[5]=="core_testwanderer"){
                 turncore_testwanderer(x,y)
-            }
-            if(z[5]=="core_testcrawler"){
+            }else if(z[5]=="core_testcrawler"){
+                turncore_testcrawler(x,y)
+            }else{
                 turncore_testcrawler(x,y)
             }
         }
-        if(x==worldsize.x-1){
-            x=0
+        if(x==worldsize.x-51){
+            x=100
             y=y+1
-            endTurn(x,y)
-        }else if(y==worldsize.y-1){
-            return
+            setTimeout(endTurnLoop(x,y),1)
+        }else if(y==worldsize.y-51){
+            menuMode="overworld"
         }else{
             x=x+1
-            endTurn(x,y)
+            endTurnLoop(x,y)
         }
     }
     // - NPC AI -                               //NOTE: Pretty much all of this is unfinished.
@@ -1548,15 +1556,14 @@ var menuMode = "main"
                     a=x+Math.floor(Math.random()*2)
                     b=y+Math.floor(Math.random()*2)
                     if(tilesList[coord.z][a][b].wall!=0){
-                        setTimeout(endTurn(x,y),1000)
-                        return
+                        setTimeout(endTurnLoop(x,y),1000)
                     }
                 }
             }
         }
         entitiesList[coord.z][a][b] = entitiesList[coord.z][x][y]
         entitiesList[coord.z][x][y] = undefined
-        setTimeout(endTurn(x,y),1000)
+        setTimeout(endTurnLoop(x,y),1000)
     }
 
     // - OBJECT CARRIERS - 
