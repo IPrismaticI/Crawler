@@ -78,7 +78,7 @@
     </header>
     <nav>
         <!-- Debug Buttons -->
-        <button id="btnAlert" onclick="addItem()"> Debug Item</button>
+        <button id="btnAlert" onclick="debugSummon()"> Debug Summon Entity</button>
         <button id="btnAlert" onclick="randomItem()"> Random Debug Item</button>
         <button id="btnAlert" onclick="movePoof()"> Debug Telepoof</button>
         <button id="btnAlert" onclick="printRoomDebug();"> Debug Tile Viewer</button>
@@ -145,9 +145,8 @@
         x += "<br>- Add line-of-sight blocking."
         x += "<br>- Have the game detect a player going to floor -1, having a popup saying 'WOULD YOU LIKE TO LEAVE?'"
         x += "<br>- Magic is a big WIP, see if you can change that."
-        x += "<br>- I decided to implement NPCs since testing most of the other things will be hard without them. Their code is currently near the room lists."
-        x += "<br>- Update the map printer so that it registers entities."
-        x += "<br>- Rig up a debug entity spawner using data from the telepoof button. Repurpose those old item spawners if you want."
+        x += "<br>- Add more NPCs."
+        x += "<br>- Add in framework to allow companions to follow you and retain their stats. Global variables may be useful here."
         x += "<br>- Clean up the tile and item data so that it is consistent with entity data and looks nicer."
         x += "<br><br> - DEV GOALS -"
         x += "<br>- Basic Worldgen - X"
@@ -576,6 +575,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
         }
         printRoom();
+        endTurn();
     }
     function moveNorth(){
         coord.y = coord.y + 1;
@@ -647,6 +647,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveEast(){
         coord.x = coord.x + 1;
@@ -667,6 +668,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveSouth(){
         coord.y = coord.y - 1;
@@ -687,6 +689,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveNW(){
         coord.x = coord.x - 1;
@@ -713,6 +716,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveNE(){
         coord.x = coord.x + 1;
@@ -739,6 +743,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveSW(){
         coord.x = coord.x - 1;
@@ -765,6 +770,7 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveSE(){
         coord.x = coord.x + 1;
@@ -791,12 +797,14 @@ var menuMode = "main"
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
         }
         printRoom();
+        endTurn();
     }
     function moveWait(){
         document.getElementById("feed").innerHTML = "You stay put."
         displayCoords();
         checkBiome();
         printRoom();
+        endTurn();
     }
     
     // debug teleport
@@ -1009,33 +1017,55 @@ var menuMode = "main"
             while (xMoves != 17){
                 x = tilesList[coord.z][coord.x][coord.y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
                 z = tileIDs.find(y => y.id === x)
-                if(z.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.
-                    x = itemsList[coord.z][coord.x][coord.y]
-                    if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full.
-                        x = tilesList[coord.z][coord.x][coord.y]
-                        z = tileIDs.find(y => y.id === x)
+                if(z.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.      //NOTE: Change later since creatures that can go through walls and water are a thing.
+                    z = entitiesList[coord.z].find(a => a[1] === coord.x && a[2] === coord.y)
+                    if(z==undefined){
+                        x = itemsList[coord.z][coord.x][coord.y]
+                        if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full.
+                            x = tilesList[coord.z][coord.x][coord.y]
+                            z = tileIDs.find(y => y.id === x)
+                        }else{
+                            x = x[0]
+                            z = itemIDs.find(y => y.id === x)
+                        } 
                     }else{
-                        x = x[0]
-                        z = itemIDs.find(y => y.id === x)
-                    } 
+                        z=entityIDs.find(y => y[0] === z[0])
+                    }
                 }
                 var xHolder = xMoves - 8
                 var yHolder = yMoves - 8
                 if (yHolder > -9 && yHolder < 9 && xHolder > -9 && xHolder < 9){
                     y = "map" + xHolder + "x" + yHolder
-                    document.getElementById(y).innerHTML = z.symbol
-                    if (z.color == 0){
-                        document.getElementById(y).style.color = biome.a
-                    } else if (z.color == 1){
-                        document.getElementById(y).style.color = biome.b
-                    } else if (z.color == 2){
-                        document.getElementById(y).style.color = biome.c
-                    } else if (z.color == 3){
-                        document.getElementById(y).style.color = biome.d
-                    } else if (z.color == undefined){
-                        document.getElementById(y).style.color = biome.d
-                    } else {
-                        document.getElementById(y).style.color = z.color
+                    if(Array.isArray(z)){
+                        document.getElementById(y).innerHTML = z[3]
+                        if (z[4] == 0){
+                            document.getElementById(y).style.color = biome.a
+                        } else if (z[4] == 1){
+                            document.getElementById(y).style.color = biome.b
+                        } else if (z[4] == 2){
+                            document.getElementById(y).style.color = biome.c
+                        } else if (z[4] == 3){
+                            document.getElementById(y).style.color = biome.d
+                        } else if (z[4] == undefined){
+                            document.getElementById(y).style.color = biome.d
+                        } else {
+                            document.getElementById(y).style.color = z[4]
+                        }
+                    }else{
+                        document.getElementById(y).innerHTML = z.symbol
+                        if (z.color == 0){
+                            document.getElementById(y).style.color = biome.a
+                        } else if (z.color == 1){
+                            document.getElementById(y).style.color = biome.b
+                        } else if (z.color == 2){
+                            document.getElementById(y).style.color = biome.c
+                        } else if (z.color == 3){
+                            document.getElementById(y).style.color = biome.d
+                        } else if (z.color == undefined){
+                            document.getElementById(y).style.color = biome.d
+                        } else {
+                            document.getElementById(y).style.color = z.color
+                        }
                     }
                 }
                 coord.x = coord.x + 1;
@@ -1179,13 +1209,6 @@ var menuMode = "main"
     }
 
     // - DEBUG BUTTONS - 
-    //Placeholder to add things to inventory
-    function addItem(){
-        document.getElementById("feed").innerHTML = "Debug Item Added";
-        invStorage.push("testitem");
-        writeInv()
-    }
-
     //Placeholder to add random things to inventory
     function randomItem(){
         var x = "You find"; //Sets x to be the text carrier.
@@ -1418,10 +1441,8 @@ var menuMode = "main"
         var worldwidth = worldsize.x;
         for(var row = 0; row < worldheight; row++){
             itemsList[coord.z].push([])
-            entitiesList[coord.z].push([])
                 for (var col = 0; col < worldwidth; col++){
                     z = tilesList[coord.z][col][row]
-                    entitiesList[coord.z][row].push("0")
                     z = tileIDs.find(y => y.id === z)
                     if (z.wall == 0 && z.stair == 0){
                         x = Math.floor(Math.random() * 10)
@@ -1503,73 +1524,84 @@ var menuMode = "main"
     // - TURN SYSTEM & NPC ACTIONS -
     function endTurn(){
         document.getElementById("feed").innerHTML += "<br>Turn ended!"
-        menuMode="turn"
-        x = 100
-        y = 100
-        endTurnLoop(x,y)
-    }
-    function endTurnLoop(x,y){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
-        z = entitiesList[coord.z][x][y] //NOTE: I just realized that this system will likely trigger entities multiple times. Find a better one.
-        z = entityIDs.find(y => y.id === z)
-        if(z==undefined){
-        }else if(Array.isArray(z)){
-            if(z[5]=="core_testfollower"){
-                turncore_testfollower(x,y)
-            }else if(z[5]=="core_testwanderer"){
-                turncore_testwanderer(x,y)
-            }else if(z[5]=="core_testcrawler"){
-                turncore_testcrawler(x,y)
-            }else{
-                turncore_testcrawler(x,y)
-            }
+        if(entitiesList[coord.z].length==0){}else{
+            menuMode="turn"
+            x = 0
+            endTurnLoop(x)
         }
-        if(x==worldsize.x-51){
-            x=100
-            y=y+1
-            setTimeout(endTurnLoop(x,y),1)
-        }else if(y==worldsize.y-51){
-            menuMode="overworld"
-        }else{
-            x=x+1
-            endTurnLoop(x,y)
+    }
+    function endTurnLoop(x){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
+        z = entitiesList[coord.z][x] //Checks AI and runs it.
+        if(z[0]=="core_testfollower"){
+            turncore_testfollower(z)
+        }else if(z[0]=="core_testwanderer"){
+            turncore_testwanderer(z)
+        }else if(z[0]=="core_testcrawler"){
+            turncore_testcrawler(z)
+        }else{}
+        x=x+1
+        if(x>=entitiesList[coord.z].length){menuMode="overworld"}else{  //NOTE: Have it so the delayed reset only occurs when the entity is within view.
+            setTimeout(endTurnLoop(x),1000)
         }
     }
     // - NPC AI -                               //NOTE: Pretty much all of this is unfinished.
-    function turncore_testfollower(x,y){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?
+    function turncore_testfollower(x){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?
         if(Math.abs(x-playerCoord.x)>10&&Math.abs(y-playerCoord.y)>10){ //If entity's coords minus player's coords create a number larger than 10, it uses testwanderer code.
-            turncore_testwanderer(x,y)
+            turncore_testwanderer(x)
         }
     }
-    function turncore_testwanderer(x,y){ //It is supposed to wander around. Exactly how depends on how I decide to go about it, though it probably follows the walls.
+    function turncore_testwanderer(x){ //It is supposed to wander around. Exactly how depends on how I decide to go about it, though it probably follows the walls.
 
     }
-    function turncore_testcrawler(x,y){ //NOTE: UNTESTED. It is supposed to move 1 space in a random direction.
-        a=x+Math.floor(Math.random()*2)
-        b=y+Math.floor(Math.random()*2)
-        if(tilesList[coord.z][a][b].wall!=0){
-            a=x+Math.floor(Math.random()*2)
-            b=y+Math.floor(Math.random()*2)
-            if(tilesList[coord.z][a][b].wall!=0){
-                a=x+Math.floor(Math.random()*2)
-                b=y+Math.floor(Math.random()*2)
-                if(tilesList[coord.z][a][b].wall!=0){
-                    a=x+Math.floor(Math.random()*2)
-                    b=y+Math.floor(Math.random()*2)
-                    if(tilesList[coord.z][a][b].wall!=0){
-                        setTimeout(endTurnLoop(x,y),1000)
+    function turncore_testcrawler(z){ //NOTE: UNTESTED. It is supposed to move 1 space in a random direction.
+        x=z[1]
+        y=z[2]
+        a=x+Math.floor((Math.random()*3)-1)
+        b=y+Math.floor((Math.random()*3)-1)
+        c=tilesList[coord.z][a][b]
+        c=tileIDs.find(y => y.id === c)
+        if(c.wall!=0){
+            a=x+Math.floor((Math.random()*3)-1)
+            b=y+Math.floor((Math.random()*3)-1)
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            if(c.wall!=0){
+                a=x+Math.floor((Math.random()*3)-1)
+                b=y+Math.floor((Math.random()*3)-1)
+                c=tilesList[coord.z][a][b]
+                c=tileIDs.find(y => y.id === c)
+                if(c.wall!=0){
+                    a=x+Math.floor((Math.random()*3)-1)
+                    b=y+Math.floor((Math.random()*3)-1)
+                    c=tilesList[coord.z][a][b]
+                    c=tileIDs.find(y => y.id === c)
+                    if(c.wall!=0){
+                        a=z[1]
+                        b=z[2]
                     }
                 }
             }
         }
-        entitiesList[coord.z][a][b] = entitiesList[coord.z][x][y]
-        entitiesList[coord.z][x][y] = undefined
-        setTimeout(endTurnLoop(x,y),1000)
+        z[1]=a
+        z[2]=b
+        writeMap();
+    }
+
+    function debugSummon(){     //DEBUG: Summons an entity.
+        x = prompt("X coord")
+        y = prompt("Y coord")
+        z = prompt("Entity ID (Case Sensitive)")
+        b = [z,parseInt(x),parseInt(y)]
+        entitiesList[coord.z].push(b)
+        a=entityIDs.find(y => y[0] === z)
+        document.getElementById("feed").innerHTML = "Summoned a " + a[1]
     }
 
     // - OBJECT CARRIERS - 
     const floorList = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
     const tilesList = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
     const itemsList = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
+        //ENTITIES LIST GUIDE: 0 = ID, 1 = x coord, 2 = y coord, 3 = health
     const entitiesList = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]]
 
     // - TILE LISTS -
@@ -2339,7 +2371,7 @@ var menuMode = "main"
     const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-health
         ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10],
         ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15],
-        ["core_testcrawler","Helper","This one is extatically writhing in the grass.","@",2,"core_testcrawler",5],
+        ["core_testcrawler","Crawler","This one is extatically writhing in the grass.","C",2,"core_testcrawler",5],
     ]
     const magicIDs = [
     ]
