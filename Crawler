@@ -146,6 +146,8 @@
         x += "<br>- Have the game detect a player going to floor -1, having a popup saying 'WOULD YOU LIKE TO LEAVE?'"
         x += "<br>- Magic is a big WIP, see if you can change that."
         x += "<br>- Add more NPCs."
+        x += "<br>- Have entities register each other as occupied spaces. Currently, they register the player."
+        x += "<br>- Make an NPC spawner."
         x += "<br>- Add in framework to allow companions to follow you and retain their stats. Global variables may be useful here."
         x += "<br>- Clean up the tile and item data so that it is consistent with entity data and looks nicer."
         x += "<br><br> - DEV GOALS -"
@@ -1544,38 +1546,144 @@ var menuMode = "main"
             setTimeout(endTurnLoop(x),1000)
         }
     }
-    // - NPC AI -                               //NOTE: Pretty much all of this is unfinished.
-    function turncore_testfollower(x){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?
-        if(Math.abs(x-playerCoord.x)>10&&Math.abs(y-playerCoord.y)>10){ //If entity's coords minus player's coords create a number larger than 10, it uses testwanderer code.
-            turncore_testwanderer(x)
-        }
-    }
-    function turncore_testwanderer(x){ //It is supposed to wander around. Exactly how depends on how I decide to go about it, though it probably follows the walls.
-
-    }
-    function turncore_testcrawler(z){ //NOTE: UNTESTED. It is supposed to move 1 space in a random direction.
-        x=z[1]
-        y=z[2]
-        a=x+Math.floor((Math.random()*3)-1)
-        b=y+Math.floor((Math.random()*3)-1)
-        c=tilesList[coord.z][a][b]
-        c=tileIDs.find(y => y.id === c)
-        if(c.wall!=0){
-            a=x+Math.floor((Math.random()*3)-1)
-            b=y+Math.floor((Math.random()*3)-1)
+    // - NPC AI -                             
+    function turncore_testfollower(z){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?        //NOTE: Currently has weird movements.
+        if(Math.abs(z[1]-playerCoord.x)>10&&Math.abs(z[2]-playerCoord.y)>10){ //If entity's coords minus player's coords create a number larger than 10, it uses testwanderer code.
+            turncore_testcrawler(z) //NOTE: Intended to be testwanderer, but that code is broken atm.
+        }else{
+            //while(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)==undefined){
+            if(z[1]-playerCoord.x==0&&z[2]-playerCoord.y>0){ //Entity is North of Player.
+            a=z[1]
+            b=z[2]-1
             c=tilesList[coord.z][a][b]
             c=tileIDs.find(y => y.id === c)
-            if(c.wall!=0){
-                a=x+Math.floor((Math.random()*3)-1)
-                b=y+Math.floor((Math.random()*3)-1)
+            }else if(z[1]-playerCoord.x<0&&z[2]-playerCoord.y>0){ //Entity is North-West of Player.
+            a=z[1]+1
+            b=z[2]-1
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else if(z[1]-playerCoord.x<0&&z[2]-playerCoord.y==0){ //Entity is West of Player.
+            a=z[1]+1
+            b=z[2]
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else if(z[1]-playerCoord.x<0&&z[2]-playerCoord.y<0){ //Entity is South-West of Player.
+            a=z[1]+1
+            b=z[2]+1
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else if(z[1]-playerCoord.x==0&&z[2]-playerCoord.y<0){ //Entity is South of Player.
+            a=z[1]
+            b=z[2]+1
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else if(z[1]-playerCoord.x>0&&z[2]-playerCoord.y<0){ //Entity is South-East of Player.
+            a=z[1]-1
+            b=z[2]+1
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else if(z[1]-playerCoord.x>0&&z[2]-playerCoord.y==0){ //Entity is East of Player.
+            a=z[1]-1
+            b=z[2]
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else if(z[1]-playerCoord.x>0&&z[2]-playerCoord.y>0){ //Entity is North-East of Player.
+            a=z[1]-1
+            b=z[2]-1
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            }else{ //Fallback.
+            a=z[1]
+            b=z[2]
+            }
+            c=tilesList[coord.z][a][b]  //Put everything here in each direction category? Might allow for more fine-tuning in direction choices.
+            c=tileIDs.find(y => y.id === c)
+            if(b==playerCoord.y&&a==playerCoord.x){
+            }else if(c.wall!=0||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+                turncore_testcrawler(z)//NOTE: Intended to be testwanderer, but that code is broken atm.
+            }else{
+                z[1]=a
+                z[2]=b
+                writeMap();
+            }
+        }
+    }
+    function turncore_testwanderer(z){ //NOTE: UNFINISHED. Prone to getting stuck. //It is supposed to wander around. Exactly how depends on how I decide to go about it, though it probably follows the walls.
+        a=z[1]+1
+        b=z[2]
+        c=tilesList[coord.z][a][b]
+        c=tileIDs.find(y => y.id === c)
+        if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+            a=z[1]+1
+            b=z[2]-1
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                a=z[1]
+                b=z[2]-1
                 c=tilesList[coord.z][a][b]
                 c=tileIDs.find(y => y.id === c)
-                if(c.wall!=0){
-                    a=x+Math.floor((Math.random()*3)-1)
-                    b=y+Math.floor((Math.random()*3)-1)
+                if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                    a=z[1]-1
+                    b=z[2]-1
                     c=tilesList[coord.z][a][b]
                     c=tileIDs.find(y => y.id === c)
-                    if(c.wall!=0){
+                    if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                        a=z[1]-1
+                        b=z[2]
+                        c=tilesList[coord.z][a][b]
+                        c=tileIDs.find(y => y.id === c)
+                        if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                            a=z[1]-1
+                            b=z[2]+1
+                            c=tilesList[coord.z][a][b]
+                            c=tileIDs.find(y => y.id === c)
+                            if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                                a=z[1]
+                                b=z[2]+1
+                                c=tilesList[coord.z][a][b]
+                                c=tileIDs.find(y => y.id === c)
+                                if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                                    a=z[1]-1
+                                    b=z[2]+1
+                                    c=tilesList[coord.z][a][b]
+                                    c=tileIDs.find(y => y.id === c)
+                                    if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                                        a=z[1]
+                                        b=z[2]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        z[1]=a
+        z[2]=b
+        writeMap();
+    }
+    function turncore_testcrawler(z){ //Has its x and y movements modified by -1, 0, or 1 each turn. If it hits a wall, it tries again a few times, defaulting to staying still after a few failures.
+        a=z[1]+Math.floor((Math.random()*3)-1)
+        b=z[2]+Math.floor((Math.random()*3)-1)
+        c=tilesList[coord.z][a][b]
+        c=tileIDs.find(y => y.id === c)
+        if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+            a=z[1]+Math.floor((Math.random()*3)-1)
+            b=z[2]+Math.floor((Math.random()*3)-1)
+            c=tilesList[coord.z][a][b]
+            c=tileIDs.find(y => y.id === c)
+            if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+                a=z[1]+Math.floor((Math.random()*3)-1)
+                b=z[2]+Math.floor((Math.random()*3)-1)
+                c=tilesList[coord.z][a][b]
+                c=tileIDs.find(y => y.id === c)
+                if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+                    a=z[1]+Math.floor((Math.random()*3)-1)
+                    b=z[2]+Math.floor((Math.random()*3)-1)
+                    c=tilesList[coord.z][a][b]
+                    c=tileIDs.find(y => y.id === c)
+                    if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
                         a=z[1]
                         b=z[2]
                     }
@@ -1595,6 +1703,7 @@ var menuMode = "main"
         entitiesList[coord.z].push(b)
         a=entityIDs.find(y => y[0] === z)
         document.getElementById("feed").innerHTML = "Summoned a " + a[1]
+        writeMap();
     }
 
     // - OBJECT CARRIERS - 
