@@ -124,6 +124,7 @@
     var invMax = 16
     var exp = 0
     var lore = 0
+    var spawnTimer = 40 //Delay between spawning new entities.
 
     // - MENU STORAGES -
     const mainMenuStorage = ["PLAY DEMO","OPTIONS","CREDITS","QUIT"]
@@ -141,7 +142,10 @@
         x += "<br>- Magic is a big WIP, see if you can change that."
         x += "<br>- Add more NPCs."
         x += "<br>- Have entities register each other as occupied spaces. Currently, they register the player."
-        x += "<br>- Make an NPC spawner."
+        x += "<br>- Edit the floor writer to spawn entities after tiles are generated."
+        x += "<br>- Merge stair and wall values, cause no walls will be stairs. Also, make a 'door' value, where it obscures vision but can be passed through."
+        x += "<br>- Add some variety to scint item names. By default, dropped scint will be 'pile'"
+        x += "<br>- Have spawnTimer reset to 0 when going up or down a set of stairs."
         x += "<br>- Add in framework to allow companions to follow you and retain their stats. Global variables may be useful here."
         x += "<br>- Clean up the tile and item data so that it is consistent with entity data and looks nicer."
         x += "<br><br> - DEV GOALS -"
@@ -1561,10 +1565,50 @@ var menuMode = "main"
     // - TURN SYSTEM & NPC ACTIONS -
     function endTurn(){
         document.getElementById("feed").innerHTML += "<br>Turn ended!"
+        if(spawnTimer>=50){
+            if(entitiesList[coord.z].length<=32){
+                endTurnSpawn()
+            }
+        }else{
+            spawnTimer=spawnTimer+1
+        }
         if(entitiesList[coord.z].length==0){}else{
             menuMode="turn"
             x = 0
             endTurnLoop(x)
+        }
+    }
+    function endTurnSpawn(){    //Spawns entities.
+        x=Math.floor((Math.random()*(worldsize.x-100))+50)
+        y=Math.floor((Math.random()*(worldsize.y-100))+50)
+        z = tilesList[coord.z][y][x]
+        z = tileIDs.find(y => y.id === z)
+        if(z.wall!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
+            x=Math.floor((Math.random()*(worldsize.x-100))+50)
+            y=Math.floor((Math.random()*(worldsize.y-100))+50)
+            z = tilesList[coord.z][y][x]
+            z = tileIDs.find(y => y.id === z)
+            if(z.wall!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
+                x=Math.floor((Math.random()*(worldsize.x-100))+50)
+                y=Math.floor((Math.random()*(worldsize.y-100))+50)
+                z = tilesList[coord.z][y][x]
+                z = tileIDs.find(y => y.id === z)
+                if(z.wall!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
+                    x=Math.floor((Math.random()*(worldsize.x-100))+50)
+                    y=Math.floor((Math.random()*(worldsize.y-100))+50)
+                    z = tilesList[coord.z][y][x]
+                    z = tileIDs.find(y => y.id === z)
+                }
+            }
+        }
+        if(z.wall==0&&(Math.abs(playerCoord.x-x))>10&&(Math.abs(playerCoord.y-y))>10){
+            c=entitytable1
+            a=Math.floor(Math.random()*c.length)    //NOTE: Set this to pick a table based on dungeon and/or floor.
+            a=c[a]
+            a=entityIDs.find(y => y[0] === a)
+            b=[a[0],x,y]
+            entitiesList[coord.z].push(b)
+            spawnTimer=40   //NOTE: Supposed to be 20. Changed for testing purposes.
         }
     }
     function endTurnLoop(x){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
@@ -1578,7 +1622,7 @@ var menuMode = "main"
         }else{}
         x=x+1
         if(x>=entitiesList[coord.z].length){menuMode="overworld"}else{  //NOTE: Have it so the delayed reset only occurs when the entity is within view.
-            setTimeout(endTurnLoop(x),1000)
+            endTurnLoop(x)
         }
     }
     // - NPC AI -                             
@@ -1788,6 +1832,9 @@ var menuMode = "main"
     
     // - ITEM LISTS -
     const itemtable1 = ["core_debug1", "scint", "scint", "scint", "scint", "scint", "core_coffer1", "core_reliquary1", "core_lockbox1", "core_tome1", "core_chainedephemera1", "core_chainedephemera2", "core_chainedephemera3", "core_chainedephemera4", "core_chainedephemera5", "core_chainedephemera6", "core_chainedephemera7", "core_chainedephemera8", "core_chainedephemera9", "core_chainedephemera10", "core_chainedephemera11", "core_chainedephemera12", "core_chainedephemera13", "core_chainedephemera14", "core_chainedephemera15", "core_chainedephemera16"]
+
+    // - ENTITY LISTS -
+    const entitytable1 = ["core_testcrawler", "core_testwanderer"]
 
     // - STRUCTURE LISTS -
     const structureListTemplate = [ //Intentionally unused, these rooms are to be used as templates. //NOTE: There are some holes in the walls. This is intentional, as these are the exits.
