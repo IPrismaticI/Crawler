@@ -60,11 +60,16 @@ This is the system that will hopefully seperate the game from others, gameplay-w
  - Also like field alchemy, recipies can be found in shops or at random, seperated into 'unlabeled' notes and specific recipies ('Unlabeled Alchemical Formula' and '<Tincture> Formula' respectively.>
  - Alchemist NPCs cost scint to use, but can supplement reagents for large quantities of scint. They can also sell tinctures directly, usually at the same price as replacing an entire tincture's recipe with scint.
 -MIXING REACTIONS-
-
+- These will be determined by applying a list of limited reactions (namely x into tincture), then by applying the same list of repeatable reactions until all reaction slots are set for the save.
+ - There be a whole bunch of these for 'x into tincture' reactions.
+-
+-
+-
+-
 -TINCTURES-
 -NOTE: See LoF for ideas.
 https://nethackwiki.com/wiki/Potion
-https://nethackwiki.com/wiki/Alchemy
+https://nethackwiki.com/wiki/Vapors
 https://nethackwiki.com/wiki/Magic
 https://nethackwiki.com/wiki/Sink
 https://nethackwiki.com/wiki/Fountain
