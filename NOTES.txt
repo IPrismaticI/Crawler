@@ -29,8 +29,9 @@ This is the system that will hopefully seperate the game from others, gameplay-w
 - Ephemera fuel various abilities:
  - Channelling: As the player improves (whether through experience or some other system) they learn Channelling Spells. Most of these require ephemera of a specific type to use, and have effects that are usually only modified by their ability trees.
  - Infusion: Placing ephemera into items with the occasional help of a practitioner and/or some catalysts. You will need a few ephemera at least to improve an item, but the results are usually good. Unlike other forms, infusion does not require ephemera to be equipt to use, only that the player has them.
+ - Infusion aspect names: Niveu(White), Luteu(Orange), Signu(Magenta), Liveu(Lblue), Croceu(Yellow), Tiliu(Lime), Roseu(Pink), (Gray), (Lgray), (Cyan), (Purple), Caeru(Blue), (Brown), (Green), (Brown), (Red), (Black)
  - Encantation: Learned powers that require reagents to use. Usually quite powerful, but costly.
- - Words of Power: A handful of powerful spells that require 8 ephemera to function, 4 of which must be of a specific type. Using a Word destroys all ephemera, and its power is determined by the
+ - Words of Power: A handful of powerful spells that require 8 ephemera to function, 4 of which must be of a specific type. Using a Word destroys all ephemera, and its power is determined by the number of expended ephemera.
 - Possible Ephemera Powers
  - On-the-fly infusion/chained ephemera creation/other stuff.
  - Elemental strike in a pattern (cone, straight line, circle, square, etc.) (May also only hurt enemies or be effected by terrain.)
