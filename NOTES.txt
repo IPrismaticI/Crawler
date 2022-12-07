@@ -49,6 +49,26 @@ This is the system that will hopefully seperate the game from others, gameplay-w
 7 - 
 8 - 
 
+- ALCHEMY & TINCTURES NOTES -
+- If the player doesnt want to search for or buy a tincture, they can make one by mixing various reagents together.
+- Tincture recipies are random per save, but usually have some consistencies (potions usually have the same base and the same catalysts, or later on, the same amount of required aspects.)
+- Reagents and base fluids are used in alchemy. Base fluids can be found in bottles (of which are obtained from spent potions or as loot.) Some world objects, such as fluid tiles, can be tapped for base fluids with an empty bottle.
+- Field alchemy is avaliable from the start, having the player mix a reagent (or sometimes other objects) into a base fluid or existing tincture. The results are not always potions, and are generally unpredictable, though some npcs may give hints.
+ - There might be a Book of Lore tab that, when unlocked, shows all known reactions in field alchemy, among other things. Pages for this can be purchased from shops sometimes, either being random 'unlabeled' notes or 'detailing' a specific undiscovered combination ('unlabeled alchemy notes' and 'alchemy notes detailing <Liquid> and <Ingredient>' respectively.)
+- Aspect alchemy is another method done either at an alembic or with the aid of an alchemist npc. The former are rare structures (or a portable item, though this is rare) that can be used to distill up to eight reagents and a base fluid into a tincture.
+ - Like field alchemy, these recipies are randomized per save file, but hold no risk short of wasting the ingredients.
+ - Also like field alchemy, recipies can be found in shops or at random, seperated into 'unlabeled' notes and specific recipies ('Unlabeled Alchemical Formula' and '<Tincture> Formula' respectively.>
+ - Alchemist NPCs cost scint to use, but can supplement reagents for large quantities of scint. They can also sell tinctures directly, usually at the same price as replacing an entire tincture's recipe with scint.
+-MIXING REACTIONS-
+
+-TINCTURES-
+-NOTE: See LoF for ideas.
+https://nethackwiki.com/wiki/Potion
+https://nethackwiki.com/wiki/Alchemy
+https://nethackwiki.com/wiki/Magic
+https://nethackwiki.com/wiki/Sink
+https://nethackwiki.com/wiki/Fountain
+
 - REVELATION UPGRADES NOTES -
 NOTE: 'B-' requires both of the options that come after the directional option. The others require the one before them.
 1-<White>
