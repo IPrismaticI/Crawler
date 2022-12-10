@@ -1,7 +1,5 @@
 I forgot to add the updated code before I left for the holidays, so I made this.
 - Unknown items and item identification? Could work if descriptions & identification status are stored in the item id list. Shop items are always identified, and buying them will identify those items when encountered later on.
-- Enemies spawn both on level generation and randomly after every 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
-- Add checks in the map writer that check if there are walls or other obstructions between the player and the target.
 - Add in Scint, a silvery powder found in places between places. It is used as currency, but is rather bulky and often exchanged for bank notes.
 - There are foci that can be used as temporary spells, so long as the player has a weapon with a focal notch in it.
 - Experience is gained by killing things, as well as possibly some other things, like lockpicking. When you gain enough experience, you gain a Revelation, which can either be stored for later or used to improve one of several skill trees, including those of your allies. Revelations can be sold at specific places, and rarely bought for a high fee, and some things require revelations to function.
@@ -19,6 +17,10 @@ I forgot to add the updated code before I left for the holidays, so I made this.
  - Reliquaries give relics, reagents, and rarely, a revelation.
  - Lockboxes contain weapons, relics, and various consumables. They usually give more than coffers and reliquaries, but are harder to open.
  - Tomes give experience, and rarely a revelation as well. They may also give Lore fragments on specific ephemera powers, sometimes more than one.
+ 
+- ENTITY NOTES -
+- Enemies spawn both on level generation and randomly after every 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
+- Most enemies have an experience flat & roll, a loot chance, a loot-table, an ephemera chance, and an ephemera type. If they die, they grant the experience flat as well as a number between 0 and the roll. They have a chance to drop loot (though some enemies lack a loot table), and if that fails, they have a chance to drop an ephemera of their given type.
 
 - EPHEMERA NOTES - 
 This is the system that will hopefully seperate the game from others, gameplay-wise.
