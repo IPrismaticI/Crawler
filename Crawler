@@ -125,6 +125,10 @@
     var exp = 0
     var lore = 0
     var spawnTimer = 40 //Delay between spawning new entities.
+    
+    // - CONSISTENT STATISTICS STORAGE -
+    const playerStats = [10,1]  //0=Health, 1=Base Attack Power
+    //TODO: Companion stats.
 
     // - MENU STORAGE -
     const menuStorage = [
@@ -633,20 +637,27 @@
     function moveNorth(){
         coord.y = coord.y + 1;
         playerCoord.y = playerCoord.y + 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move North."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.y = coord.y - 1
             playerCoord.y = playerCoord.y - 1;
-            document.getElementById("feed").innerHTML = "You try to move North, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.y = coord.y - 1
-            playerCoord.y = playerCoord.y - 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move North."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.y = coord.y - 1
+                playerCoord.y = playerCoord.y - 1;
+                document.getElementById("feed").innerHTML = "You try to move North, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.y = coord.y - 1
+                playerCoord.y = playerCoord.y - 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -684,20 +695,27 @@
     function moveWest(){
         coord.x = coord.x - 1;
         playerCoord.x = playerCoord.x - 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move West."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.x = coord.x + 1
             playerCoord.x = playerCoord.x + 1;
-            document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.x = coord.x + 1
-            playerCoord.x = playerCoord.x + 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move West."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.x = coord.x + 1
+                playerCoord.x = playerCoord.x + 1;
+                document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.x = coord.x + 1
+                playerCoord.x = playerCoord.x + 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -705,20 +723,27 @@
     function moveEast(){
         coord.x = coord.x + 1;
         playerCoord.x = playerCoord.x + 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move East."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.x = coord.x - 1
             playerCoord.x = playerCoord.x - 1;
-            document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.x = coord.x - 1
-            playerCoord.x = playerCoord.x - 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move East."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.x = coord.x - 1
+                playerCoord.x = playerCoord.x - 1;
+                document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.x = coord.x - 1
+                playerCoord.x = playerCoord.x - 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -726,20 +751,27 @@
     function moveSouth(){
         coord.y = coord.y - 1;
         playerCoord.y = playerCoord.y - 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move South."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.y = coord.y + 1
             playerCoord.y = playerCoord.y + 1;
-            document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.y = coord.y + 1
-            playerCoord.y = playerCoord.y + 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move South."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.y = coord.y + 1
+                playerCoord.y = playerCoord.y + 1;
+                document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.y = coord.y + 1
+                playerCoord.y = playerCoord.y + 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -749,24 +781,33 @@
         coord.y = coord.y + 1;
         playerCoord.x = playerCoord.x - 1;
         playerCoord.y = playerCoord.y + 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move North-West."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.y = coord.y - 1
             playerCoord.y = playerCoord.y - 1;
             coord.x = coord.x + 1
             playerCoord.x = playerCoord.x + 1;
-            document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.y = coord.y - 1
-            playerCoord.y = playerCoord.y - 1;
-            coord.x = coord.x + 1
-            playerCoord.x = playerCoord.x + 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move North-West."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.y = coord.y - 1
+                playerCoord.y = playerCoord.y - 1;
+                coord.x = coord.x + 1
+                playerCoord.x = playerCoord.x + 1;
+                document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.y = coord.y - 1
+                playerCoord.y = playerCoord.y - 1;
+                coord.x = coord.x + 1
+                playerCoord.x = playerCoord.x + 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -776,24 +817,33 @@
         coord.y = coord.y + 1;
         playerCoord.x = playerCoord.x + 1;
         playerCoord.y = playerCoord.y + 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move North-East."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.y = coord.y - 1
             playerCoord.y = playerCoord.y - 1;
             coord.x = coord.x - 1
             playerCoord.x = playerCoord.x - 1;
-            document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.y = coord.y - 1
-            playerCoord.y = playerCoord.y - 1;
-            coord.x = coord.x - 1
-            playerCoord.x = playerCoord.x - 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move North-East."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.y = coord.y - 1
+                playerCoord.y = playerCoord.y - 1;
+                coord.x = coord.x - 1
+                playerCoord.x = playerCoord.x - 1;
+                document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.y = coord.y - 1
+                playerCoord.y = playerCoord.y - 1;
+                coord.x = coord.x - 1
+                playerCoord.x = playerCoord.x - 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -803,24 +853,33 @@
         coord.y = coord.y - 1;
         playerCoord.x = playerCoord.x - 1;
         playerCoord.y = playerCoord.y - 1;
-        x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
-        if(y.wall == 0){ // wall 0 means the area is open.
-            displayCoords();
-            checkBiome()
-            document.getElementById("feed").innerHTML = "You move South-West."
-        } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+        if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
+            x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.y = coord.y + 1
             playerCoord.y = playerCoord.y + 1;
             coord.x = coord.x + 1
             playerCoord.x = playerCoord.x + 1;
-            document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y.name + " in the way!" 
-        } else {
-            coord.y = coord.y + 1
-            playerCoord.y = playerCoord.y + 1;
-            coord.x = coord.x + 1
-            playerCoord.x = playerCoord.x + 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+        }else{
+            x = tilesList[coord.z][coord.x][coord.y]
+            var y = tileIDs.find(y => y.id === x)
+            if(y.wall == 0){ // wall 0 means the area is open.
+                displayCoords();
+                checkBiome()
+                document.getElementById("feed").innerHTML = "You move South-West."
+            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+                coord.y = coord.y + 1
+                playerCoord.y = playerCoord.y + 1;
+                coord.x = coord.x + 1
+                playerCoord.x = playerCoord.x + 1;
+                document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y.name + " in the way!" 
+            } else {
+                coord.y = coord.y + 1
+                playerCoord.y = playerCoord.y + 1;
+                coord.x = coord.x + 1
+                playerCoord.x = playerCoord.x + 1;
+                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+            }
         }
         printRoom();
         endTurn();
@@ -832,11 +891,11 @@
         playerCoord.y = playerCoord.y - 1;
         if(entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)!=undefined){
             x=entitiesList[coord.z].find(x => x[1] === coord.x && x[2] === coord.y)
+            attackBasic(x)
             coord.y = coord.y + 1
             playerCoord.y = playerCoord.y + 1;
             coord.x = coord.x - 1
             playerCoord.x = playerCoord.x - 1;
-            attackBasic(x)
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y.id === x)
@@ -1564,10 +1623,21 @@
     }
     
     // - BASIC PLAYER ATTACKS -
-    function attackBasic(x){
+    function attackBasic(x){    //NOTE: Sometimes, entities don't die from this.
         y = entityIDs.find(z => z[0] === x[0])
-        document.getElementById("feed").innerHTML = "You attack the " + y[0] + "!"
-        //TODO: Add entity health, decrease health by player strength if they do not have the perma-ally or invincible tags, add player stats.
+        //NOTE: Check for perma-ally & unattackable tags here. Currently, they are not implemented.
+        document.getElementById("feed").innerHTML = "You strike at the " + y[1] + "!"
+        z=Math.floor((Math.random*100)-1)
+        if(z<y[8]){
+            document.getElementById("feed").innerHTML += "...but the " + y[1] + " dodges your blow!"
+        }else{//Check for critical hits here?
+            document.getElementById("feed").innerHTML += "<br>The " + y[1] + " takes " + playerStats[1] + " damage!"
+            x[3]=x[3]-playerStats[1]
+            if(x[3]<=0){
+                entitiesList[coord.z].splice(entitiesList[coord.z].find(y => y[1] === coord.x && y[2] === coord.y), 1)
+                document.getElementById("feed").innerHTML += "<br>The " + y[1] + " dies!"
+            }
+        }
     }
 
 
@@ -1661,7 +1731,7 @@
             a=Math.floor(Math.random()*c.length)    //NOTE: Set this to pick a table based on dungeon and/or floor.
             a=c[a]
             a=entityIDs.find(y => y[0] === a)
-            b=[a[0],x,y]
+            b=[a[0],x,y,a[6]]
             entitiesList[coord.z].push(b)
             spawnTimer=40   //NOTE: Supposed to be 20. Changed for testing purposes.
         }
@@ -1863,13 +1933,13 @@
         writeMap();
     }
 
-    function debugSummon(){     //DEBUG: Summons an entity.
+    function debugSummon(){     //DEBUG: Summons an entity.     //NOTE: Currently bugged. Entities spawned to not have health.
         x = prompt("X coord")
         y = prompt("Y coord")
         z = prompt("Entity ID (Case Sensitive)")
-        b = [z,parseInt(x),parseInt(y)]
-        entitiesList[coord.z].push(b)
         a=entityIDs.find(y => y[0] === z)
+        b = [z,parseInt(x),parseInt(y),a[6]]
+        entitiesList[coord.z].push(b)
         document.getElementById("feed").innerHTML = "Summoned a " + a[1]
         writeMap();
     }
@@ -2648,10 +2718,10 @@
     ]
     const modIDs = [
     ]
-    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-health
-        ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10],
-        ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15],
-        ["core_testcrawler","Crawler","This one is extatically writhing in the grass.","C",2,"core_testcrawler",5],
+    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-starting health, 7-base attack power, 8-evasion rating
+        ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10,1,20],
+        ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15,1,20],
+        ["core_testcrawler","Crawler","This one is extatically writhing in the grass.","C",2,"core_testcrawler",5,1,20],
     ]
     const magicIDs = [
     ]
