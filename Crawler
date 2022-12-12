@@ -89,8 +89,10 @@
         <p id="feed">LOADING...</p>
         <!-- Buttons -->
         <button id="btnSelf" onclick="writeSelf()"> [S]elf</button>
+        <button id="btnEphemera" onclick="writeSelf()"> [E]phemera</button><!--TODO-->
         <button id="btnInv" onclick="writeInv()"> [I]nventory</button>
         <button id="btnMind" onclick="menuMagic()"> [A]rcana</button>
+        <button id="btnLoreBook" onclick="writeSelf()"> [B]ook of Lore</button><!--TODO-->
         <button id="btnMOTD" onclick="motd()">MOTD & Other Stuff</button>
         <!-- Menu Feed Title -->
         <br><p id="sideFeedTitle"></p>
@@ -168,8 +170,8 @@
         x += "<br>- Have spawnTimer reset to 0 when going up or down a set of stairs."
         x += "<br>- Add in framework to allow companions to follow you and retain their stats. Global variables may be useful here."
         x += "<br>- Make the rest of the item data consistent."
-        x += "<br>- Add buttons & menus for ephemera equipping & the book of lore."
-        x += "<br>- Use the self button for stats."
+        x += "<br>- Convert the item system from grid-sized arrays to floor-based arrays with each item having an x/y coordinate. It will save on actions spent sifting through the mess and data used storing all the empty variables."
+        x += "<br>- Finish stats, ephemera, and Book of Lore menus."
         x += "<br>- Between the EXTERNAL check and default printer in the menu builder, add a specific circumstance checker to be used with things like drop or magic when the player doesnt have any valid objects."
         x += "<br>- See if you can add preset structures. The idea is to have a 'structure totem' of a set size in templates, with a later function turning the area around it into a randomly picked room, such as a shop, shrine, or vault."
         x += "<br><br> - DEV GOALS -"
@@ -182,7 +184,7 @@
         x += "<br>- Combat - "
         x += "<br>-- Spellcasting - "
         x += "<br>-- Item Use - "
-        x += "<br>-- Basic Fighting - "
+        x += "<br>-- Basic Fighting - X"
         x += "<br>- Save System - "
         x += "<br>- Text Boxes - "
         x += "<br>- Environment & Biome Variety - "
@@ -1712,6 +1714,8 @@
     // - TURN SYSTEM & NPC ACTIONS -
     function endTurn(){
         document.getElementById("feed").innerHTML += "<br>Turn ended!"
+        x=0
+        //endTurnDecay(x)   //Currently a WIP.
         if(spawnTimer>=50){
             if(entitiesList[coord.z].length<=32){
                 endTurnSpawn()
@@ -1759,7 +1763,7 @@
         }
     }
     function endTurnLoop(x){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
-        z = entitiesList[coord.z][x] //Checks AI and runs it.
+        z = entitiesList[coord.z][x] //Checks entity AI and runs it. Loops until all entities on that floor are active.
         if(z[3]<=0){
             entitiesList[coord.z].splice(x, 1)
         }else{
@@ -1775,6 +1779,20 @@
         if(x<entitiesList[coord.z].length){endTurnLoop(x)}else{  //NOTE: Have it so the delayed reset only occurs when the entity is within view.
             menuMode=menuStorage[1]
             printRoom()
+        }
+    }
+    function endTurnDecay(x){   //CURRENTLY DISABLED AND A MASSIVE WIP.
+        y=itemsList[coord.z].flat(2)
+        while(x<itemsList[coord.z].length){
+            if(Array.isArray(y[x])){
+                a=y[x].findIndex("core_ephemera")
+                if(a!=-1){
+                    y[x][a]=y[x][a]-1
+                    if(y[x][a]<=0){
+                        //If 0, deletes the item. If in inventory or equipt, alerts the player.
+                    }
+                }
+            }
         }
     }
     // - NPC AI -                             
@@ -1960,7 +1978,7 @@
         writeMap();
     }
 
-    function debugSummon(){     //DEBUG: Summons an entity.     //NOTE: Currently bugged. Entities spawned to not have health.
+    function debugSummon(){     //DEBUG: Summons an entity.     //NOTE: Slightly outdated, as entities spawned this way only have health.
         x = prompt("X coord")
         y = prompt("Y coord")
         z = prompt("Entity ID (Case Sensitive)")
@@ -2292,22 +2310,22 @@
         // DEBUG ITEMS
         ["core_debug1","Item1","Test Item","o",3,[undefined]],
         // EPHEMERA       //UNFINISHED
-        ["core_ephemera1","Resplendant Ephemera","Test Item","+","#ffffff",[undefined]],    //Needs a mod that holds its charge.
-        ["core_ephemera2","Orange Ephemera","Test Item","+","#ffbb00",[undefined]],
-        ["core_ephemera3","Magenta Ephemera","Test Item","+","#e600ff",[undefined]],
-        ["core_ephemera4","Lblue Ephemera","Test Item","+","#00f7ff",[undefined]],
-        ["core_ephemera5","Yellow Ephemera","Test Item","+","#fff700",[undefined]],
-        ["core_ephemera6","Entrancing Ephemera","Test Item","+","#15ff00",[undefined]],
-        ["core_ephemera7","Furtive Ephemera","Test Item","+","#ffa8f1",[undefined]],
-        ["core_ephemera8","Resonant Ephemera","Test Item","+","#808080",[undefined]],
-        ["core_ephemera9","Radiant Ephemera","Test Item","+","#cfcfcf",[undefined]],
-        ["core_ephemera10","Fading Ephemera","Test Item","+","#1bb57a",[undefined]],
-        ["core_ephemera11","Splintered Ephemera","Test Item","+","#8219bf",[undefined]],
-        ["core_ephemera12","Serene Ephemera","Test Item","+","#0700d6",[undefined]],
-        ["core_ephemera13","Brown Ephemera","Test Item","+","#693f00",[undefined]],
-        ["core_ephemera14","Verdant Ephemera","Test Item","+","#006910",[undefined]],
-        ["core_ephemera15","Red Ephemera","Test Item","+","#ff0000",[undefined]],
-        ["core_ephemera16","Umbral Ephemera","Test Item","+","#262626",[undefined]],
+        ["core_ephemera1","Resplendant Ephemera","Test Item","+","#ffffff",["core_ephemera",16]],    //Needs a mod that holds its charge.
+        ["core_ephemera2","Orange Ephemera","Test Item","+","#ffbb00",["core_ephemera",16]],
+        ["core_ephemera3","Magenta Ephemera","Test Item","+","#e600ff",["core_ephemera",16]],
+        ["core_ephemera4","Lblue Ephemera","Test Item","+","#00f7ff",["core_ephemera",16]],
+        ["core_ephemera5","Yellow Ephemera","Test Item","+","#fff700",["core_ephemera",16]],
+        ["core_ephemera6","Entrancing Ephemera","Test Item","+","#15ff00",["core_ephemera",16]],
+        ["core_ephemera7","Furtive Ephemera","Test Item","+","#ffa8f1",["core_ephemera",16]],
+        ["core_ephemera8","Resonant Ephemera","Test Item","+","#808080",["core_ephemera",16]],
+        ["core_ephemera9","Radiant Ephemera","Test Item","+","#cfcfcf",["core_ephemera",16]],
+        ["core_ephemera10","Fading Ephemera","Test Item","+","#1bb57a",["core_ephemera",16]],
+        ["core_ephemera11","Splintered Ephemera","Test Item","+","#8219bf",["core_ephemera",16]],
+        ["core_ephemera12","Serene Ephemera","Test Item","+","#0700d6",["core_ephemera",16]],
+        ["core_ephemera13","Brown Ephemera","Test Item","+","#693f00",["core_ephemera",16]],
+        ["core_ephemera14","Verdant Ephemera","Test Item","+","#006910",["core_ephemera",16]],
+        ["core_ephemera15","Red Ephemera","Test Item","+","#ff0000",["core_ephemera",16]],
+        ["core_ephemera16","Umbral Ephemera","Test Item","+","#262626",["core_ephemera",16]],
         // CHAINED EPHEMERA       //UNFINISHED
         ["core_chainedephemera1","Chained Resplendant Ephemera","Test Item","#","#ffffff",[undefined]],
         ["core_chainedephemera2","Chained Orange Ephemera","Test Item","#","#ffbb00",[undefined]],
@@ -2347,110 +2365,23 @@
         ["core_reliquary4","Ornate Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
         ["core_lockbox4","Ornate Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
         ["core_tome4","Ornate Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
-        { // Riddle (Trivia)
-            "id": "core_coffer5",
-            "name": "Silver Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_reliquary5",
-            "name": "Silver Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox5",
-            "name": "Silver Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome5",
-            "name": "Silver Scroll-Case",
-            "desc": "A decorated silver tube that resists opening. Words are engraved on one of the caps. It might contain something fascinating.",
-            "symbol": "/",
-            "color": "2",
-            "mod": [undefined],
-        },
-        { // Riddle (Classical)
-            "id": "core_coffer6",
-            "name": "Bronze Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_reliquary6",
-            "name": "Bronze Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox6",
-            "name": "Bronze Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome6",
-            "name": "Bronze Scroll-Case",
-            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
-            "symbol": "/",
-            "color": "2",
-            "mod": [undefined],
-        },
-        { // Riddle (Lore)
-            "id": "core_coffer7",
-            "name": "Gilded Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_reliquary7",
-            "name": "Gilded Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox7",
-            "name": "Gilded Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome7",
-            "name": "Gilded Scroll-Case",
-            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
-            "symbol": "/",
-            "color": "2",
-            "mod": [undefined],
-        },
-        { // Riddle (Specific)
-            "id": "core_coffer8",
-            "name": "Leaden Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
+        // Riddle (Trivia)
+        ["core_coffer5","Silver Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary5","Silver Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox5","Silver Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome5","Silver Scroll-Case","A decorated silver tube that resists opening. Words are engraved on one of the caps. It might contain something fascinating.","/","2",[undefined]],
+        // Riddle (Classical)
+        ["core_coffer6","Bronze Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary6","Bronze Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox6","Bronze Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome6","Bronze Scroll-Case","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","/","2",[undefined]],
+        // Riddle (Lore)
+        ["core_coffer7","Gilded Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary7","Gilded Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox7","Gilded Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome7","Gilded Scroll-Case","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","/","2",[undefined]],
+        // Riddle (Specific)
+        ["core_coffer8","Leaden Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
         {
             "id": "core_reliquary8",
             "name": "Leaden Reliquary",
@@ -2699,38 +2630,11 @@
             "color": "2",
             "mod": [undefined],
         },
-        { // Sealed (Use Turn to Assert Dominance: Chance Based on Presence)
-            "id": "core_coffer16",
-            "name": "Inhabited Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_reliquary16",
-            "name": "Inhabited Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox16",
-            "name": "Inhabited Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome16",
-            "name": "Inhabited Tome",
-            "desc": "A quivering tome that, despite all efforts, won't open. A vague presence can be felt from within. It might contain something fascinating.",
-            "symbol": "c",
-            "color": "2",
-            "mod": [undefined],
-        },
+        // Sealed (Use Turn to Assert Dominance: Chance Based on Presence)
+        ["core_coffer16","Inhabited Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary16","Inhabited Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox16","Inhabited Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome16","Inhabited Tome","A quivering tome that, despite all efforts, won't open. A vague presence can be felt from within. It might contain something fascinating.","c","2",[undefined]],
         // REAGENTS
         //Letter is aspect, number is strength. 5 is the variant.
         ["core_reagenta1","Pure Quartz","It is not common to find quartz of this clarity. Perhaps this was not intentional.","q","2",[undefined]],
