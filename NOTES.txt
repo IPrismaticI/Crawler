@@ -20,96 +20,10 @@ I forgot to add the updated code before I left for the holidays, so I made this.
  - Reliquaries give relics, reagents, and rarely, a revelation.
  - Lockboxes contain weapons, relics, and various consumables. They usually give more than coffers and reliquaries, but are harder to open.
  - Tomes give experience, and rarely a revelation as well. They may also give Lore fragments on specific ephemera powers, sometimes more than one.
- -LOCK TYPES & NAMES-
-If possible, specific locks have a higher chance of granting specific loot. Decide on this later.
-- Lock Type(Subtype)-Theme
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Physical(3 Pins)-Battered
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Physical(4 Pins)-Theme
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Physical(5 Pins)-Theme
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Physical(6 Pins)-Ornate
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Riddle(Trivia)-Silvered
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Riddle(Classical)-Bronzen
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Riddle(Lore)-Gilded
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Riddle(Specific)-Leaden
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Input(Aspect)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Input(Ephemera)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Input(Scint)-Flask
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Input(Experience)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Sealed(Use Turn to Force Open: Based on Vitality)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Sealed(Use Turn to Move Internals: Based on Finesse)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-- Tome Name-Desc
-Sealed(Use Turn to Shatter Arcana: Based on Willpower)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
-- Sealed(Use Turn to Assert Dominance: Based on Presence)-
-Coffer Name-Desc
-Reliquary Name-Desc
-Lockbox Name-Desc
-Tome Name-Desc
- 
+ - If possible, specific locks have a higher chance of granting specific loot. Decide on this later.
+
 - ENTITY NOTES -
-- Enemies spawn both on level generation and randomly after every 50 actions or so. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
+- Enemies spawn both on level generation. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
 - Most enemies have an experience flat & roll, a loot chance, a loot-table, an ephemera chance, and an ephemera type. If they die, they grant the experience flat as well as a number between 0 and the roll. They have a chance to drop loot (though some enemies lack a loot table), and if that fails, they have a chance to drop an ephemera of their given type.
 
 - EPHEMERA NOTES - 
@@ -167,6 +81,7 @@ https://nethackwiki.com/wiki/Sink
 https://nethackwiki.com/wiki/Fountain
 
 - REVELATION UPGRADES NOTES -
+-Had an idea: Primary is an active ability. Secondary is a passive of some sort. Tetriary is an active ability. B is unlocked by some sort of milestone.
 NOTE: 'B-' requires both of the options that come after the directional option. The others require the one before them.
 1-<White>
 - 
