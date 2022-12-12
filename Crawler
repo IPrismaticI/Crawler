@@ -111,7 +111,7 @@
 
 <script>
     const invStorage = []; // Sets Storage
-    const magicStorage = []; // Currently equipt magics.    //NOTE: Several test magics were added. When equipping spells is fully functional, remove them, as the player starts with 0 spells by default.
+    const magicStorage = []; // Currently equipt magics.    //NOTE: When equipping spells is fully functional, make this blank, as the player starts with 0 spells by default.
     const magicKnown = []; 
     var scint = 0
     const coord = {x: 0, y: 0, z: 0};
@@ -129,7 +129,11 @@
     var spawnTimer = 40 //Delay between spawning new entities.
     
     // - CONSISTENT STATISTICS STORAGE -
-    const playerStats = [10,1]  //0=Health, 1=Base Attack Power
+    //Vitality effects Max Health & Basic Damage
+    //Finesse effects Evasion & Accuracy
+    //Willpower effects Tincture Resistance & Ephemera Decay
+    //Presence effects Arcana Damage & Arcana Resistance
+    const playerStats = [8,8,8,8,8,8,8,8,8,0,0,0,0,0,0,0,0]  //0=Cur Health, 1=Effective Vitality, 2=Effective Finesse, 3=Effective Willpower, 4=Effective Presence, 5=Actual Vitality, 6=Actual Finesse, 7=Actual Willpower, 8=Actual Presence, 9=Max Health Mod, 10=Basic Damage Mod, 11=Evasion Mod, 12=Acc Mod, 13=Tinct Resist Mod, 14=Ephem Decay Mod, 15=Arcana Damage Mod, 16=Arcana Resist Mod
     //TODO: Companion stats.
 
     // - MENU STORAGE -
@@ -155,21 +159,19 @@
     function motd(){
         resetSideView()
         x = " - MOTD - <br><br>Current Todo List:"
-        x += "<br>- Since the current code sets all dungeons to be 0-100, make alternate up/down stairs that say the opposite of what is actually going on in the code."
+        x += "<br>- Since the current code sets all dungeons to be 0-99, make alternate up/down stairs that say the opposite of what is actually going on in the code."
         x += "<br>- Allow scint to be dropped. Figure out how to do non-invasive text popups."
         x += "<br>- Finish item throwing."
         x += "<br>- Magic is a big WIP, see if you can change that."
-        x += "<br>- Add more NPCs."
-        x += "<br>- Edit the floor writer to spawn entities after tiles are generated."
-        x += "<br>- Merge stair and wall values, cause no walls will be stairs. Also, make a 'door' value, where it obscures vision but can be passed through."
-        x += "<br>- Add some variety to scint item names. By default, dropped scint will be 'pile'"
+        x += "<br>- Add more NPCs and items."
+        x += "<br>- Add some variety to scint item names. By default, dropped scint will be 'pile of scint (##)'"
         x += "<br>- Have spawnTimer reset to 0 when going up or down a set of stairs."
         x += "<br>- Add in framework to allow companions to follow you and retain their stats. Global variables may be useful here."
-        x += "<br>- Clean up the tile and item data so that it is consistent with entity data and looks nicer."
-        x += "<br>- I am currently implementing the menu builder. It is causing the game to crash on startup. Debug the menuScroll function."
-        x += "<br>- Add buttons & menus for ephemera & the book of lore."
+        x += "<br>- Make the rest of the item data consistent."
+        x += "<br>- Add buttons & menus for ephemera equipping & the book of lore."
         x += "<br>- Use the self button for stats."
-        x += "<br>- Between the EXTERNAL check and default printer, add a specific circumstance checker to be used with things like drop or magic when the player doesnt have any valid objects."
+        x += "<br>- Between the EXTERNAL check and default printer in the menu builder, add a specific circumstance checker to be used with things like drop or magic when the player doesnt have any valid objects."
+        x += "<br>- See if you can add preset structures. The idea is to have a 'structure totem' of a set size in templates, with a later function turning the area around it into a randomly picked room, such as a shop, shrine, or vault."
         x += "<br><br> - DEV GOALS -"
         x += "<br>- Basic Worldgen - X"
         x += "<br>- Structure System - X"
@@ -539,6 +541,7 @@
             setTimeout(function() {
                 writeWorldMap()
                 writeWorldTiles()
+                writeEntities()
                 displayCoords()
                 checkBiome()
                 printRoom()
@@ -583,24 +586,24 @@
             x=coord.x+x
             y=coord.y+y
             z = entitiesList[coord.z].find(a => a[1] === x && a[2] === y)
-            if(z==undefined){ //Checks if an entity has these coords. If true, it writes it.
-                z = tilesList[coord.z][x][y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
-                a = tileIDs.find(y => y.id === z)
-                if(a.wall != 0){b=a.name;a=a.desc}else{ //Checks if tile x is a wall. If it is, it is used for writing.
+            if(z==undefined){ //Checks if an entity has these coords. If true, it writes it.    //NOTE: Make it so that both entities and floor items are seen.
+                z = tilesList[coord.z][x][y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles.
+                a = tileIDs.find(y => y[0] === z)
+                if(a[5] != 0){b=a[1];a=a[2]}else{ //Checks if tile x is a wall. If it is, it is used for writing.
                     z = itemsList[coord.z][x][y]
-                    if(z == "empty" || z == undefined){ //Checks if x is empty. If it is not, it is used for writing.    //NOTE: Entities are supposed to go before this when they are implemented in full. Both ground items & entities will be visible on the same tile.
+                    if(z == "empty" || z == undefined){ //Checks if x is empty. If it is not, it is used for writing.   //NOTE: Have floor tiles be shown when viewing entities and/or items.
                         z = tilesList[coord.z][x][y]
-                        a = tileIDs.find(y => y.id === z)
-                        b = a.name
-                        a = a.desc
+                        a = tileIDs.find(y => y[0] === z)
+                        b = a[1]
+                        a = a[2]
                     }else if(z[0]=="scint"){
                         b = z[1]+" Scint"
-                        a = a.desc
+                        a = a[1]
                     }else{
                         a = z[0]
-                        a = itemIDs.find(y => y.id === a)
-                        b = a.name
-                        a = a.desc
+                        a = itemIDs.find(y => y[0] === a)
+                        b = a[1]
+                        a = a[2]
                     }
                 }
             }else{
@@ -615,47 +618,23 @@
     // - MOVEMENT BUTTONS CORE -
     function moveUp(){
         x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
+        var y = tileIDs.find(y => y[0] === x)
         coord.z = coord.z + 1;
         playerCoord.z = playerCoord.z + 1
-        if(y.stair == 2 || y.stair == 3){ // stair 2 means the stairs move up. stair 3 means the stairs move both up and down.
+        if(y[0] == 2 || y[0] == 4){ // wall/stair 2 means the stairs move up. wall/stair 4 means the stairs move both up and down.
             displayCoords();
             checkBiome()
-            document.getElementById("feed").innerHTML = "You move up the " + y.name + "."
+            document.getElementById("feed").innerHTML = "You move up the " + y[1] + "."
             coord.z = coord.z + 1
             v=0
             menuMode=menuStorage[10]
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},50)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},100)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},150)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},200)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},250)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},300)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},350)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},400)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},450)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},500)
+            fadeMap()
             setTimeout(checkFloor,550)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},700)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},750)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},800)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},850)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},900)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},950)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1000)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1050)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1100)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1150)
-        } else if(y.stair == 0 || y.stair == 1){ //stair 0 means the area is solid and inpassable. stair 1 means the stairs move down.
+            setTimeout(function(){menuMode=menuStorage[1]},1151)
+        } else{
             coord.z = coord.z - 1
             playerCoord.z = playerCoord.z - 1
             document.getElementById("feed").innerHTML = "There is nowhere to move up!" 
-            printRoom();
-            endTurn();
-        } else {
-            coord.z = coord.z - 1
-            playerCoord.z = playerCoord.z - 1
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
             printRoom();
             endTurn();
         }
@@ -670,19 +649,19 @@
             playerCoord.y = playerCoord.y - 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move North."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
-                document.getElementById("feed").innerHTML = "You try to move North, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move North, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[1] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -690,7 +669,7 @@
     }
     function moveDown(){
         x = tilesList[coord.z][coord.x][coord.y]
-        var y = tileIDs.find(y => y.id === x)
+        var y = tileIDs.find(y => y[0] === x)
         coord.z = coord.z - 1;
         playerCoord.z = playerCoord.z - 1
         if(coord.z<0){ //If the player tries to go below 0, they are asked if they want to leave.      //NOTE: You cannot leave just yet.
@@ -699,44 +678,20 @@
             coord.z = coord.z + 1
             playerCoord.z = playerCoord.z + 1;
             document.getElementById("feed").innerHTML += "<br>NOTE: YOU CANNOT LEAVE AS OF YET." //PLACEHOLDER
-        }else if(y.stair == 1 || y.stair == 3){ // stair 1 means the stairs move down. stair 3 means the stairs move both up and down.
+        }else if(y[5] == 3 || y[5]== 4){ // wall/stair 3 means the stairs move down. wall/stair 4 means the stairs move both up and down.
             displayCoords();
             checkBiome()
-            document.getElementById("feed").innerHTML = "You move down the " + y.name + "."
+            document.getElementById("feed").innerHTML = "You move down the " + y[1] + "."
             coord.z = coord.z - 1
             v=0
             menuMode=menuStorage[10]
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},50)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},100)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},150)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},200)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},250)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},300)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},350)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},400)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},450)
-            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},500)
+            fadeMap()
             setTimeout(checkFloor,550)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},700)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},750)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},800)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},850)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},900)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},950)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1000)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1050)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1100)
-            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1150)
-        } else if(y.stair == 0 || y.stair == 2){ //stair 0 means the area is solid and inpassable. stair 2 means the stairs move up.
+            setTimeout(function(){menuMode=menuStorage[1]},1151)
+        } else{
             coord.z = coord.z + 1
             playerCoord.z = playerCoord.z + 1;
             document.getElementById("feed").innerHTML = "There is nowhere to move down!" 
-            printRoom();
-            endTurn();
-        } else {
-            coord.z = coord.z + 1
-            playerCoord.z = playerCoord.z + 1;
-            document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
             printRoom();
             endTurn();
         }
@@ -751,19 +706,19 @@
             playerCoord.x = playerCoord.x + 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move West."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -779,19 +734,19 @@
             playerCoord.x = playerCoord.x - 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move East."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -807,19 +762,19 @@
             playerCoord.y = playerCoord.y + 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move South."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
-                document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -839,23 +794,23 @@
             playerCoord.x = playerCoord.x + 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move North-West."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -875,23 +830,23 @@
             playerCoord.x = playerCoord.x - 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move North-East."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -911,23 +866,23 @@
             playerCoord.x = playerCoord.x + 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move South-West."
-            } else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -947,23 +902,23 @@
             playerCoord.x = playerCoord.x - 1;
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
-            var y = tileIDs.find(y => y.id === x)
-            if(y.wall == 0){ // wall 0 means the area is open.
+            var y = tileIDs.find(y => y[0] === x)
+            if(y[5] == 0){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move South-East."
-            }else if(y.wall == 1){ //wall 1 means the area is solid and inpassable.
+            }else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "You try to move South-East, but there is a " + y.name + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move South-East, but there is a " + y[0] + " in the way!" 
             } else {
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
             }
         }
         printRoom();
@@ -990,6 +945,30 @@
         playerCoord.z = parseInt(z)
         moveWait()
         document.getElementById("feed").innerHTML = "WOOOOSH!!"
+    }
+
+    // - FADE EFFECT -
+    function fadeMap(){
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},50)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},100)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},150)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},200)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},250)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},300)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},350)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},400)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},450)
+        setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},500) //Anything taking place in the middle pause (namely checkFloor for movement) is placed at 550.
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},700)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},750)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},800)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},850)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},900)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},950)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1000)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1050)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1100)
+        setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1150) //Anything taking place after the fade takes place at 1151. Wrapping post-fade commands in a seperate function is recommended.
     }
 
     // - ITEM INTERACTION -
@@ -1034,12 +1013,12 @@
             }else if(x=="empty"||x==undefined){
                 document.getElementById("feed").innerHTML = "There is nothing here to pick up!"
             }else if(invStorage.length >= invMax){
-                z = itemIDs.find(y => y.id === x[0])
-                document.getElementById("feed").innerHTML = "You tried to pick up the " + z.name + " but your inventory was too full!"
+                z = itemIDs.find(y => y[0] === x[0])
+                document.getElementById("feed").innerHTML = "You tried to pick up the " + z[1] + " but your inventory was too full!"
             }else{
                 invStorage.push(x)
-                z = itemIDs.find(y => y.id === x[0])
-                document.getElementById("feed").innerHTML = "Picked Up : " + z.name
+                z = itemIDs.find(y => y[0] === x[0])
+                document.getElementById("feed").innerHTML = "Picked Up : " + z[1]
                 itemsList[coord.z][coord.x][coord.y] = "empty"
             }
         }
@@ -1073,19 +1052,19 @@
             }else{}
         }
         resetSideView()
-        document.getElementById("sideFeed1").innerHTML = " -- Inventory --<br><br>Items : " + invStorage.length + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + "Scint : " + scint
+        document.getElementById("sideFeed1").innerHTML = " -- Inventory --<br><br>Items : " + invStorage.length + "/" + invMax + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + "Scint : " + scint
         g = 2
         for(let i = 8 * invPage; i < (8 * invPage) + 8; i++){
             x = invStorage[i]
             y = "sideFeed"+g
             g = g+1
             if(Array.isArray(x)){
-                x = itemIDs.find(y => y.id === x[0])
+                x = itemIDs.find(y => y[0] === x[0])
                 if(g-3==dropcarrier){
-                    document.getElementById(y).innerHTML = "> " + x.name
+                    document.getElementById(y).innerHTML = "> " + x[1]
                     document.getElementById(y).style.color = "yellow"
                 }else{
-                    document.getElementById(y).innerHTML = x.symbol + " " + x.name
+                    document.getElementById(y).innerHTML = x[3] + " " + x[1]
                 }
             }else{
                 document.getElementById(y).innerHTML = "&nbsp"
@@ -1114,41 +1093,41 @@
     function dropItemConfirm(){
         z = invStorage[dropcarrier]
         y = itemsList[coord.z][coord.x][coord.y]
-        x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+        x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
         if(x!=0||y!="empty"){
             coord.y=coord.y+1
             y = itemsList[coord.z][coord.x][coord.y]
-            x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+            x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
             if(x!=0||y!="empty"){
                 coord.x=coord.x-1
                 y = itemsList[coord.z][coord.x][coord.y]
-                x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                 if(x!=0||y!="empty"){
                     coord.y=coord.y-1
                     y = itemsList[coord.z][coord.x][coord.y]
-                    x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                    x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                     if(x!=0||y!="empty"){
                         coord.y=coord.y-1
                         y = itemsList[coord.z][coord.x][coord.y]
-                        x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                        x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                         if(x!=0||y!="empty"){
                             coord.x=coord.x+1
                             y = itemsList[coord.z][coord.x][coord.y]
-                            x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                            x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                             if(x!=0||y!="empty"){
                                 coord.x=coord.x+1
                                 y = itemsList[coord.z][coord.x][coord.y]
-                                x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                                x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                                 if(x!=0||y!="empty"){
                                     coord.y=coord.y+1
                                     y = itemsList[coord.z][coord.x][coord.y]
-                                    x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                                    x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                                     if(x!=0||y!="empty"){
                                         coord.y=coord.y+1
                                         y = itemsList[coord.z][coord.x][coord.y]
-                                        x = tileIDs.find(y => y.id === tilesList[coord.z][coord.x][coord.y]).wall
+                                        x = tileIDs.find(y => y[0] === tilesList[coord.z][coord.x][coord.y])[5]
                                         if(x!=0||y!="empty"){
-                                            document.getElementById("feed").innerHTML = "There is nowhere to drop your " + itemIDs.find(y => y.id === z[0]).name + "!"
+                                            document.getElementById("feed").innerHTML = "There is nowhere to drop your " + itemIDs.find(y => y[0] === z[0])[1] + "!"
                                             y=0
                                         }
                                     }
@@ -1162,7 +1141,7 @@
         if(y==0){}else{
             itemsList[coord.z][coord.x][coord.y] = z
             invStorage.splice(dropcarrier, 1)
-            document.getElementById("feed").innerHTML = "You drop your " + itemIDs.find(y => y.id === z[0]).name + "."
+            document.getElementById("feed").innerHTML = "You drop your " + itemIDs.find(y => y[0] === z[0])[1] + "."
         }
         coord.x=playerCoord.x
         coord.y=playerCoord.y
@@ -1186,7 +1165,7 @@
         while (yMoves != 17){
             while (xMoves != 17){
                 x = tilesList[coord.z][coord.x][coord.y] //NOTE: The planned order of operations is: Wall Tiles, Entities(Player, allies, enemies, etc.), Items, & Tiles. Currently, entities are not included.
-                z = tileIDs.find(y => y.id === x)
+                z = tileIDs.find(y => y[0] === x)
                 a=xMoves-8
                 b=yMoves-8
                 d=0
@@ -1202,29 +1181,29 @@
                         a=a+1
                     }else{}
                     c=tilesList[coord.z][coord.x-a][coord.y-b]
-                    c=tileIDs.find(y => y.id === c)
-                    c=c.wall
+                    c=tileIDs.find(y => y[0] === c)
+                    c=c[5]
                     if(c==1||Math.abs(a)<=1&&Math.abs(b)<=1){
                         d=1
                     }
                 }
                 var xHolder = xMoves - 8
                 var yHolder = yMoves - 8
-                if(c==1){ //If a wall between the player and the examined tile is detected, print a black square.
+                if(c==1||c==4){ //If a wall between the player and the examined tile is detected, print a black square.
                     y = "map" + xHolder + "x" + yHolder
                     document.getElementById(y).innerHTML = "█"
                     document.getElementById(y).style.color = "#000000"
                 }else{
-                    if(z.wall != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.      //NOTE: Change later since creatures that can go through walls and water are a thing.
+                    if(z[5] != 0){}else{ //Checks if tile x is a wall. If it is, it is used for writing.      //NOTE: Change later since creatures that can go through walls and water are a thing.
                         z = entitiesList[coord.z].find(a => a[1] === coord.x && a[2] === coord.y)
                         if(z==undefined){ //Checks if an entity has these coords. If true, it writes it.
                             x = itemsList[coord.z][coord.x][coord.y]
                             if(x == "empty" || x == undefined){ //Checks if x is empty. If it is not, it is used for writing.
                                 x = tilesList[coord.z][coord.x][coord.y]
-                                z = tileIDs.find(y => y.id === x)
+                                z = tileIDs.find(y => y[0] === x)
                             }else{
                                 x = x[0]
-                                z = itemIDs.find(y => y.id === x)
+                                z = itemIDs.find(y => y[0] === x)
                             } 
                         }else{
                             z=entityIDs.find(y => y[0] === z[0])
@@ -1246,21 +1225,6 @@
                                 document.getElementById(y).style.color = biome.d
                             } else {
                                 document.getElementById(y).style.color = z[4]
-                            }
-                        }else{
-                            document.getElementById(y).innerHTML = z.symbol
-                            if (z.color == 0){
-                                document.getElementById(y).style.color = biome.a
-                            } else if (z.color == 1){
-                                document.getElementById(y).style.color = biome.b
-                            } else if (z.color == 2){
-                                document.getElementById(y).style.color = biome.c
-                            } else if (z.color == 3){
-                                document.getElementById(y).style.color = biome.d
-                            } else if (z.color == undefined){
-                                document.getElementById(y).style.color = biome.d
-                            } else {
-                                document.getElementById(y).style.color = z.color
                             }
                         }
                     }
@@ -1379,8 +1343,8 @@
             y = "sideFeed"+g
             g = g+1
             if(Array.isArray(x)){
-                x = itemIDs.find(y => y.id === x[0])
-                document.getElementById(y).innerHTML = x.symbol + " " + x.name
+                x = itemIDs.find(y => y[0] === x[0])
+                document.getElementById(y).innerHTML = x[3] + " " + x[1]
             }else{
                 document.getElementById(y).innerHTML = "&nbsp"
             }
@@ -1405,7 +1369,7 @@
     }
 
     // - DEBUG BUTTONS - 
-    //Placeholder to add random things to inventory
+    //Placeholder to add random things to inventory     //HIGHLY OUTDATED, DO NOT USE
     function randomItem(){
         var x = "You find"; //Sets x to be the text carrier.
         roll1d6(); //Gets a random number from diceroll.
@@ -1551,22 +1515,23 @@
         if(floorList[coord.z] == false){
             writeWorldMap()
             writeWorldTiles()
+            writeEntities()
             printRoom()
         }
     }
 
     function printRoom(){
         var x = tilesList[coord.z][coord.x][coord.y] //Retrieves space by coords.
-        var y = tileIDs.find(y => y.id === x)
+        var y = tileIDs.find(y => y[0] === x)
         document.getElementById("area").innerHTML = biome.cur; // Prints biome name.
-        document.getElementById("feed").innerHTML += "<br><br>Below you is:<br><br>" + y.name + " : " + y.desc // Print room desc.
+        document.getElementById("feed").innerHTML += "<br><br>Below you is:<br><br>" + y[1] + " : " + y[2] // Print room desc.
         x = itemsList[coord.z][coord.x][coord.y]
         if(x != "empty"){
-            y = itemIDs.find(y => y.id === x[0])
+            y = itemIDs.find(y => y[0] === x[0])
             if(x[0]=="scint"){
-                document.getElementById("feed").innerHTML += "<br><br>" + x[1] + " " + y.name + " : " + y.desc
+                document.getElementById("feed").innerHTML += "<br><br>" + x[1] + " " + y[1] + " : " + y[2]
             }else{
-                document.getElementById("feed").innerHTML += "<br><br>" + y.name + " : " + y.desc
+                document.getElementById("feed").innerHTML += "<br><br>" + y[1] + " : " + y[2]
             }
         }
         writeMap()
@@ -1610,20 +1575,20 @@
                     }
                 }
             }
-        while(a.wall != 0 || a.stair != 0){
+        while(a[5] != 0){
             x = Math.floor((Math.random() * (worldsize.x-50))+50)
             y = Math.floor((Math.random() * (worldsize.y-50))+50)
             z = tilesList[coord.z][x][y]
-            a = tileIDs.find(x => x.id === z)
+            a = tileIDs.find(x => x[0] === z)
         }
         tilesList[coord.z][x][y] = "core_stairsdown1" //NOTE: Replace this with palette-based stairs.
         spawnCoord.x = x
         spawnCoord.y = y
-        while(b.wall != 0 || b.stair != 0){
+        while(b[5] != 0){
             x = Math.floor((Math.random() * (worldsize.x-50))+50)
             y = Math.floor((Math.random() * (worldsize.y-50))+50)
             z = tilesList[coord.z][x][y]
-            b = tileIDs.find(x => x.id === z)
+            b = tileIDs.find(x => x[0] === z)
         }
         tilesList[coord.z][x][y] = "core_stairsup1"
         coord.x = spawnCoord.x
@@ -1639,8 +1604,8 @@
             itemsList[coord.z].push([])
                 for (var col = 0; col < worldwidth; col++){
                     z = tilesList[coord.z][col][row]
-                    z = tileIDs.find(y => y.id === z)
-                    if (z.wall == 0 && z.stair == 0){
+                    z = tileIDs.find(y => y[0] === z)
+                    if (z[5] == 0){
                         x = Math.floor(Math.random() * 10)
                         if(x == 0){
                             y = Math.floor(Math.random() * a.length)
@@ -1648,8 +1613,8 @@
                             if(y=="scint"){
                                 y = ["scint",Math.floor((Math.random() * 100) + 50)] //Heavily considering having all items be arrays so that I can easily have ephemera-infused items.
                             }else{
-                                x=itemIDs.find(z => z.id === y)
-                                x=x.mod
+                                x=itemIDs.find(z => z[0]=== y)
+                                x=x[5]
                                 if(x==undefined){
                                     y=[y,x]
                                 }else{
@@ -1669,6 +1634,25 @@
         playerCoord.x = spawnCoord.x
         playerCoord.y = spawnCoord.y
         floorList[coord.z] = true
+    }
+
+    function writeEntities(){
+        d=0
+        while(d<=30){
+            x=Math.floor((Math.random()*(worldsize.x-100))+50)
+            y=Math.floor((Math.random()*(worldsize.y-100))+50)
+            z = tilesList[coord.z][y][x]
+            z = tileIDs.find(y => y[0] === z)
+            if(z[5]==0){
+                c=entitytable1  //NOTE: Set this to pick a table based on dungeon and/or floor.
+                a=Math.floor(Math.random()*c.length)    
+                a=c[a]
+                a=entityIDs.find(y => y[0] === a)
+                b=[a[0],x,y,a[6]]
+                entitiesList[coord.z].push(b)
+                d=d+1
+            }
+        }
     }
     
     // - BASIC PLAYER ATTACKS -
@@ -1693,8 +1677,8 @@
             y = "sideFeed"+g
             g = g+1
             if(x!=undefined){ //NOTE: Currently no spells have been implemented.
-                x = magicIDs.find(y => y.id === x)
-                document.getElementById(y).innerHTML = x.symbol + " " + x.name
+                x = magicIDs.find(y => y[0] === x)
+                document.getElementById(y).innerHTML = x[3] + " " + x[1]
             }else{
                 document.getElementById(y).innerHTML = "&nbsp"
             }
@@ -1719,8 +1703,8 @@
             y = "sideFeed"+g
             g = g+1
             if(x!=undefined){ //NOTE: Currently no spells have been implemented.
-                x = magicIDs.find(y => y.id === x)
-                document.getElementById(y).innerHTML = x.symbol + " " + x.name
+                x = magicIDs.find(y => y[0] === x)
+                document.getElementById(y).innerHTML = x[3] + " " + x[1]
             }else{
                 document.getElementById(y).innerHTML = "&nbsp"
             }
@@ -1752,39 +1736,39 @@
         x=Math.floor((Math.random()*(worldsize.x-100))+50)
         y=Math.floor((Math.random()*(worldsize.y-100))+50)
         z = tilesList[coord.z][y][x]
-        z = tileIDs.find(y => y.id === z)
-        if(z.wall!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
+        z = tileIDs.find(y => y[0] === z)
+        if(z[5]!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
             x=Math.floor((Math.random()*(worldsize.x-100))+50)
             y=Math.floor((Math.random()*(worldsize.y-100))+50)
             z = tilesList[coord.z][y][x]
-            z = tileIDs.find(y => y.id === z)
-            if(z.wall!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
+            z = tileIDs.find(y => y[0] === z)
+            if(z[5]!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
                 x=Math.floor((Math.random()*(worldsize.x-100))+50)
                 y=Math.floor((Math.random()*(worldsize.y-100))+50)
                 z = tilesList[coord.z][y][x]
-                z = tileIDs.find(y => y.id === z)
-                if(z.wall!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
+                z = tileIDs.find(y => y[0] === z)
+                if(z[5]!=0||Math.abs(playerCoord.x-x)<=10||Math.abs(playerCoord.y-y)<=10){
                     x=Math.floor((Math.random()*(worldsize.x-100))+50)
                     y=Math.floor((Math.random()*(worldsize.y-100))+50)
                     z = tilesList[coord.z][y][x]
-                    z = tileIDs.find(y => y.id === z)
+                    z = tileIDs.find(y => y[0] === z)
                 }
             }
         }
-        if(z.wall==0&&(Math.abs(playerCoord.x-x))>10&&(Math.abs(playerCoord.y-y))>10){
-            c=entitytable1
-            a=Math.floor(Math.random()*c.length)    //NOTE: Set this to pick a table based on dungeon and/or floor.
+        if(z[5]==0&&(Math.abs(playerCoord.x-x))>10&&(Math.abs(playerCoord.y-y))>10){
+            c=entitytable1  //NOTE: Set this to pick a table based on dungeon and/or floor.
+            a=Math.floor(Math.random()*c.length)    
             a=c[a]
             a=entityIDs.find(y => y[0] === a)
             b=[a[0],x,y,a[6]]
             entitiesList[coord.z].push(b)
-            spawnTimer=40   //NOTE: Supposed to be 20. Changed for testing purposes.
+            spawnTimer=20
         }
     }
     function endTurnLoop(x){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
         z = entitiesList[coord.z][x] //Checks AI and runs it.
         if(z[3]<=0){
-            entitiesList[coord.z].splice(z, 1)
+            entitiesList[coord.z].splice(x, 1)
         }else{
             if(z[0]=="core_testfollower"){
                 turncore_testfollower(z)
@@ -1804,12 +1788,12 @@
         if(Math.abs(z[1]-playerCoord.x)>10&&Math.abs(z[2]-playerCoord.y)>10){ //If entity's coords minus player's coords create a number larger than 10, it uses testwanderer code.
             turncore_testcrawler(z) //NOTE: Intended to be testwanderer, but that code is broken atm.
         }else{
-            //while(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)==undefined){
+            //while(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)==undefined){
             if(z[1]-playerCoord.x==0&&z[2]-playerCoord.y>0){ //Entity is North of Player.
                 a=z[1]
                 b=z[2]-1
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x<0&&z[2]-playerCoord.y>0){ //Entity is North-West of Player.
                 a=Math.floor(Math.random()*4)
                 if(a==0){
@@ -1823,12 +1807,12 @@
                     b=z[2]-1
                 }
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x<0&&z[2]-playerCoord.y==0){ //Entity is West of Player.
                 a=z[1]+1
                 b=z[2]
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x<0&&z[2]-playerCoord.y<0){ //Entity is South-West of Player.
                 a=Math.floor(Math.random()*4)
                 if(a==0){
@@ -1842,12 +1826,12 @@
                 b=z[2]+1
                 }
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x==0&&z[2]-playerCoord.y<0){ //Entity is South of Player.
                 a=z[1]
                 b=z[2]+1
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x>0&&z[2]-playerCoord.y<0){ //Entity is South-East of Player.
                 a=Math.floor(Math.random()*4)
                 if(a==0){
@@ -1861,12 +1845,12 @@
                     b=z[2]+1
                 }
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x>0&&z[2]-playerCoord.y==0){ //Entity is East of Player.
                 a=z[1]-1
                 b=z[2]
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else if(z[1]-playerCoord.x>0&&z[2]-playerCoord.y>0){ //Entity is North-East of Player.
                 a=Math.floor(Math.random()*4)
                 if(a==0){
@@ -1880,13 +1864,13 @@
                     b=z[2]-1
                 }
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
+                c=tileIDs.find(y => y[0] === c)
             }else{ //Fallback.
                 a=z[1]
                 b=z[2]
             }//Put everything here in each direction category? Might allow for more fine-tuning in direction choices.
             if(b==playerCoord.y&&a==playerCoord.x||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
-            }else if(c.wall!=0){
+            }else if(c[5]!=0){
                 turncore_testcrawler(z)//NOTE: Intended to be testwanderer, but that code is broken atm.
             }else{
                 z[1]=a
@@ -1899,43 +1883,43 @@
         a=z[1]+1
         b=z[2]
         c=tilesList[coord.z][a][b]
-        c=tileIDs.find(y => y.id === c)
-        if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+        c=tileIDs.find(y => y[0] === c)
+        if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
             a=z[1]+1
             b=z[2]-1
             c=tilesList[coord.z][a][b]
-            c=tileIDs.find(y => y.id === c)
-            if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+            c=tileIDs.find(y => y[0] === c)
+            if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                 a=z[1]
                 b=z[2]-1
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
-                if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                c=tileIDs.find(y => y[0] === c)
+                if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                     a=z[1]-1
                     b=z[2]-1
                     c=tilesList[coord.z][a][b]
-                    c=tileIDs.find(y => y.id === c)
-                    if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                    c=tileIDs.find(y => y[0] === c)
+                    if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                         a=z[1]-1
                         b=z[2]
                         c=tilesList[coord.z][a][b]
-                        c=tileIDs.find(y => y.id === c)
-                        if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                        c=tileIDs.find(y => y[0] === c)
+                        if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                             a=z[1]-1
                             b=z[2]+1
                             c=tilesList[coord.z][a][b]
-                            c=tileIDs.find(y => y.id === c)
-                            if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                            c=tileIDs.find(y => y[0] === c)
+                            if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                                 a=z[1]
                                 b=z[2]+1
                                 c=tilesList[coord.z][a][b]
-                                c=tileIDs.find(y => y.id === c)
-                                if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                                c=tileIDs.find(y => y[0] === c)
+                                if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                                     a=z[1]-1
                                     b=z[2]+1
                                     c=tilesList[coord.z][a][b]
-                                    c=tileIDs.find(y => y.id === c)
-                                    if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)){
+                                    c=tileIDs.find(y => y[0] === c)
+                                    if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)){
                                         a=z[1]
                                         b=z[2]
                                     }
@@ -1954,23 +1938,23 @@
         a=z[1]+Math.floor((Math.random()*3)-1)
         b=z[2]+Math.floor((Math.random()*3)-1)
         c=tilesList[coord.z][a][b]
-        c=tileIDs.find(y => y.id === c)
-        if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+        c=tileIDs.find(y => y[0] === c)
+        if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
             a=z[1]+Math.floor((Math.random()*3)-1)
             b=z[2]+Math.floor((Math.random()*3)-1)
             c=tilesList[coord.z][a][b]
-            c=tileIDs.find(y => y.id === c)
-            if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+            c=tileIDs.find(y => y[0] === c)
+            if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
                 a=z[1]+Math.floor((Math.random()*3)-1)
                 b=z[2]+Math.floor((Math.random()*3)-1)
                 c=tilesList[coord.z][a][b]
-                c=tileIDs.find(y => y.id === c)
-                if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+                c=tileIDs.find(y => y[0] === c)
+                if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
                     a=z[1]+Math.floor((Math.random()*3)-1)
                     b=z[2]+Math.floor((Math.random()*3)-1)
                     c=tilesList[coord.z][a][b]
-                    c=tileIDs.find(y => y.id === c)
-                    if(c.wall!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
+                    c=tileIDs.find(y => y[0] === c)
+                    if(c[5]!=0||(b==playerCoord.y&&a==playerCoord.x)||entitiesList[coord.z].find(x => x[1] === a && x[2] === b)!=undefined){
                         a=z[1]
                         b=z[2]
                     }
@@ -2281,493 +2265,481 @@
     const structureListE = [] //List for 5 - (UNSET)
     const structureListF = [] //List for 6 - (UNSET)
 
-    // - ITEM ID LIST - 
-    const itemIDs = [       //NOTE: These values can be condensed into objects. Do that if you want later, though it will require some code reworking.
-        { // SCINT
-            "id": "scint",
-            "name": "Scint",
-            "desc": "A silver powder found most frequently in places between places. While usually extracted from scint-infused liquids, it has proliferated enough that most find it through trade or scavanging. It is primarily valued as a pigment, but has come to be used as a common currency within recent centuries, measured by weight.",
-            "symbol": "*",
-            "color": 3,
-            "mod": undefined
-        },
-        { // DEBUG ITEMS
-            "id": "core_debug1",
-            "name": "Item1",
-            "desc": "Test Item",
-            "symbol": "o",
-            "color": 3,
-            "mod": undefined
-        },
-        { // EPHEMERA       //UNFINISHED
-            "id": "core_ephemera1",
-            "name": "Resplendant Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#ffffff",
-            "mod": undefined
-        },
-        {
-            "id": "core_ephemera2",
-            "name": "Orange Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#ffbb00",
-            "mod": undefined
-        },
-        {
-            "id": "core_ephemera3",
-            "name": "Magenta Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#e600ff",
-            "mod": undefined
-        },
-        {
-            "id": "core_ephemera4",
-            "name": "Lblue Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#00f7ff",
-            "mod": undefined
-        },
-        {
-            "id": "core_ephemera5",
-            "name": "Yellow Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#fff700",
-            "mod": undefined
-        },
-        {
-            "id": "core_ephemera6",
-            "name": "Entrancing Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#15ff00",
-            "mod": undefined
-        },
-        {
-            "id": "core_ephemera7",
-            "name": "Furtive Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#ffa8f1",
-            "mod": undefined
+    // - ITEM ID LIST -     //Check if the "" on the color is necessary, at least for predetermined colors.
+    const itemIDs = [       //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-mod object
+        // SCINT
+        ["scint","Scint","A silver powder found most frequently in places between places. While usually extracted from scint-infused liquids, it has proliferated enough that most find it through trade or scavanging. It is primarily valued as a pigment, but has come to be used as a common currency within recent centuries, measured by weight.","*",3,[undefined]],
+        // DEBUG ITEMS
+        ["core_debug1","Item1","Test Item","o",3,[undefined]],
+        // EPHEMERA       //UNFINISHED
+        ["core_ephemera1","Resplendant Ephemera","Test Item","+","#ffffff",[undefined]],    //Needs a mod that holds its charge.
+        ["core_ephemera2","Orange Ephemera","Test Item","+","#ffbb00",[undefined]],
+        ["core_ephemera3","Magenta Ephemera","Test Item","+","#e600ff",[undefined]],
+        ["core_ephemera4","Lblue Ephemera","Test Item","+","#00f7ff",[undefined]],
+        ["core_ephemera5","Yellow Ephemera","Test Item","+","#fff700",[undefined]],
+        ["core_ephemera6","Entrancing Ephemera","Test Item","+","#15ff00",[undefined]],
+        ["core_ephemera7","Furtive Ephemera","Test Item","+","#ffa8f1",[undefined]],
+        ["core_ephemera8","Resonant Ephemera","Test Item","+","#808080",[undefined]],
+        ["core_ephemera9","Radiant Ephemera","Test Item","+","#cfcfcf",[undefined]],
+        ["core_ephemera10","Fading Ephemera","Test Item","+","#1bb57a",[undefined]],
+        ["core_ephemera11","Splintered Ephemera","Test Item","+","#8219bf",[undefined]],
+        ["core_ephemera12","Serene Ephemera","Test Item","+","#0700d6",[undefined]],
+        ["core_ephemera13","Brown Ephemera","Test Item","+","#693f00",[undefined]],
+        ["core_ephemera14","Verdant Ephemera","Test Item","+","#006910",[undefined]],
+        ["core_ephemera15","Red Ephemera","Test Item","+","#ff0000",[undefined]],
+        ["core_ephemera16","Umbral Ephemera","Test Item","+","#262626",[undefined]],
+        // CHAINED EPHEMERA       //UNFINISHED
+        ["core_chainedephemera1","Chained Resplendant Ephemera","Test Item","#","#ffffff",[undefined]],
+        ["core_chainedephemera2","Chained Orange Ephemera","Test Item","#","#ffbb00",[undefined]],
+        ["core_chainedephemera3","Chained Magenta Ephemera","Test Item","#","#e600ff",[undefined]],
+        ["core_chainedephemera4","Chained Lblue Ephemera","Test Item","#","#00f7ff",[undefined]],
+        ["core_chainedephemera5","Chained Yellow Ephemera","Test Item","#","#fff700",[undefined]],
+        ["core_chainedephemera6","Chained Entrancing Ephemera","Test Item","#","#15ff00",[undefined]],
+        ["core_chainedephemera7","Chained Furtive Ephemera","Test Item","#","#ffa8f1",[undefined]],
+        ["core_chainedephemera8","Chained Resonant Ephemera","Test Item","#","#808080",[undefined]],
+        ["core_chainedephemera9","Chained Radiant Ephemera","Test Item","#","#cfcfcf",[undefined]],
+        ["core_chainedephemera10","Chained Fading Ephemera","Test Item","#","#1bb57a",[undefined]],
+        ["core_chainedephemera11","Chained Splintered Ephemera","Test Item","#","#8219bf",[undefined]],
+        ["core_chainedephemera12","Chained Serene Ephemera","Test Item","#","#0700d6",[undefined]],
+        ["core_chainedephemera13","Chained Brown Ephemera","Test Item","#","#693f00",[undefined]],
+        ["core_chainedephemera14","Chained Verdant Ephemera","Test Item","#","#006910",[undefined]],
+        ["core_chainedephemera15","Chained Red Ephemera","Test Item","#","#ff0000",[undefined]],
+        ["core_chainedephemera16","Chained Umbral Ephemera","Test Item","#","#262626",[undefined]],
+        ["core_chainedephemera16","Chained Umbral Ephemera","Test Item","#","#262626",[undefined]],
+        // - LOCKED CONTAINERS -        //NOTE: Pretty much all of this is a massive WIP.
+        // Physical (3 Pins)
+        ["core_coffer1","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]], //TODO: [coffer1,coffer2,coffer3]       //Make it weighted to a degree. The number is the number of items. Loot table will be placed below "mod" as its own value.
+        ["core_reliquary1","Battered Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]], //TODO: [coffer1,coffer2,reliquary]       //Coffer# is just items. Reliquary is one revelation and one item. Tome gives a: a number of exp, b: 0-3 revelations, and c: 0-3 lores.
+        ["core_lockbox1","Battered Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]], //TODO: [coffer3,coffer4,coffer5]
+        ["core_tome1","Battered Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]], //TODO: [tome, coffer1]         //Rarely contains an item, having been revealed to be hollow. This is rare.
+        // Physical (4 Pins)
+        ["core_coffer2","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary2","Battered Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox2","Battered Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome2","Battered Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
+        // Physical (5 Pins)
+        ["core_coffer3","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary3","Battered Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox3","Battered Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome3","Battered Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
+        // Physical (6 Pins)
+        ["core_coffer4","Ornate Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary4","Ornate Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox4","Ornate Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome4","Ornate Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
+        { // Riddle (Trivia)
+            "id": "core_coffer5",
+            "name": "Silver Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera8",
-            "name": "Resonant Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#808080",
-            "mod": undefined
+            "id": "core_reliquary5",
+            "name": "Silver Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera9",
-            "name": "Radiant Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#cfcfcf",
-            "mod": undefined
+            "id": "core_lockbox5",
+            "name": "Silver Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera10",
-            "name": "Fading Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#1bb57a",
-            "mod": undefined
+            "id": "core_tome5",
+            "name": "Silver Scroll-Case",
+            "desc": "A decorated silver tube that resists opening. Words are engraved on one of the caps. It might contain something fascinating.",
+            "symbol": "/",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Riddle (Classical)
+            "id": "core_coffer6",
+            "name": "Bronze Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera11",
-            "name": "Splintered Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#8219bf",
-            "mod": undefined
+            "id": "core_reliquary6",
+            "name": "Bronze Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera12",
-            "name": "Serene Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#0700d6",
-            "mod": undefined
+            "id": "core_lockbox6",
+            "name": "Bronze Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera13",
-            "name": "Brown Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#693f00",
-            "mod": undefined
+            "id": "core_tome6",
+            "name": "Bronze Scroll-Case",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "/",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Riddle (Lore)
+            "id": "core_coffer7",
+            "name": "Gilded Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera14",
-            "name": "Verdant Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#006910",
-            "mod": undefined
+            "id": "core_reliquary7",
+            "name": "Gilded Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera15",
-            "name": "Red Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#ff0000",
-            "mod": undefined
+            "id": "core_lockbox7",
+            "name": "Gilded Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_ephemera16",
-            "name": "Umbral Ephemera",
-            "desc": "Test Item",
-            "symbol": "+",
-            "color": "#262626",
-            "mod": undefined
-        }, 
-        { // CHAINED EPHEMERA       //UNFINISHED
-            "id": "core_chainedephemera1",
-            "name": "Chained Resplendant Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#ffffff",
-            "mod": undefined
+            "id": "core_tome7",
+            "name": "Gilded Scroll-Case",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "/",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Riddle (Specific)
+            "id": "core_coffer8",
+            "name": "Leaden Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_chainedephemera2",
-            "name": "Chained Orange Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#ffbb00",
-            "mod": undefined
+            "id": "core_reliquary8",
+            "name": "Leaden Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_chainedephemera3",
-            "name": "Chained Magenta Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#e600ff",
-            "mod": undefined
+            "id": "core_lockbox8",
+            "name": "Leaden Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
         },
         {
-            "id": "core_chainedephemera4",
-            "name": "Chained Lblue Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#00f7ff",
-            "mod": undefined
+            "id": "core_tome8",
+            "name": "Leaden Scroll-Case",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "/",
+            "color": "2",
+            "mod": [undefined],
         },
-        {
-            "id": "core_chainedephemera5",
-            "name": "Chained Yellow Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#fff700",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera6",
-            "name": "Chained Entrancing Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#15ff00",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera7",
-            "name": "Chained Furtive Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#ffa8f1",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera8",
-            "name": "Chained Resonant Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#808080",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera9",
-            "name": "Chained Radiant Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#cfcfcf",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera10",
-            "name": "Chained Fading Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#1bb57a",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera11",
-            "name": "Chained Splintered Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#8219bf",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera12",
-            "name": "Chained Serene Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#0700d6",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera13",
-            "name": "Chained Brown Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#693f00",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera14",
-            "name": "Chained Verdant Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#006910",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera15",
-            "name": "Chained Red Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#ff0000",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera16",
-            "name": "Chained Umbral Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#262626",
-            "mod": undefined
-        },
-        {
-            "id": "core_chainedephemera16",
-            "name": "Chained Umbral Ephemera",
-            "desc": "Test Item",
-            "symbol": "#",
-            "color": "#262626",
-            "mod": undefined
-        },
-        { // COFFERS
-            "id": "core_coffer1",
+        { // Input (Aspect Item)
+            "id": "core_coffer9",
             "name": "Battered Coffer",
             "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
             "symbol": "m",
             "color": "2",
-            "mod": [undefined], //TODO: [coffer1,coffer2,coffer3]       //Make it weighted to a degree. The number is the number of items. Loot table will be placed below "mod" as its own value.
+            "mod": [undefined],
         },
-        { // RELIQUARIES
-            "id": "core_reliquary1",
+        {
+            "id": "core_reliquary9",
             "name": "Battered Reliquary",
             "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
             "symbol": "u",
             "color": "2",
-            "mod": [undefined], //TODO: [coffer1,coffer2,reliquary]       //Coffer# is just items. Reliquary is one revelation and one item. Tome gives a: a number of exp, b: 0-3 revelations, and c: 0-3 lores.
+            "mod": [undefined],
         },
-        { // LOCKBOXES
-            "id": "core_lockbox1",
+        {
+            "id": "core_lockbox9",
             "name": "Battered Lockbox",
             "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
             "symbol": "a",
             "color": "2",
-            "mod": [undefined], //TODO: [coffer3,coffer4,coffer5]
+            "mod": [undefined],
         },
-        { // TOMES
-            "id": "core_tome1",
+        {
+            "id": "core_tome9",
             "name": "Battered Tome",
             "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
             "symbol": "c",
             "color": "2",
-            "mod": [undefined], //TODO: [tome, coffer1]         //Rarely contains an item, having been revealed to be hollow. This is rare.
+            "mod": [undefined],
         },
-        { // REAGENTS
-            "id": "core_reagenta1", //Letter is aspect, number is strength. 5 is the variant.
-            "name": "Pure Quartz",
-            "desc": "It is not common to find quartz of this clarity. Perhaps this was not intentional.",
-            "symbol": "q",
+        { // Input (Ephemera)
+            "id": "core_coffer10",
+            "name": "Battered Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
             "color": "2",
             "mod": [undefined],
         },
-        //{
-        //    "id": "core_reagenta2",
-        //    "name": "TODO",
-        //    "desc": "TODO",
-        //    "symbol": "q",
-        //    "color": "2",
-        //    "mod": [undefined],
-        //},
         {
-            "id": "core_reagenta3",
-            "name": "Viljåsa",
-            "desc": "The pale leaves of a supposedly-exotic plant. Do not taste it; do not touch it; it never lets go when it holds you.",
-            "symbol": "v",
+            "id": "core_reliquary10",
+            "name": "Battered Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
             "color": "2",
             "mod": [undefined],
         },
-        //{
-        //    "id": "core_reagenta4",
-        //    "name": "TODO",
-        //    "desc": "TODO",
-        //    "symbol": "q",
-        //    "color": "2",
-        //    "mod": [undefined],
-        //},
-        //{
-        //    "id": "core_reagenta5",
-        //    "name": "TODO",
-        //    "desc": "TODO",
-        //    "symbol": "q",
-        //    "color": "2",
-        //    "mod": [undefined],
-        //},//TODO: reagents 2-16, relics, foci, other equipment (Weapons? Armor? Trinkets?)
+        {
+            "id": "core_lockbox10",
+            "name": "Battered Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome10",
+            "name": "Battered Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Input (Scint)
+            "id": "core_coffer11",
+            "name": "Battered Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_reliquary11",
+            "name": "Battered Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_lockbox11",
+            "name": "Battered Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome11",
+            "name": "Battered Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Input (Experience)
+            "id": "core_coffer12",
+            "name": "Thirsting Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_reliquary12",
+            "name": "Thirsting Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_lockbox12",
+            "name": "Thirsting Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome12",
+            "name": "Thirsting Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Sealed (Use Turn to Force Open: Chance Based on Vitality)
+            "id": "core_coffer13",
+            "name": "Bolted Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_reliquary13",
+            "name": "Bolted Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_lockbox13",
+            "name": "Bolted Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome13",
+            "name": "Bolted Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Sealed (Use Turn to Move Internals: Chance Based on Finesse)
+            "id": "core_coffer14",
+            "name": "Clockwork Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_reliquary14",
+            "name": "Clockwork Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_lockbox14",
+            "name": "Clockwork Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome14",
+            "name": "Clockwork Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Sealed (Use Turn to Shatter Arcana: Chance Based on Willpower)
+            "id": "core_coffer15",
+            "name": "Warded Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_reliquary15",
+            "name": "Warded Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_lockbox15",
+            "name": "Warded Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome15",
+            "name": "Warded Tome",
+            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        { // Sealed (Use Turn to Assert Dominance: Chance Based on Presence)
+            "id": "core_coffer16",
+            "name": "Inhabited Coffer",
+            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
+            "symbol": "m",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_reliquary16",
+            "name": "Inhabited Reliquary",
+            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
+            "symbol": "u",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_lockbox16",
+            "name": "Inhabited Lockbox",
+            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
+            "symbol": "a",
+            "color": "2",
+            "mod": [undefined],
+        },
+        {
+            "id": "core_tome16",
+            "name": "Inhabited Tome",
+            "desc": "A quivering tome that, despite all efforts, won't open. A vague presence can be felt from within. It might contain something fascinating.",
+            "symbol": "c",
+            "color": "2",
+            "mod": [undefined],
+        },
+        // REAGENTS
+        //Letter is aspect, number is strength. 5 is the variant.
+        ["core_reagenta1","Pure Quartz","It is not common to find quartz of this clarity. Perhaps this was not intentional.","q","2",[undefined]],
+        ["core_reagenta2","TODO","TODO","q","2",[undefined]],
+        ["core_reagenta3","Viljåsa","The pale leaves of a supposedly-exotic plant. Do not taste it; do not touch it; it never lets go when it holds you.","v","2",[undefined]],
+        ["core_reagenta4","TODO","TODO","q","2",[undefined]],
+        ["core_reagenta5","TODO","TODO","q","2",[undefined]],
+            //TODO: reagents 2-16, relics, foci
     ]
-    // - TILE ID LIST - 
-    const tileIDs = [
-        {
-            "id": "core_grass1",
-            "name": "Grass",
-            "desc": "A thin patch of grass.",
-            "symbol": ".",
-            "color": 0,
-            "wall": 0,
-            "stair": 0,
-        },
-        { 
-            "id": "core_grass2",
-            "name": "Grass",
-            "desc": "A patch of grass.",
-            "symbol": ",",
-            "color": 0,
-            "wall": 0,
-            "stair": 0,
-        },
-        { 
-            "id": "core_grass3",
-            "name": "Grass",
-            "desc": "A patch of wilting grass.",
-            "symbol": ".",
-            "color": 0,
-            "wall": 0,
-            "stair": 0,
-        },
-        {
-            "id": "core_snow1",
-            "name": "Snow",
-            "desc": "A patch of snow.",
-            "symbol": "~",
-            "color": 3,
-            "wall": 0,
-            "stair": 0,
-        },
-        { 
-            "id": "core_snow2",
-            "name": "Frost",
-            "desc": "Some frozen ground.",
-            "symbol": "-",
-            "color": 2,
-            "wall": 0,
-            "stair": 0,
-        },
-        {
-            "id": "core_pinetree1",
-            "name": "Tree",
-            "desc": "A pine tree of respectable size.",
-            "symbol": "^",
-            "color": 2,
-            "wall": 1,
-            "stair": 0,
-        },
-        {
-            "id": "core_pinetree2",
-            "name": "Tree",
-            "desc": "A large pine tree.",
-            "symbol": "^",
-            "color": 2,
-            "wall": 1,
-            "stair": 0,
-        },
-        {
-            "id": "core_boulder1",
-            "name": "Boulder",
-            "desc": "A big-ass rock. Makes for good climbing.",
-            "symbol": "O",
-            "color": 1,
-            "wall": 1,
-            "stair": 0,
-        },
-        {
-            "id": "core_stonewall1",
-            "name": "Stone Wall",
-            "desc": "Cobblestones piled together into a sturdy wall",
-            "symbol": "=",
-            "color": 3,
-            "wall": 1,
-            "stair": 0,
-        },
-        {
-            "id": "core_door1",
-            "name": "Door",
-            "desc": "An old wooden door. It is open.",
-            "symbol": "D",
-            "color": 1,
-            "wall": 0,
-            "stair": 0,
-        },
-        {
-            "id": "core_centerpillar",
-            "name": "Stone Pillar",
-            "desc": "A rough stone pillar, engraved with a sigil.",
-            "symbol": "$",
-            "color": 3,
-            "wall": 1,
-            "stair": 0,
-        },
-        {
-            "id": "core_spawnslab",
-            "name": "Stone Slab",
-            "desc": "A cold, clean slab of cut grey stone.",
-            "symbol": "O",
-            "color": 2,
-            "wall": 0,
-            "stair": 0,
-        },
-        {
-            "id": "core_stairsup1",
-            "name": "Stone Stairs",
-            "desc": "A way up.",
-            "symbol": ">",
-            "color": 2,
-            "wall": 0,
-            "stair": 2,
-        },
-        {
-            "id": "core_stairsdown1",
-            "name": "Stone Stairs",
-            "desc": "A way down.",
-            "symbol": "<",
-            "color": 2,
-            "wall": 0,
-            "stair": 1,
-        },
+    // - TILE ID LIST -     //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-wall/stair
+    const tileIDs = [   //STAIRS KEY: 0-Floor, 1-Wall, 2-Up Stair, 3-Down Stair, 4-Up/Down Stair, 5-Passible tile that blocks LoS, 6-Reserved Tile(Most things cannot spawn here. Used for shops & vaults.), 7-Inert Fluid  //Add tile IDs for all base fluids?
+        ["core_grass1","Grass","A thin patch of grass.",".",0,0],
+        ["core_grass2","Grass","A patch of grass.",",",0,0],
+        ["core_grass3","Grass","A patch of wilting grass.",".",0,0],
+        ["core_snow1","Snow","A patch of snow.","~",3,0],
+        ["core_snow2","Frost","Some frozen ground.","-",2,0],
+        ["core_pinetree1","Tree","A pine tree of respectable size.","^",2,1],
+        ["core_pinetree2","Tree","A large pine tree.","^",2,1],
+        ["core_boulder1","Boulder","A big-ass rock. Makes for good climbing.","O",1,1],
+        ["core_stonewall1","Stone Wall","Cobblestones piled together into a sturdy wall","=",3,1],
+        ["core_door1","Door","An old wooden door. It is open.","D",1,0],
+        ["core_centerpillar","Stone Pillar","A rough stone pillar, engraved with a sigil.","$",3,1],
+        ["core_spawnslab","Stone Slab","A cold, clean slab of cut grey stone.","O",2,0],
+        ["core_stairsup1","Stone Stairs","A way up.",">",2,0],
+        ["core_stairsdown1","Stone Stairs","A way down.","<",2,0],
     ]
     const modIDs = [
     ]
-    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-starting health, 7-base attack power, 8-evasion rating
+    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-starting health, 7-base attack power, 8-evasion rating       //TODO: Loot table, loot chance, ephemera value, ephemera chance
         ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10,1,20],
         ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15,1,20],
         ["core_testcrawler","Crawler","This one is extatically writhing in the grass.","C",2,"core_testcrawler",5,1,20],
