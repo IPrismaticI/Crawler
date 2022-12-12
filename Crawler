@@ -73,6 +73,8 @@
         <span id="map-9x-8" onclick="viewTile(-9,-8)">║</span><span id="map-8x-8" onclick="viewTile(-8,-8)">.</span><span id="map-7x-8" onclick="viewTile(-7,-8)">.</span><span id="map-6x-8" onclick="viewTile(-6,-8)">.</span><span id="map-5x-8" onclick="viewTile(-5,-8)">.</span><span id="map-4x-8" onclick="viewTile(-4,-8)">.</span><span id="map-3x-8" onclick="viewTile(-3,-8)">.</span><span id="map-2x-8" onclick="viewTile(-2,-8)">.</span><span id="map-1x-8" onclick="viewTile(-1,-8)">.</span><span id="map0x-8" onclick="viewTile(0,-8)">.</span><span id="map1x-8" onclick="viewTile(1,-8)">.</span><span id="map2x-8" onclick="viewTile(2,-8)">.</span><span id="map3x-8" onclick="viewTile(3,-8)">.</span><span id="map4x-8" onclick="viewTile(4,-8)">.</span><span id="map5x-8" onclick="viewTile(5,-8)">.</span><span id="map6x-8" onclick="viewTile(6,-8)">.</span><span id="map7x-8" onclick="viewTile(7,-8)">.</span><span id="map8x-8" onclick="viewTile(8,-8)">.</span><span id="map9x-8" onclick="viewTile(9,-8)">║</span><br>
         <span id="map-9x-9" onclick="viewTile(-9,-9)">╚</span><span id="map-8x-9" onclick="viewTile(-8,-9)">═</span><span id="map-7x-9" onclick="viewTile(-7,-9)">═</span><span id="map-6x-9" onclick="viewTile(-6,-9)">═</span><span id="map-5x-9" onclick="viewTile(-5,-9)">═</span><span id="map-4x-9" onclick="viewTile(-4,-9)">═</span><span id="map-3x-9" onclick="viewTile(-3,-9)">═</span><span id="map-2x-9" onclick="viewTile(-2,-9)">═</span><span id="map-1x-9" onclick="viewTile(-1,-9)">═</span><span id="map0x-9" onclick="viewTile(0,-9)">═</span><span id="map1x-9" onclick="viewTile(1,-9)">═</span><span id="map2x-9" onclick="viewTile(2,-9)">═</span><span id="map3x-9" onclick="viewTile(3,-9)">═</span><span id="map4x-9" onclick="viewTile(4,-9)">═</span><span id="map5x-9" onclick="viewTile(5,-9)">═</span><span id="map6x-9" onclick="viewTile(6,-9)">═</span><span id="map7x-9" onclick="viewTile(7,-9)">═</span><span id="map8x-9" onclick="viewTile(8,-9)">═</span><span id="map9x-9" onclick="viewTile(9,-9)">╝</span><br>
         <h3 id="coord" value="1">--</h3> <!--Coordinates-->
+        <header id="shader" style="opacity: 0;background: black;position: fixed;top:0;left:0;width:30%;height:44%;"> <!--Doesn't entirely work atm.-->
+        </header>
         <p style="color:#B1B1B1" id="view">--</p>
     </header>
     <nav>
@@ -621,18 +623,42 @@
             checkBiome()
             document.getElementById("feed").innerHTML = "You move up the " + y.name + "."
             coord.z = coord.z + 1
-            checkFloor()
+            v=0
+            menuMode=menuStorage[10]
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},50)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},100)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},150)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},200)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},250)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},300)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},350)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},400)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},450)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},500)
+            setTimeout(checkFloor,550)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},700)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},750)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},800)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},850)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},900)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},950)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1000)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1050)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1100)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1150)
         } else if(y.stair == 0 || y.stair == 1){ //stair 0 means the area is solid and inpassable. stair 1 means the stairs move down.
             coord.z = coord.z - 1
             playerCoord.z = playerCoord.z - 1
             document.getElementById("feed").innerHTML = "There is nowhere to move up!" 
+            printRoom();
+            endTurn();
         } else {
             coord.z = coord.z - 1
             playerCoord.z = playerCoord.z - 1
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
+            printRoom();
+            endTurn();
         }
-        printRoom();
-        endTurn();
     }
     function moveNorth(){
         coord.y = coord.y + 1;
@@ -678,18 +704,41 @@
             checkBiome()
             document.getElementById("feed").innerHTML = "You move down the " + y.name + "."
             coord.z = coord.z - 1
-            checkFloor()
-            printRoom();
+            v=0
+            menuMode=menuStorage[10]
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},50)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},100)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},150)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},200)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},250)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},300)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},350)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},400)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},450)
+            setTimeout(function(){v=((v*10)+1)/10;document.getElementById("shader").style.opacity=v},500)
+            setTimeout(checkFloor,550)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},700)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},750)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},800)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},850)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},900)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},950)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1000)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1050)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1100)
+            setTimeout(function(){v=((v*10)-1)/10;document.getElementById("shader").style.opacity=v},1150)
         } else if(y.stair == 0 || y.stair == 2){ //stair 0 means the area is solid and inpassable. stair 2 means the stairs move up.
             coord.z = coord.z + 1
             playerCoord.z = playerCoord.z + 1;
             document.getElementById("feed").innerHTML = "There is nowhere to move down!" 
             printRoom();
+            endTurn();
         } else {
             coord.z = coord.z + 1
             playerCoord.z = playerCoord.z + 1;
             document.getElementById("feed").innerHTML = "ERROR: " + y.name + " Lacks a stair value. Assuming stair = 0."
             printRoom();
+            endTurn();
         }
     }
     function moveWest(){
@@ -1633,10 +1682,6 @@
         }else{//Check for critical hits here?
             document.getElementById("feed").innerHTML += "<br>The " + y[1] + " takes " + playerStats[1] + " damage!"
             x[3]=x[3]-playerStats[1]
-            if(x[3]<=0){
-                entitiesList[coord.z].splice(entitiesList[coord.z].find(y => y[1] === coord.x && y[2] === coord.y), 1)
-                document.getElementById("feed").innerHTML += "<br>The " + y[1] + " dies!"
-            }
         }
     }
 
@@ -1738,16 +1783,20 @@
     }
     function endTurnLoop(x){  //NOTE: This will trigger all the turn-end things. This mostly covers NPC actions, but it also covers things like weather, usually after the NPC's actions.
         z = entitiesList[coord.z][x] //Checks AI and runs it.
-        if(z[0]=="core_testfollower"){
-            turncore_testfollower(z)
-        }else if(z[0]=="core_testwanderer"){
-            turncore_testwanderer(z)
-        }else if(z[0]=="core_testcrawler"){
-            turncore_testcrawler(z)
-        }else{}
-        x=x+1
-        if(x>=entitiesList[coord.z].length){menuMode=menuStorage[1]}else{  //NOTE: Have it so the delayed reset only occurs when the entity is within view.
-            endTurnLoop(x)
+        if(z[3]<=0){
+            entitiesList[coord.z].splice(z, 1)
+        }else{
+            if(z[0]=="core_testfollower"){
+                turncore_testfollower(z)
+            }else if(z[0]=="core_testwanderer"){
+                turncore_testwanderer(z)
+            }else if(z[0]=="core_testcrawler"){
+                turncore_testcrawler(z)
+            }else{}
+            x=x+1
+        }
+        if(x<entitiesList[coord.z].length){endTurnLoop(x)}else{  //NOTE: Have it so the delayed reset only occurs when the entity is within view.
+            menuMode=menuStorage[1]
         }
     }
     // - NPC AI -                             
