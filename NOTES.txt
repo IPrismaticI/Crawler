@@ -8,6 +8,31 @@ I forgot to add the updated code before I left for the holidays, so I made this.
 - To complement this, relics will take the role of adjusting stats rather than weapons & armor.
 - Gaining specific ephemera powers (namely those not accessable via skill trees) requires Lore. These can be bought, gained via story events or allies, or found in tomes. When the player gains Lore, they get a selection of four abilities to put it into rather than it going to a random ability. This luxury is not always avaliable.
 - Tinctures/potions also exist. Steal from my other projects. Exact use varies between substance, and is present in the description when identified.
+- As the player progresses, they unlock four unique weapons, and with them, unique skill trees:
+ - Sharur is the starting weapon. It has a basic standard attack. It unlocks the <>, <>, <>, and <> skill trees.
+ - Parashu is obtained from <>. It has the option to do a sweeping attack, and while it does less damage than Sharur, it deals more damage with consistent hits. It unlocks the <>, <>, <>, and <> skill trees.
+ - Kryselikatos is obtained from <>. It uses arrows, which are limited but powerful and stackable items. Its basic attack is the weakest. It unlocks the <>, <>, <>, and <> skill trees.
+ - Gungnir is obtained from <>. It can attack several tiles away, and greatly increases accuracy. It unlocks the <>, <>, <>, and <> skill trees.
+
+<Bow> Ammunition-
+- Name - Finesse Multiplier - Details/Uses
+- Crude - 0.4
+- Gilded - 0.6 - High sell price
+- Bronze - 0.8 - Can be infused to make Phosphor-Bronze
+- Silver - 0.8 - Increased damage vs. specific creatures. Can be infused to make Sung-Silver
+- Iron - 1
+- Black Steel - 1.2 - Can be infused to make Blue or Red Steel
+- Blue Steel - 1.4 - Never Breaks
+- Red Steel - 1.8
+- Crystal - 0.2-1.6 - Rare, can be made via infusion
+- Phosphor-Bronze - 1.2 - Increased damage vs. specific creatures.
+- Sung-Silver - 1.2 - Increased damage vs. silver-weak creatures.
+- Explosive - 2 - Explodes in a 3x3 cube centered on the target. Counts as fire.
+- Phial - 0.6 - Can be mixed with a tincture to apply it to the arrows, which then apply a weaker version of the tinct on hit. Can be mixed with water to clean. Rare chance to come with some form of poison.
+- Piercing - 1.2 - Bypasses a small amount of DR, assuming I add that.
+- Knockback - 0.8 - Knocks target back.
+
+
 - RELIQUARY NOTES -
 - Add in coffers, reliquaries, lockboxes, and tomes. These need to be unlocked, which can be done via several means.
  - The most notable way to do this is to take them to a locksmith NPC in a town or a dungeon shop. They do this for a fee, but it always works regardless of lock.
@@ -23,8 +48,7 @@ I forgot to add the updated code before I left for the holidays, so I made this.
  - If possible, specific locks have a higher chance of granting specific loot. Decide on this later.
 
 - ENTITY NOTES -
-- Enemies spawn both on level generation. How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
-- Most enemies have an experience flat & roll, a loot chance, a loot-table, an ephemera chance, and an ephemera type. If they die, they grant the experience flat as well as a number between 0 and the roll. They have a chance to drop loot (though some enemies lack a loot table), and if that fails, they have a chance to drop an ephemera of their given type.
+- How to have line of sight work? Check for an aggressive status if there are no obstructions in the way?
 
 - EPHEMERA NOTES - 
 This is the system that will hopefully seperate the game from others, gameplay-wise.
@@ -79,6 +103,17 @@ https://nethackwiki.com/wiki/Vapors
 https://nethackwiki.com/wiki/Magic
 https://nethackwiki.com/wiki/Sink
 https://nethackwiki.com/wiki/Fountain
+https://baronygame.fandom.com/wiki/Potions
+https://baronygame.fandom.com/wiki/Scrolls
+https://baronygame.fandom.com/wiki/Magic_Staffs
+https://baronygame.fandom.com/wiki/Spellbooks
+https://baronygame.fandom.com/wiki/Amulets
+https://baronygame.fandom.com/wiki/Rings
+https://baronygame.fandom.com/wiki/Spells
+https://baronygame.fandom.com/wiki/Alchemy
+https://baronygame.fandom.com/wiki/Tinkering_Kit
+-Recharge equipted Ephemera.
+-Gain a random Ephemera.
 
 - REVELATION UPGRADES NOTES -
 -Had an idea: Primary is an active ability. Secondary is a passive of some sort. Tetriary is an active ability. B is unlocked by some sort of milestone.
