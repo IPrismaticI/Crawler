@@ -73,7 +73,7 @@
         <span id="map-9x-8" onclick="viewTile(-9,-8)">║</span><span id="map-8x-8" onclick="viewTile(-8,-8)">.</span><span id="map-7x-8" onclick="viewTile(-7,-8)">.</span><span id="map-6x-8" onclick="viewTile(-6,-8)">.</span><span id="map-5x-8" onclick="viewTile(-5,-8)">.</span><span id="map-4x-8" onclick="viewTile(-4,-8)">.</span><span id="map-3x-8" onclick="viewTile(-3,-8)">.</span><span id="map-2x-8" onclick="viewTile(-2,-8)">.</span><span id="map-1x-8" onclick="viewTile(-1,-8)">.</span><span id="map0x-8" onclick="viewTile(0,-8)">.</span><span id="map1x-8" onclick="viewTile(1,-8)">.</span><span id="map2x-8" onclick="viewTile(2,-8)">.</span><span id="map3x-8" onclick="viewTile(3,-8)">.</span><span id="map4x-8" onclick="viewTile(4,-8)">.</span><span id="map5x-8" onclick="viewTile(5,-8)">.</span><span id="map6x-8" onclick="viewTile(6,-8)">.</span><span id="map7x-8" onclick="viewTile(7,-8)">.</span><span id="map8x-8" onclick="viewTile(8,-8)">.</span><span id="map9x-8" onclick="viewTile(9,-8)">║</span><br>
         <span id="map-9x-9" onclick="viewTile(-9,-9)">╚</span><span id="map-8x-9" onclick="viewTile(-8,-9)">═</span><span id="map-7x-9" onclick="viewTile(-7,-9)">═</span><span id="map-6x-9" onclick="viewTile(-6,-9)">═</span><span id="map-5x-9" onclick="viewTile(-5,-9)">═</span><span id="map-4x-9" onclick="viewTile(-4,-9)">═</span><span id="map-3x-9" onclick="viewTile(-3,-9)">═</span><span id="map-2x-9" onclick="viewTile(-2,-9)">═</span><span id="map-1x-9" onclick="viewTile(-1,-9)">═</span><span id="map0x-9" onclick="viewTile(0,-9)">═</span><span id="map1x-9" onclick="viewTile(1,-9)">═</span><span id="map2x-9" onclick="viewTile(2,-9)">═</span><span id="map3x-9" onclick="viewTile(3,-9)">═</span><span id="map4x-9" onclick="viewTile(4,-9)">═</span><span id="map5x-9" onclick="viewTile(5,-9)">═</span><span id="map6x-9" onclick="viewTile(6,-9)">═</span><span id="map7x-9" onclick="viewTile(7,-9)">═</span><span id="map8x-9" onclick="viewTile(8,-9)">═</span><span id="map9x-9" onclick="viewTile(9,-9)">╝</span><br>
         <h3 id="coord" value="1">--</h3> <!--Coordinates-->
-        <header id="shader" style="opacity: 0;background: black;position: fixed;top:0;left:0;width:30%;height:44%;"> <!--Doesn't entirely work atm.-->
+        <header id="shader" style="opacity: 0;background: black;position: fixed;top:0;left:0;width:30%;height:44%;"> <!--Doesn't entirely work atm. Different resolutions fuck with it.-->
         </header>
         <p style="color:#B1B1B1" id="view">--</p>
     </header>
@@ -116,9 +116,10 @@
     const magicStorage = []; // Currently equipt magics.    //NOTE: When equipping spells is fully functional, make this blank, as the player starts with 0 spells by default.
     const magicKnown = []; 
     var scint = 0
-    const coord = {x: 0, y: 0, z: 0};
+    const coord = {x: 0, y: 0, z: 0};   //NOTE: I could probably make most of these into objects.
     const spawnCoord = {x: 50, y: 50, z: 0}; // Sets default coordinates. x is vertical, y is horizontal, z is floor.
     const biome = {cur: "Nowhere", a: "#000000", b: "#1a1a1a", c: "#212121", d: "#3d3d3d"}
+    const curDungeon = []   //0-Name, 1-Floor Count/End Floor, 2-Room palette assigner, 3-Assigned palettes     //NOTE: PROOF OF CONCEPT. Currently not implemented.
     var dropcarrier = 0 //Sets carrier. This is used in the side feed, selecting which line to use.
     const playerCoord = {x: 0, y: 0, z: 0}
     const worldsize = {x: 300, y: 300} // Sets overworld default width & height
@@ -167,7 +168,6 @@
         x += "<br>- Magic is a big WIP, see if you can change that."
         x += "<br>- Add more NPCs and items."
         x += "<br>- Add some variety to scint item names. By default, dropped scint will be 'pile of scint (##)'"
-        x += "<br>- Have spawnTimer reset to 0 when going up or down a set of stairs."
         x += "<br>- Add in framework to allow companions to follow you and retain their stats. Global variables may be useful here."
         x += "<br>- Make the rest of the item data consistent."
         x += "<br>- Convert the item system from grid-sized arrays to floor-based arrays with each item having an x/y coordinate. It will save on actions spent sifting through the mess and data used storing all the empty variables."
@@ -628,6 +628,7 @@
             checkBiome()
             document.getElementById("feed").innerHTML = "You move up the " + y[1] + "."
             coord.z = coord.z + 1
+            spawnTimer=0
             v=0
             menuMode=menuStorage[10]
             fadeMap()
@@ -683,6 +684,7 @@
             checkBiome()
             document.getElementById("feed").innerHTML = "You move down the " + y[1] + "."
             coord.z = coord.z - 1
+            spawnTimer=0
             v=0
             menuMode=menuStorage[10]
             fadeMap()
@@ -2032,6 +2034,13 @@
     // - ENTITY LISTS -
     const entitytable1 = ["core_testcrawler", "core_testwanderer"]
 
+    // - DUNGEON LIST -
+    //STYLE GUIDE - 0=Name display, 1=Last Floor, 2=Room Palette Assigner(Object. Starts at 0 and goes up to the last room. Number is the palette's slot.), 4=Room Palettes[[0=tiletable,1=itemtable,2=entitytable,3=structureList,4=structure gen mode(0 is random, 1 is in order.),5=Default Wall(s),6=Default Fluid(s),7=Default Pit(s)]], 5=Area Properties[Usually blank.]
+    const dungeonTest1 = ["Testing Zone",9,[0,0,0,0,0,1,1,1,1,1],[[tiletable1,itemtable1,entitytable1,structureListA,0,"core_stonewall1","core_fluid1","core_pit1"],[tiletable2,itemtable1,entitytable1,structureListA,0,["core_pinetree1","core_pinetree2"],"core_fluid1","core_pit1"]]]
+    //NOTE: Currently, core_fluid1 and core_pit1 dont exist. There are no calls for them yet so its fine, but be sure to implement them soonish.
+    //Dungeon ideas: dungeonPurpuratePass(Starting dungeon.), dungeonPurpurateMarshes(Early dungeon), dungeonAmetrineDepths(Related to the town sharing its name), dungeonDarkwaterDepths(???), dungeonNuleOutlands(???), 
+    //Town/Location Ideas: dungeonSanctuary(First town), dungeonAmetrine(???), 
+
     // - STRUCTURE LISTS -
     const structureListTemplate = [ //Intentionally unused, these rooms are to be used as templates. //NOTE: There are some holes in the walls. This is intentional, as these are the exits.
     [   //Empty Zone     //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
@@ -2382,70 +2391,16 @@
         ["core_tome7","Gilded Scroll-Case","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","/","2",[undefined]],
         // Riddle (Specific)
         ["core_coffer8","Leaden Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
-        {
-            "id": "core_reliquary8",
-            "name": "Leaden Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox8",
-            "name": "Leaden Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome8",
-            "name": "Leaden Scroll-Case",
-            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
-            "symbol": "/",
-            "color": "2",
-            "mod": [undefined],
-        },
-        { // Input (Aspect Item)
-            "id": "core_coffer9",
-            "name": "Battered Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_reliquary9",
-            "name": "Battered Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox9",
-            "name": "Battered Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome9",
-            "name": "Battered Tome",
-            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
-            "symbol": "c",
-            "color": "2",
-            "mod": [undefined],
-        },
-        { // Input (Ephemera)
-            "id": "core_coffer10",
-            "name": "Battered Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
+        ["core_reliquary8","Leaden Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox8","Leaden Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome8","Leaden Scroll-Case","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","/","2",[undefined]],
+        // Input (Aspect Item)
+        ["core_coffer9","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
+        ["core_reliquary9","Battered Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox9","Battered Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome9","Battered Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
+        // Input (Ephemera)
+        ["core_coffer10","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
         {
             "id": "core_reliquary10",
             "name": "Battered Reliquary",
