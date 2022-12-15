@@ -1429,8 +1429,8 @@
         6: '+', // Sun-Scorned (UNSET)
     }
 
-    function writeWorldTiles(){ //Used to generate the floor, walls, & traps.   //currently designed to only print z-level 0.
-        output = "";
+    function writeWorldTiles(){ //Used to generate the floor, walls, & traps.
+        //output = "";
         var worldheight = worldsize.y;
         var worldwidth = worldsize.x;
         for(var row = 0; row < worldheight; row++){
@@ -1537,9 +1537,9 @@
                 for (var col = 1; col < worldwidth - 1; col++){
                     z = world[col][row]
                     if (z == 1){ //Basic
-                        x = structureListA
+                        x = structureList1
                     }else{ //NOTE: Put special room & hall designs here in the future, e.g flooded, burning.
-                        x = structureListA
+                        x = structureList1
                     }
                     y = Math.floor(Math.random() * x.length)
                     x = x[y]
@@ -1798,7 +1798,7 @@
         }
     }
     // - NPC AI -                             
-    function turncore_testfollower(z){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?        //NOTE: Currently has weird movements.
+    function turncore_testfollower(z){ //It is supposed to wander until the player gets within 10 tiles, then it starts following them. Keeping a distance might be something possible. Archers?        //NOTE: Currently has weird movements.  //In theory, the pythagorean theorem could be utilized to allow for better movement.
         if(Math.abs(z[1]-playerCoord.x)>10&&Math.abs(z[2]-playerCoord.y)>10){ //If entity's coords minus player's coords create a number larger than 10, it uses testwanderer code.
             turncore_testcrawler(z) //NOTE: Intended to be testwanderer, but that code is broken atm.
         }else{
@@ -2027,17 +2027,27 @@
     // - TILE LISTS -
     const tiletable1 = ["core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass2", "core_grass3"]
     const tiletable2 = ["core_grass3", "core_grass3", "core_grass3", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1"]
-    
+    const tiletable = [
+        ["core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass2", "core_grass3"],
+        ["core_grass3", "core_grass3", "core_grass3", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1", "core_grass1"],
+    ]   
+
     // - ITEM LISTS -
     const itemtable1 = ["core_debug1", "scint", "scint", "scint", "scint", "scint", "core_coffer1", "core_reliquary1", "core_lockbox1", "core_tome1", "core_chainedephemera1", "core_chainedephemera2", "core_chainedephemera3", "core_chainedephemera4", "core_chainedephemera5", "core_chainedephemera6", "core_chainedephemera7", "core_chainedephemera8", "core_chainedephemera9", "core_chainedephemera10", "core_chainedephemera11", "core_chainedephemera12", "core_chainedephemera13", "core_chainedephemera14", "core_chainedephemera15", "core_chainedephemera16"]
+    const itemtable = [
+        ["core_debug1", "scint", "scint", "scint", "scint", "scint", "core_coffer1", "core_reliquary1", "core_lockbox1", "core_tome1", "core_chainedephemera1", "core_chainedephemera2", "core_chainedephemera3", "core_chainedephemera4", "core_chainedephemera5", "core_chainedephemera6", "core_chainedephemera7", "core_chainedephemera8", "core_chainedephemera9", "core_chainedephemera10", "core_chainedephemera11", "core_chainedephemera12", "core_chainedephemera13", "core_chainedephemera14", "core_chainedephemera15", "core_chainedephemera16"],
+    ]
 
     // - ENTITY LISTS -
     const entitytable1 = ["core_testcrawler", "core_testwanderer"]
+    const entitytable = [
+        ["core_testcrawler", "core_testwanderer"]
+    ]
 
     // - DUNGEON LIST -
     //STYLE GUIDE - 0=Name display, 1=Last Floor, 2=Room Palette Assigner(Object. Starts at 0 and goes up to the last room. Number is the palette's slot.), 4=Room Palettes[[0=tiletable,1=itemtable,2=entitytable,3=structureList,4=structure gen mode(0 is random, 1 is in order.),5=Default Wall(s),6=Default Fluid(s),7=Default Pit(s)]], 5=Area Properties[Usually blank.]
-    const dungeonTest1 = ["Testing Zone",9,[0,0,0,0,0,1,1,1,1,1],[[tiletable1,itemtable1,entitytable1,structureListA,0,"core_stonewall1","core_fluid1","core_pit1"],[tiletable2,itemtable1,entitytable1,structureListA,0,["core_pinetree1","core_pinetree2"],"core_fluid1","core_pit1"]]]
-    //NOTE: Currently, core_fluid1 and core_pit1 dont exist. There are no calls for them yet so its fine, but be sure to implement them soonish.
+    const dungeonTest1 = ["Testing Zone",9,[0,0,0,0,0,1,1,1,1,1],[[tiletable[1],itemtable[1],entitytable[1],[1],0,"core_stonewall1","core_fluid1","core_pit1"],[tiletable[2],itemtable[1],entitytable[1],[1],0,["core_pinetree1","core_pinetree2"],"core_fluid1","core_pit1"]]]
+    //NOTE: structureList is weird af and messing with it has caused a lot of crashes. Currently, the idea is to use numeral ids in an array.
     //Dungeon ideas: dungeonPurpuratePass(Starting dungeon.), dungeonPurpurateMarshes(Early dungeon), dungeonAmetrineDepths(Related to the town sharing its name), dungeonDarkwaterDepths(???), dungeonNuleOutlands(???), 
     //Town/Location Ideas: dungeonSanctuary(First town), dungeonAmetrine(???), 
 
@@ -2148,7 +2158,7 @@
             ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
         ],
     ]
-    const structureListA = [ //List for 1 - Basic
+    const structureList1 = [ //List for 1 - Basic
         //xa[   //Labrynth1 //UNFINISHED     //NOTE: Rooms are flipped. The top row will be on the bottom and vise versa.
         //xa    ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
         //xa    ["1","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1"],
@@ -2306,11 +2316,11 @@
             ["1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","0","1","1","1","1","1","1","1","1","1"],
         ],
     ]
-    const structureListB = [] //List for 2 - Flooded Rooms
-    const structureListC = [] //List for 3 - (UNSET)
-    const structureListD = [] //List for 4 - (UNSET)
-    const structureListE = [] //List for 5 - (UNSET)
-    const structureListF = [] //List for 6 - (UNSET)
+    const structureList2 = [] //List for 2 - Flooded Rooms
+    const structureList3 = [] //List for 3 - (UNSET)
+    const structureList4 = [] //List for 4 - (UNSET)
+    const structureList5 = [] //List for 5 - (UNSET)
+    const structureList6 = [] //List for 6 - (UNSET)
 
     // - ITEM ID LIST -     //Check if the "" on the color is necessary, at least for predetermined colors.
     const itemIDs = [       //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-mod object
@@ -2600,7 +2610,8 @@
             //TODO: reagents 2-16, relics, foci
     ]
     // - TILE ID LIST -     //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-wall/stair
-    const tileIDs = [   //STAIRS KEY: 0-Floor, 1-Wall, 2-Up Stair, 3-Down Stair, 4-Up/Down Stair, 5-Passible tile that blocks LoS, 6-Reserved Tile(Most things cannot spawn here. Used for shops & vaults.), 7-Inert Fluid  //Add tile IDs for all base fluids?
+    const tileIDs = [   //STAIRS KEY: 0-Floor, 1-Wall, 2-Up Stair, 3-Down Stair, 4-Up/Down Stair, 5-Passible tile that blocks LoS, 6-Reserved Tile(Most things cannot spawn here. Used for shops & vaults.), 7-Pits, 8-Inert Fluid  //Add tile IDs for all base fluids?
+        //OLD STUFF
         ["core_grass1","Grass","A thin patch of grass.",".",0,0],
         ["core_grass2","Grass","A patch of grass.",",",0,0],
         ["core_grass3","Grass","A patch of wilting grass.",".",0,0],
@@ -2613,8 +2624,19 @@
         ["core_door1","Door","An old wooden door. It is open.","D",1,0],
         ["core_centerpillar","Stone Pillar","A rough stone pillar, engraved with a sigil.","$",3,1],
         ["core_spawnslab","Stone Slab","A cold, clean slab of cut grey stone.","O",2,0],
-        ["core_stairsup1","Stone Stairs","A way up.",">",2,0],
-        ["core_stairsdown1","Stone Stairs","A way down.","<",2,0],
+        //FLOORS
+        //WALLS
+        //UP STAIRS
+        ["core_stairsup1","Stone Stairs","A way up.",">",2,2],
+        //DOWN STAIRS
+        ["core_stairsdown1","Stone Stairs","A way down.","<",2,3],
+        //UP-DOWN STAIRS
+        //5
+        //RESERVED TILE VARIANTS
+        //PITS
+        ["core_pit1","Bottomless Pit","A way down.",".",0,0],
+        //INERT FLUIDS
+        ["core_fluid1","Pool of Water","Quite wet.","~",0,0],
     ]
     const modIDs = [
     ]
