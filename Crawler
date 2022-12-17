@@ -141,17 +141,18 @@
 
     // - MENU STORAGE -
     const menuStorage = [
-        ["main","PLAY DEMO","OPTIONS","CREDITS","QUIT"],    // 0 - "main" - Starting menu.
+        ["main","TODO","PLAY DEMO","OPTIONS","CREDITS","QUIT"],    // 0 - "main" - Starting menu.
         ["overworld"],// 1 - "overworld" - Gameplay. Moving around and such. Not meant to be accessed in this manner.
-        ["options","WIP","EXIT GAME"],// 2 - "options" - Exit menu during gameplay.
-        ["inv","EXTERNALinv"],// 3 - "inv" - Inventory.
+        ["options","OPTIONS","WIP","EXIT GAME"],// 2 - "options" - Exit menu during gameplay.
+        ["inv","Use What?","EXTERNALinv"],// 3 - "inv" - Inventory.
         ["self","WIP"],// 4 - "self" - Displays appearance & other qualities.
         ["mind","WIP"],// 5 - "mind" - Displays mental modifiers.
         ["pickup"],// 6 - "pickup" - Displayed when picking up items.
-        ["drop","EXTERNALinv"],// 7 - "drop"
-        ["throw","EXTERNALinv"],// 8 - "throw"
-        ["magic","EXTERNALmagic"],// 9 - "magic"
+        ["drop","Drop What?","EXTERNALinv"],// 7 - "drop"
+        ["throw","Throw What?","EXTERNALinv"],// 8 - "throw"
+        ["magic","TODO","EXTERNALmagic"],// 9 - "magic"
         ["turn"],//10 - "turn" - Meant to disable keys between turns. Inaccessable.
+        ["useitem"],//11 - "useitem"
     ]
 
     // - RUN ON STARTUP -
@@ -249,19 +250,19 @@
         break;
     case "1": x = "SW"; if(menuMode[0]=="overworld"){moveSW()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
-    case "2": x = "S"; if(menuMode[0]=="main"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveSouth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}else if(menuMode[0]=="magic"){menuMagic(x)}
+    case "2": x = "S"; if(menuMode[0]=="main"||menuMode[0]=="inv"||menuMode[0]=="useitem"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveSouth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}else if(menuMode[0]=="magic"){menuMagic(x)}
         break;
     case "3": x = "SE"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveSE()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
     case "4": x = "W"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveWest()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
-    case "5": x = "C"; if(menuMode[0]=="main"){menuConfirm()}else if(menuMode[0]=="overworld"){moveWait()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItemConfirm()}else if(menuMode[0]=="throw"){menuMode=menuStorage[1]; document.getElementById("feed").innerHTML = "Nevermind.";}else if(menuMode[0]=="magic"){confirmMagic(x)}
+    case "5": x = "C"; if(menuMode[0]=="main"||menuMode[0]=="inv"||menuMode[0]=="useitem"){menuConfirm()}else if(menuMode[0]=="overworld"){moveWait()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItemConfirm()}else if(menuMode[0]=="throw"){menuMode=menuStorage[1]; document.getElementById("feed").innerHTML = "Nevermind.";}else if(menuMode[0]=="magic"){confirmMagic(x)}
         break;
     case "6": x = "E"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveEast()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
     case "7": x = "NW"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveNW()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
-    case "8": x = "N"; if(menuMode[0]=="main"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveNorth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}else if(menuMode[0]=="magic"){menuMagic(x)}
+    case "8": x = "N"; if(menuMode[0]=="main"||menuMode[0]=="inv"||menuMode[0]=="useitem"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveNorth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}else if(menuMode[0]=="magic"){menuMagic(x)}
         break;
     case "9": x = "NE"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveNE()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
@@ -343,15 +344,15 @@
         break;
     case "/":
         break;
-    case "ArrowUp": x = "N"; if(menuMode[0]=="main"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveNorth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
+    case "ArrowUp": x = "N"; if(menuMode[0]=="main"||menuMode[0]=="inv"||menuMode[0]=="useitem"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveNorth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
-    case "ArrowDown": x = "S"; if(menuMode[0]=="main"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveSouth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
+    case "ArrowDown": x = "S"; if(menuMode[0]=="main"||menuMode[0]=="inv"||menuMode[0]=="useitem"){menuScroll(x)}else if(menuMode[0]=="overworld"){moveSouth()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
     case "ArrowLeft": x = "W"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveWest()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
     case "ArrowRight": x = "E"; if(menuMode[0]=="main"){}else if(menuMode[0]=="overworld"){moveEast()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="throw"){throwItem(x)}
         break;
-    case " ": x = "C"; if(menuMode[0]=="main"){menuConfirm()}else if(menuMode[0]=="overworld"){moveWait()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="inv"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItemConfirm()}else if(menuMode[0]=="throw"){menuMode=menuStorage[1]; document.getElementById("feed").innerHTML = "Nevermind.";}
+    case " ": x = "C"; if(menuMode[0]=="main"||menuMode[0]=="inv"||menuMode[0]=="useitem"){menuConfirm()}else if(menuMode[0]=="overworld"){moveWait()}else if(menuMode[0]=="options"){}else if(menuMode[0]=="self"){}else if(menuMode[0]=="mind"){}else if(menuMode[0]=="pickup"){pickupItem(x)}else if(menuMode[0]=="drop"){dropItemConfirm()}else if(menuMode[0]=="throw"){menuMode=menuStorage[1]; document.getElementById("feed").innerHTML = "Nevermind.";}
         break;
     // + Shift
     case "~":
@@ -394,7 +395,7 @@
         break;
     case "U":
         break;
-    case "I": writeInv()
+    case "I": if(menuMode[0]=="overworld"){menuMode=menuStorage[3];menuScroll()}
         break;
     case "O":
         break;
@@ -481,21 +482,63 @@
                 dropcarrier=dropcarrier-1
             }
         }else if(x=="S"){
-            if(dropcarrier>=menuMode.length-2){}else{
+            y=dropcarrier+3
+            y="sideFeed"+y
+            if(document.getElementById(y).innerHTML == "&nbsp;"){
+                if(dropcarrier>=menuMode.length-2){}else{
+                    dropcarrier=dropcarrier+1
+                }
+            }else{
                 dropcarrier=dropcarrier+1
             }
         }
         resetSideView()
+        if(menuMode[1]!=undefined){
+            document.getElementById("feed").innerHTML = menuMode[1]
+        }
         if(menuMode.length<2){  //Checks if menu is invalid. Some (namely overworld and pickup) are designed this way on purpose, and should not be referenced.
             document.getElementById("feed").innerHTML = "ERROR: Invalid menu. Aborting."
             menuMode=menuStorage[0] //Might remove this depending on how commonly I find this error.
-        }else if(menuMode[1]=="EXTERNALinv"){   //Checks for external storage Inv. All menuMode[1]=="EXTERNALid" ifs do some variant of this. If yes, prints an external value.
-            //TODO
+        }else if(menuMode[2]=="EXTERNALinv"){   //Checks for external storage Inv. All menuMode[2]=="EXTERNALid" ifs do some variant of this. If yes, prints an external value.
+            if(invStorage.length <= 0){
+                document.getElementById("feed").innerHTML = "You are not carrying anything!"
+                menuMode=menuStorage[1]
+                writeInv()
+            }else{
+                document.getElementById("sideFeed1").innerHTML = " -- Inventory --<br><br>Items : " + invStorage.length + "/" + invMax + "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp" + "Scint : " + scint
+                document.getElementById("sideFeed0").innerHTML = "Page : " + (invPage + 1)
+                g = 2
+                for(let i = 0; i < 8; i++){
+                    a = Math.floor(i + (invPage * 8))
+                    x = invStorage[a]
+                    y = "sideFeed"+g
+                    g = g+1
+                    if(x!=undefined){
+                        x = itemIDs.find(y => y[0] === x[0])
+                        if(g-3==dropcarrier){
+                            document.getElementById(y).innerHTML = "> " + x[1]
+                            document.getElementById(y).style.color = "yellow"
+                        }else{
+                            document.getElementById(y).innerHTML = x[3] + " " + x[1]
+                        }
+                    }else{
+                        document.getElementById(y).innerHTML = "&nbsp"
+                    }
+                }
+            }
+            if(invPage > 0){
+                document.getElementById("sideButton1").onclick = turnInvPageLeft
+                document.getElementById("sideButton1").style = "border-color:white;color:white"
+            }
+            if(invPage < ((invMax / 8)-1)){
+                document.getElementById("sideButton2").onclick = turnInvPageRight
+                document.getElementById("sideButton2").style = "border-color:white;color:white"
+            }
         }else if(menuMode[1]=="EXTERNALmagic"){     //Other possible external inventories: Book of Lore.
             //TODO
         }else{  //If no errors or externals are found, print menuMode's information.
             g = 1
-            for(let i = 1; i < 10; i++){
+            for(let i = 2; i < 11; i++){
                 x = menuMode[i]
                 y = "sideFeed"+g
                 g = g+1
@@ -518,7 +561,7 @@
         }else if(menuMode[0]=="options"){//2 - "options"
 
         }else if(menuMode[0]=="inv"){//3 - "inv"
-
+            invMenuConfirm()                        //NOTE: Currently unfinished. You can access the menu and all that, but you cant use items.
         }else if(menuMode[0]=="self"){//4 - "self"
 
         }else if(menuMode[0]=="mind"){//5 - "mind"
@@ -531,6 +574,8 @@
             throwMenuConfirm()
         }else if(menuMode[0]=="magic"){// 9 - "magic"
             magicMenuConfirm()
+        }else if(menuMode[0]=="useitem"){// 11 - "useitem"
+            useitemMenuConfirm()
         }
     }
 
@@ -578,7 +623,12 @@
             //UNSET BUFFER
         }
     }
-
+    function invMenuConfirm(){
+        //TODO
+        document.getElementById("feed").innerHTML = "NOTE: Item usage is still in development."
+        writeInv()
+        menuMode=menuStorage[1]
+    }
     // - VIEW OBJECT -
     function viewTile(x,y){
         z = "map" + x + "x" + y
@@ -652,18 +702,18 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move North."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 document.getElementById("feed").innerHTML = "You try to move North, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[1] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -708,18 +758,18 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move West."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move West, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -735,18 +785,18 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move East."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move East, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -762,18 +812,18 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move South."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
-                document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move South, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -793,22 +843,22 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move North-West."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move North-West, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -828,22 +878,22 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move North-East."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move North-East, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y - 1
                 playerCoord.y = playerCoord.y - 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -863,22 +913,22 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move South-West."
-            } else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            } else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move South-West, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x + 1
                 playerCoord.x = playerCoord.x + 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -898,22 +948,22 @@
         }else{
             x = tilesList[coord.z][coord.x][coord.y]
             var y = tileIDs.find(y => y[0] === x)
-            if(y[5] == 0){ // wall 0 means the area is open.
+            if(y[5]!=1&&y[5]!=7&&y[5]!=8){ // wall 0 means the area is open.
                 displayCoords();
                 checkBiome()
                 document.getElementById("feed").innerHTML = "You move South-East."
-            }else if(y[5] == 1){ //wall 1 means the area is solid and inpassable.
+            }else if(y[5]==1||y[5]==7||y[5]==8){ //wall 1 means the area is solid and inpassable.
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "You try to move South-East, but there is a " + y[0] + " in the way!" 
+                document.getElementById("feed").innerHTML = "You try to move South-East, but there is a " + y[1] + " in the way!" 
             } else {
                 coord.y = coord.y + 1
                 playerCoord.y = playerCoord.y + 1;
                 coord.x = coord.x - 1
                 playerCoord.x = playerCoord.x - 1;
-                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " Lacks a wall value. Assuming wall = 1."
+                document.getElementById("feed").innerHTML = "ERROR: " + y[0] + " lacks a wall value. Assuming wall = 1."
             }
         }
         endTurn();
@@ -1354,11 +1404,23 @@
     }
     function turnInvPageLeft(){
         invPage = invPage-1;
-        writeInv()
+        dropcarrier=0
+        if(menuMode[0]=="inv"){
+            x="X"
+            menuScroll(x)
+        }else{
+            writeInv()
+        }
     }
     function turnInvPageRight(){
         invPage = invPage+1;
-        writeInv()
+        dropcarrier=0
+        if(menuMode[0]=="inv"){
+            x="X"
+            menuScroll(x)
+        }else{
+            writeInv()
+        }
     }
 
     // - DEBUG BUTTONS - 
@@ -2411,38 +2473,11 @@
         ["core_tome9","Battered Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
         // Input (Ephemera)
         ["core_coffer10","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
-        {
-            "id": "core_reliquary10",
-            "name": "Battered Reliquary",
-            "desc": "A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.",
-            "symbol": "u",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_lockbox10",
-            "name": "Battered Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome10",
-            "name": "Battered Tome",
-            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
-            "symbol": "c",
-            "color": "2",
-            "mod": [undefined],
-        },
-        { // Input (Scint)
-            "id": "core_coffer11",
-            "name": "Battered Coffer",
-            "desc": "A battered wooden chest with a metal lock. It might contain something useful.",
-            "symbol": "m",
-            "color": "2",
-            "mod": [undefined],
-        },
+        ["core_reliquary10","Battered Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
+        ["core_lockbox10","Battered Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome10","Battered Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
+        // Input (Scint)
+        ["core_coffer11","Battered Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
         {
             "id": "core_reliquary11",
             "name": "Battered Reliquary",
@@ -2579,22 +2614,8 @@
             "color": "2",
             "mod": [undefined],
         },
-        {
-            "id": "core_lockbox15",
-            "name": "Warded Lockbox",
-            "desc": "A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.",
-            "symbol": "a",
-            "color": "2",
-            "mod": [undefined],
-        },
-        {
-            "id": "core_tome15",
-            "name": "Warded Tome",
-            "desc": "A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.",
-            "symbol": "c",
-            "color": "2",
-            "mod": [undefined],
-        },
+        ["core_lockbox15","Warded Lockbox","A simple iron box with an internal lock. Judging by the dents in its seams, someone has been trying to pry it open. It might contain something valuable.","a","2",[undefined]],
+        ["core_tome15","Warded Tome","A leather-bound tome secured by a padlock. The pages are yellowed with age. It might contain something fascinating.","c","2",[undefined]],
         // Sealed (Use Turn to Assert Dominance: Chance Based on Presence)
         ["core_coffer16","Inhabited Coffer","A battered wooden chest with a metal lock. It might contain something useful.","m","2",[undefined]],
         ["core_reliquary16","Inhabited Reliquary","A squat urn that at one point might have been beautifully painted. It is chained shut and unusually sturdy. It might contain something interesting.","u","2",[undefined]],
@@ -2602,12 +2623,103 @@
         ["core_tome16","Inhabited Tome","A quivering tome that, despite all efforts, won't open. A vague presence can be felt from within. It might contain something fascinating.","c","2",[undefined]],
         // REAGENTS
         //Letter is aspect, number is strength. 5 is the variant.
+            // A
         ["core_reagenta1","Pure Quartz","It is not common to find quartz of this clarity. Perhaps this was not intentional.","q","2",[undefined]],
         ["core_reagenta2","TODO","TODO","q","2",[undefined]],
         ["core_reagenta3","Viljåsa","The pale leaves of a supposedly-exotic plant. Do not taste it; do not touch it; it never lets go when it holds you.","v","2",[undefined]],
         ["core_reagenta4","TODO","TODO","q","2",[undefined]],
         ["core_reagenta5","TODO","TODO","q","2",[undefined]],
-            //TODO: reagents 2-16, relics, foci
+            // B
+        ["core_reagentb1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentb2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentb3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentb4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentb5","TODO","TODO","q","2",[undefined]],
+            // C
+        ["core_reagentc1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentc2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentc3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentc4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentc5","TODO","TODO","q","2",[undefined]],
+            // D
+        ["core_reagentd1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentd2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentd3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentd4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentd5","TODO","TODO","q","2",[undefined]],
+            // E
+        ["core_reagente1","TODO","TODO","q","2",[undefined]],
+        ["core_reagente2","TODO","TODO","q","2",[undefined]],
+        ["core_reagente3","TODO","TODO","q","2",[undefined]],
+        ["core_reagente4","TODO","TODO","q","2",[undefined]],
+        ["core_reagente5","TODO","TODO","q","2",[undefined]],
+            // F
+        ["core_reagentf1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentf2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentf3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentf4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentf5","TODO","TODO","q","2",[undefined]],
+            // G
+        ["core_reagentg1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentg2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentg3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentg4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentg5","TODO","TODO","q","2",[undefined]],
+            // H
+        ["core_reagenth1","TODO","TODO","q","2",[undefined]],
+        ["core_reagenth2","TODO","TODO","q","2",[undefined]],
+        ["core_reagenth3","TODO","TODO","q","2",[undefined]],
+        ["core_reagenth4","TODO","TODO","q","2",[undefined]],
+        ["core_reagenth5","TODO","TODO","q","2",[undefined]],
+            // I
+        ["core_reagenti1","TODO","TODO","q","2",[undefined]],
+        ["core_reagenti2","TODO","TODO","q","2",[undefined]],
+        ["core_reagenti3","TODO","TODO","q","2",[undefined]],
+        ["core_reagenti4","TODO","TODO","q","2",[undefined]],
+        ["core_reagenti5","TODO","TODO","q","2",[undefined]],
+            // J
+        ["core_reagentj1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentj2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentj3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentj4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentj5","TODO","TODO","q","2",[undefined]],
+            // K
+        ["core_reagentk1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentk2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentk3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentk4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentk5","TODO","TODO","q","2",[undefined]],
+            // L
+        ["core_reagentl1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentl2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentl3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentl4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentl5","TODO","TODO","q","2",[undefined]],
+            // M
+        ["core_reagentm1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentm2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentm3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentm4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentm5","TODO","TODO","q","2",[undefined]],
+            // N
+        ["core_reagentn1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentn2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentn3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentn4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentn5","TODO","TODO","q","2",[undefined]],
+            // O
+        ["core_reagento1","TODO","TODO","q","2",[undefined]],
+        ["core_reagento2","TODO","TODO","q","2",[undefined]],
+        ["core_reagento3","TODO","TODO","q","2",[undefined]],
+        ["core_reagento4","TODO","TODO","q","2",[undefined]],
+        ["core_reagento5","TODO","TODO","q","2",[undefined]],
+            // P
+        ["core_reagentp1","TODO","TODO","q","2",[undefined]],
+        ["core_reagentp2","TODO","TODO","q","2",[undefined]],
+        ["core_reagentp3","TODO","TODO","q","2",[undefined]],
+        ["core_reagentp4","TODO","TODO","q","2",[undefined]],
+        ["core_reagentp5","TODO","TODO","q","2",[undefined]],
+            //TODO: relics, foci
     ]
     // - TILE ID LIST -     //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-wall/stair
     const tileIDs = [   //STAIRS KEY: 0-Floor, 1-Wall, 2-Up Stair, 3-Down Stair, 4-Up/Down Stair, 5-Passible tile that blocks LoS, 6-Reserved Tile(Most things cannot spawn here. Used for shops & vaults.), 7-Pits, 8-Inert Fluid  //Add tile IDs for all base fluids?
@@ -2640,10 +2752,10 @@
     ]
     const modIDs = [
     ]
-    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-starting health, 7-vitality, 8-finesse, 9-willpower, 10-presence, 11-exp value, 12-loot chance, 13-loot table, 14-ephemera chance, 15-ephemera type       //TODO: Loot table, loot chance, ephemera value, ephemera chance
-        ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10,1,50,0,0,10,20,["core_coffer1","core_reliquary1","core_lockbox1","core_tome1"],50,"core_ephemera1"],
-        ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15,1,50,0,0,10,20,["core_coffer1","core_reliquary1","core_lockbox1","core_tome1"],50,"core_ephemera1"],
-        ["core_testcrawler","Crawler","This one is extatically writhing in the grass.","C",2,"core_testcrawler",5,1,50,0,0,10,20,["core_coffer1","core_reliquary1","core_lockbox1","core_tome1"],50,"core_ephemera1"],
+    const entityIDs = [ //STYLE GUIDE: 0-id code, 1-name, 2-description, 3-symbol, 4-color, 5-AI id, 6-starting health, 7-vitality, 8-finesse, 9-willpower, 10-presence, 11-exp value, 12-loot chance, 13-loot table, 14-ephemera chance, 15-ephemera type
+        ["core_testfollower","Helper","This one will follow you.","@",3,"core_testfollower",10,1,20,0,0,10,20,["core_coffer1","core_reliquary1","core_lockbox1","core_tome1"],50,"core_ephemera1"],
+        ["core_testwanderer","Wanderer","This one has a road and no destination.","W",2,"core_testwanderer",15,1,20,0,0,10,20,["core_coffer1","core_reliquary1","core_lockbox1","core_tome1"],50,"core_ephemera1"],
+        ["core_testcrawler","Crawler","This one is extatically writhing in the grass.","C",2,"core_testcrawler",5,1,20,0,0,10,20,["core_coffer1","core_reliquary1","core_lockbox1","core_tome1"],50,"core_ephemera1"],
     ]
     const magicIDs = [
     ]
