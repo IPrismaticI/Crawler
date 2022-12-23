@@ -13,6 +13,7 @@ I forgot to add the updated code before I left for the holidays, so I made this.
  - Parashu is obtained from <>. It has the option to do a sweeping attack, and while it does less damage than Sharur, it deals more damage with consistent hits. It unlocks the <>, <>, <>, and <> skill trees.
  - Kryselikatos is obtained from <>. It uses arrows, which are limited but powerful and stackable items. Its basic attack is the weakest. It unlocks the <>, <>, <>, and <> skill trees.
  - Gungnir is obtained from <>. It can attack several tiles away, and greatly increases accuracy. It unlocks the <>, <>, <>, and <> skill trees.
+ - The Palid Key is obtained after Vogel's Rune is reactivated with a Lonepearl to be used to open <>, a gateway to Lone. It has very low attack power, but boosts arcana efficiency and can convert ephemera into either of the gray variants.
 
 <Bow> Ammunition-
 - Name - Finesse Multiplier - Details/Uses
@@ -32,6 +33,15 @@ I forgot to add the updated code before I left for the holidays, so I made this.
 - Piercing - 1.2 - Bypasses a small amount of DR, assuming I add that.
 - Knockback - 0.8 - Knocks target back.
 
+- PHONE NOTES -
+Majority of the game is in the strata, traversed largely by the sightless path (and later on, the sea of doors.)
+There are three main zones: towns, the overworld, and dungeons.
+Towns are usually peaceful, and usually preset. They contain various services depending on the area.
+The overworld is a map of the area, dotted with known ‘area nodes’ that open a menu to select specific locations (for example, a town with a dungeon beneath it will have options to visit either when it’s node is selected.)
+Realms to use: Amber Cradle, Dolmen, Lacrima, Pale Dream, Lone, Nule, Deep Alus, Sulfurous Wastes, Fungal Gardens, Stonegarden
+Plot points: Open a gate to throne. Ferry supplies to a dying city. Find someone’s memories in the dissolution pools. Seek the Aquillan city in Nule, and perhaps those in other places. Sunder the weapons of three other risen. Find your killer. A new ruin is discovered or dungeon founded. Collect the 72 emblems that keep the tower of wanting contained. Collect aspects from the pools left by throne (tears of throne?) to open a gate to its underside. Build a city, or several. Find the forest-eater. Claim the last residual aspects of the dead powers.
+Some lore fragments are universal, with most rites requiring that knowledge to be found alongside specific lore.
+Enemy Groups: Scourges, Constituents, Elementals, Pull from other sources.
 
 - RELIQUARY NOTES -
 - Add in coffers, reliquaries, lockboxes, and tomes. These need to be unlocked, which can be done via several means.
@@ -116,6 +126,7 @@ https://baronygame.fandom.com/wiki/Tinkering_Kit
 -Gain a random Ephemera.
 
 - REVELATION UPGRADES NOTES -
+-NOTE: I'm planning on having these upgrade trees upgrade weapons rather than acting as individual class-like paths.
 -Had an idea: Primary is an active ability. Secondary is a passive of some sort. Tetriary is an active ability. B is unlocked by some sort of milestone.
 NOTE: 'B-' requires both of the options that come after the directional option. The others require the one before them.
 1-<White>
